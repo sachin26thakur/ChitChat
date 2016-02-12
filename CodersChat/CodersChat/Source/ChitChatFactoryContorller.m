@@ -15,6 +15,8 @@ NSString * const SelectLangugeControllerID = @"selectLangugeControllerID";
 
 NSString * const SignUPControllerID = @"signUPControllerID";
 
+NSString * const ChatAreaControllerID = @"ChatAreaControllerID";
+
 
 
 
@@ -78,7 +80,15 @@ NSString * const SignUPControllerID = @"signUPControllerID";
             // self.cache[@(type)] = vc;
         }
             break;
-                       
+        
+       
+        case ViewControllerTypeChatArea:
+        {
+            UIStoryboard *chitChatStoryBoard = [UIStoryboard storyboardWithName:@"chitChat" bundle:nil];
+            vc = [chitChatStoryBoard instantiateViewControllerWithIdentifier:ChatAreaControllerID];
+
+        }
+            break;
         default:
             break;
     }

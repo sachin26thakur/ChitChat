@@ -14,7 +14,8 @@ typedef NS_ENUM(NSUInteger, ViewControllerType)
 {
     ViewControllerTypeChitChatList,
     ViewControllerTypeSelectLanguage,
-    ViewControllerTypeSignUp
+    ViewControllerTypeSignUp,
+    ViewControllerTypeChatArea
 };
 
 extern NSString * const ChitChatListViewControllerID;
