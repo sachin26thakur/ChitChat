@@ -137,7 +137,6 @@ typedef enum {
     rq_GET_GROUP_MEMBERS,
     rq_ADD_PRIVATE_FRIEND,
     rq_GET_USERS_BY_PHONE,
-    rq_RADAR,
     rq_ENTER,
     rq_EXIT,
     rq_GET_MEMBRES,

@@ -38,10 +38,6 @@
     UILongPressGestureRecognizer *longTapGesture;
     UITapGestureRecognizer *disMissKeyboard;
     
-    NSMutableSet *peekMessageToDelete;
-    NSTimer *peekMessageTimer;
-    
-    BOOL currentMessagePeaked;
     BOOL inSelecionMode;
     NSData *tempVideoData;
     
@@ -91,7 +87,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *smilyTextHSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cameraTextHSpace;
 @property (weak, nonatomic) IBOutlet UITextView *msgTextView;
-@property (weak, nonatomic) IBOutlet UIButton *peakBtn;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *soundBtn;
@@ -109,14 +104,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *keyboardBtn;
 
 
-@property (weak, nonatomic) IBOutlet UIView *audioPeakVew;
 @property (weak, nonatomic) IBOutlet UIButton *audioRecordingIcon;
 @property (weak, nonatomic) IBOutlet UILabel *audioTimerLabel;
 @property (weak, nonatomic) IBOutlet UIButton *audioPlayBtn;
 @property (weak, nonatomic) IBOutlet UISlider *audioScrubber;
 @property (weak, nonatomic) IBOutlet UILabel *audioRightTimerlabel;
 @property (weak, nonatomic) IBOutlet UIButton *cancelAudioBtn;
-@property (weak, nonatomic) IBOutlet UIButton *peakAudioMsg;
 @property (weak, nonatomic) IBOutlet UIButton *sendAudioMsg;
 
 //@property (strong, nonatomic) NSMutableArray *defaultKeyboardEmojiSticker;
@@ -173,22 +166,13 @@ const char stickerCreatorKey;
                                                  name:@"GroupUpdated"
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(exitRadarChat:)
-                                                 name:@"ExitRadar"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(getMessageAcknowledgement:)
                                                  name:@"AcknowledgementReceived"
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(peakTimerBuzzed:)
-                                                 name:@"PeakTimerBuzzed"
-                                               object:nil];
     
     
     
     
-    peekMessageToDelete = [NSMutableSet set];
     selectedChatIDs = [NSMutableSet set];
     mediaDownloadInProgress = [NSMutableSet set];
     emojiStickerDownloadInProgress = [NSMutableSet set];
@@ -289,7 +273,6 @@ const char stickerCreatorKey;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillTerminate:) name:UIApplicationWillTerminateNotification object:nil];
     
     [self sendReadAcknowledgments];
-    [self startTimerForPeakMessage];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -442,37 +425,6 @@ const char stickerCreatorKey;
     }
 }
 
--(void)peakTimerBuzzed:(NSNotification *)aNotification{
-    
-    NSDictionary *timerDict = [aNotification object];
-    NSPredicate *peakPredicate = [NSPredicate predicateWithFormat:@"NOT (SELF.clientMsgID IN %@) AND NOT (SELF.org_id IN %@) AND NOT (SELF.org_id = nil AND SELF.clientMsgID = nil)", timerDict[@"msgID"],timerDict[@"msgID"]];
-    
-    @synchronized(individualChatData)
-    {
-        [individualChatData filterUsingPredicate:peakPredicate];
-        [self.collectionView reloadData];
-    }
-    [[SocketStream sharedSocketObject] peakBuzzed:timerDict];
-}
-
-
--(void)startTimerForPeakMessage {
-    
-    NSPredicate *msgPredicate = [NSPredicate predicateWithFormat:@"SELF.msgLife = %@ AND SELF.media_relationship = nil AND SELF.tx_id != %@",@(PEAK_MESSAGE_LIFE),[SocketStream sharedSocketObject].userID];
-    NSPredicate *mediaPredicate = [NSPredicate predicateWithFormat:@"SELF.msgLife = %@ AND SELF.media_relationship != %@ AND SELF.tx_id != %@",@(PEAK_MESSAGE_LIFE),nil,[SocketStream sharedSocketObject].userID];
-    
-    @synchronized(individualChatData)
-    {
-        NSArray *messages = [individualChatData filteredArrayUsingPredicate:msgPredicate];
-        if([messages count])
-            [[SocketStream sharedSocketObject] addToTimer:@{@"time":@([NSDate timeIntervalSinceReferenceDate]+PEAK_MESSAGE_TIMER),@"msgID":[messages valueForKeyPath:@"org_id"]}];
-        
-        NSArray *mediaMessages = [individualChatData filteredArrayUsingPredicate:mediaPredicate];
-        if([mediaMessages count])
-            [[SocketStream sharedSocketObject] addToTimer:@{@"time":@([NSDate timeIntervalSinceReferenceDate]+PEAK_MEDIA_TIMER),@"msgID":[mediaMessages valueForKeyPath:@"org_id"]}];
-    }
-}
-
 -(void)sendMessageWithText:(NSString *)msgText media:(MediaObject *)mediaObj{
     
     [appDelegate stopActivityIndicator];
@@ -491,9 +443,8 @@ const char stickerCreatorKey;
         
         long long clientID = ([[NSDate date] timeIntervalSince1970] * 1000);
         
-        ChatMessageObject *chatMessage = [ChatMessageObject getEntityFor:oj_MESSAGE ackType:NOACK chatType:PRIVATE notifyType:NONOTIFY msgReqType:NOMSGREQ clientMsgID:clientID id:nil org_id:nil msgLife:(currentMessagePeaked) ? 10: -1 msgDetails:(ifStickerIsSelected)?StickerMessageIdentifier:((ifEmojiIsSelected)?EmojiMessageIdentifier:nil) status:nil nTimesSent:1 timeFirstSent:clientID timeLastSent:clientID tx_id:[SocketStream sharedSocketObject].userID tx_name:nil  tx_uname:[SocketStream sharedSocketObject].userName tx_avatar_id:nil tx_avatar_uname:nil msgText:msgText rx_id:rxIDs rxg_id:rxgIDs mediaObject:mediaObj];
+        ChatMessageObject *chatMessage = [ChatMessageObject getEntityFor:oj_MESSAGE ackType:NOACK chatType:PRIVATE notifyType:NONOTIFY msgReqType:NOMSGREQ clientMsgID:clientID id:nil org_id:nil msgLife:-1 msgDetails:(ifStickerIsSelected)?StickerMessageIdentifier:((ifEmojiIsSelected)?EmojiMessageIdentifier:nil) status:nil nTimesSent:1 timeFirstSent:clientID timeLastSent:clientID tx_id:[SocketStream sharedSocketObject].userID tx_name:nil  tx_uname:[SocketStream sharedSocketObject].userName tx_avatar_id:nil tx_avatar_uname:nil msgText:msgText rx_id:rxIDs rxg_id:rxgIDs mediaObject:mediaObj];
         
-        currentMessagePeaked = NO;
         
         [self getMessageConverted:chatMessage forIndex:individualChatData.count];
         [individualChatData addObject:chatMessage];
@@ -528,12 +479,6 @@ const char stickerCreatorKey;
     
     
 }
--(void)exitRadarChat:(NSNotification *)aNotification{
-    
-    if(!(self.cardObject && self.cardObject.id_ && [[SocketStream sharedSocketObject] getCardByID:self.cardObject.id_])){
-        [self backAction:nil];
-    }
-}
 
 -(void)getMessage:(NSNotification *)aNotification{
     
@@ -555,9 +500,8 @@ const char stickerCreatorKey;
                                                     animated:YES];
             
             [self sendReadAcknowledgments];
-            [self startTimerForPeakMessage];
-        //}
-    }
+        }
+    
     
     
 }
@@ -693,12 +637,9 @@ const char stickerCreatorKey;
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(!self.audioPeakVew.hidden)
-    {
-        [self cancelSendingAudio:nil];
-    }
-    else if (!self.moreOptionsView.hidden)
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.moreOptionsView.hidden)
         self.moreOptionsView.hidden = true;
     else{
         
@@ -1186,11 +1127,6 @@ const char stickerCreatorKey;
 
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     
-    if(!self.audioPeakVew.hidden)
-    {
-        [self cancelSendingAudio:nil];
-    }
-    
     if([textView.attributedText.string isEqualToString:defaultMessageText.string]){
         self.msgTextView.attributedText = tempMessageText;
         self.msgTextView.attributedText = emptyMessageText;
@@ -1256,10 +1192,6 @@ const char stickerCreatorKey;
 }
 
 - (IBAction)moreOptionAction:(UIButton *)sender {
-    if(!self.audioPeakVew.hidden)
-    {
-        [self cancelSendingAudio:nil];
-    }
     
     if(self.morePopUpView.hidden){
         self.collectionView.userInteractionEnabled = NO;
@@ -1338,10 +1270,6 @@ const char stickerCreatorKey;
 
 - (IBAction)cameraAction:(id)sender {
     
-    if(!self.audioPeakVew.hidden)
-    {
-        [self cancelSendingAudio:nil];
-    }
     BOOL hasCamera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     
     UIImagePickerController* picker = [[UIImagePickerController alloc] init];
@@ -1359,25 +1287,16 @@ const char stickerCreatorKey;
     if (!self.moreOptionsView.hidden)
         self.moreOptionsView.hidden = true;
     
-    if(!self.audioPeakVew.hidden)
-    {
-        [self cancelSendingAudio:nil];
-    }
-    else{
-        self.audioPeakVew.hidden = false;
-        
-        self.cancelAudioBtn.hidden = true;
-        self.peakAudioMsg.hidden = true;
-        self.sendAudioMsg.hidden = true;
-        self.audioPlayBtn.hidden = true;
-        self.audioScrubber.hidden = true;
-        self.audioRightTimerlabel.hidden = true;
-        
-        self.audioRecordingIcon.hidden = false;
-        self.audioTimerLabel.hidden = false;
-        
-        self.audioTimerLabel.text = [self getTimeStringFromAudio:true];
-    }
+    self.cancelAudioBtn.hidden = true;
+    self.sendAudioMsg.hidden = true;
+    self.audioPlayBtn.hidden = true;
+    self.audioScrubber.hidden = true;
+    self.audioRightTimerlabel.hidden = true;
+    
+    self.audioRecordingIcon.hidden = false;
+    self.audioTimerLabel.hidden = false;
+    
+    self.audioTimerLabel.text = [self getTimeStringFromAudio:true];
     
 }
 
@@ -1396,6 +1315,7 @@ const char stickerCreatorKey;
             [self closeEmojiKeyboard];
             [self textViewDidEndEditing:self.msgTextView];
         }
+    
 }
 
 - (IBAction)moreAction:(id)sender {
@@ -1404,7 +1324,6 @@ const char stickerCreatorKey;
 
 - (IBAction)peakBtnClicked:(UIButton *)sender {
     isSendButtonActive = true;
-    currentMessagePeaked = YES;
     if([self.msgTextView isFirstResponder])
         [self.msgTextView resignFirstResponder];
     else{
@@ -1449,11 +1368,7 @@ const char stickerCreatorKey;
 -(void)dismissKeyboard{
     
     self.moreOptionsView.hidden = true;
-    if(!self.audioPeakVew.hidden)
-    {
-        [self cancelSendingAudio:nil];
-    }
-    sendEnabled = true;
+    sendEnabled = false;
     isSendButtonActive = false;
     if(!keyboardAreaShown)
         [self.msgTextView resignFirstResponder];
@@ -1545,7 +1460,6 @@ const char stickerCreatorKey;
         self.cameraTextHSpace.constant = 19;
         
         [self.sendBtn setSelected:false];
-        self.peakBtn.hidden = YES;
         
         
         
@@ -2072,9 +1986,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     } failure:^(NSError *error) {
         
     }];
-    if(ifPeaked)
-        currentMessagePeaked = YES;
-    
     
     MediaObject *mediaObj = [MediaObject getEntityFor:[Utility compressImage:editedImage ImageData:nil forThumbnail:NO] lowRes:[Utility compressImage:editedImage ImageData:nil forThumbnail:YES] mediaFormat:mt_JPG mediaType:ma_IMAGE mediaPath:nil];
     
@@ -2099,8 +2010,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         
     }];
     
-    if(ifPeaked)
-        currentMessagePeaked = YES;
     
     NSString *moviePath = [[Utility getDocumentPath] stringByAppendingPathComponent:@"Video.MOV"];
     NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
@@ -2140,14 +2049,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         }
     }
     currentRecordedData = nil;
-    self.audioPeakVew.hidden = true;
-    
-}
-
-- (IBAction)peakAudioMsg:(UIButton *)sender {
-    
-    currentMessagePeaked = true;
-    [self sendRecordedData];
     
 }
 
@@ -2162,7 +2063,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     MediaObject *mediaObj = [MediaObject getEntityFor:currentRecordedData lowRes:nil mediaFormat:mt_M4A mediaType:ma_AUDIO mediaPath:nil];
     [self sendMessageWithText:nil media:mediaObj];
     currentRecordedData = nil;
-    self.audioPeakVew.hidden = true;
     if(recorder){
         if ([[NSFileManager defaultManager] fileExistsAtPath:recorder.url.path]) {
             if (![recorder deleteRecording])
@@ -2206,7 +2106,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
             [recorderTimer invalidate];
         
         self.cancelAudioBtn.hidden = false;
-        self.peakAudioMsg.hidden = false;
         self.sendAudioMsg.hidden = false;
         self.audioPlayBtn.hidden = false;
         self.audioScrubber.value = 0;
