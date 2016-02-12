@@ -53,6 +53,19 @@
     // TableCell created
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    NSString *languge = [self.langugeData objectAtIndex:indexPath.row];
+    
+    NSString *selectedLanguage = [ChitchatUserDefault selectedUserLanguage];
+    
+    if ([languge isEqualToString:selectedLanguage]) {
+    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }else{
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+    
+
+    
     [cell.textLabel setText:[self.langugeData objectAtIndex:indexPath.row]];
     return cell;
     
@@ -60,11 +73,15 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [ChitchatUserDefault setSelectedUserLanguage:[self.langugeData objectAtIndex:indexPath.row]];
+    
     ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
     
     [self.navigationController pushViewController:chatListVc animated:YES];
+    
+    [tableView reloadData];
 }
-
 
 
 @end

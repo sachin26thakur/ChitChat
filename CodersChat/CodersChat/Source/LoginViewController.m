@@ -82,7 +82,7 @@
     //check service responce
     if([responce[@"oprSuccess"] integerValue]){
         
-            if (YES || [ChitchatUserDefault selectedUserLanguage]) {
+            if ([ChitchatUserDefault selectedUserLanguage]) {
                 // go to home screen
         
                 ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
@@ -90,7 +90,22 @@
                 [self.navigationController pushViewController:chatListVc animated:YES];
  
             }else{
+                
+        
+                
+                
                 //go for select languge screen
+                SelectLanguageViewController *selectLngVc = (SelectLanguageViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeSelectLanguage];
+                [self.navigationController pushViewController:selectLngVc animated:YES];
+                
+                
+                
+                
+                
+                
+                
+                
+                
             }
 
         
@@ -111,8 +126,7 @@
        // ShowAlert(AppName,NSLocalizedString(@"Invalid login credentials \n Please try again!", nil));
         [appDelegate stopActivityIndicator];
         
-        SelectLanguageViewController *selectLngVc = (SelectLanguageViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeSelectLanguage];
-        [self.navigationController pushViewController:selectLngVc animated:YES];
+        
     }
 }
 
