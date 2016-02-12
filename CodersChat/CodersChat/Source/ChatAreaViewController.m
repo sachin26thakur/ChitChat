@@ -499,14 +499,14 @@ const char stickerCreatorKey;
                                         atScrollPosition:UICollectionViewScrollPositionBottom
                                                 animated:YES];
         [[SocketStream sharedSocketObject] sendMessage:chatMessage];
-        sendEnabled = false;
+        sendEnabled = true;
         if(ifStickerIsSelected)
             ifStickerIsSelected = false;
         else if (ifEmojiIsSelected){
             ifEmojiIsSelected = false;
             emojiString = [NSMutableString new];
         }
-        isSendButtonActive = false;
+        isSendButtonActive = true;
     }
     
 }
@@ -1186,7 +1186,6 @@ const char stickerCreatorKey;
         self.msgTextView.attributedText = emptyMessageText;
     }
     keyboardAreaShown = false;
-    [self setViewMovedUp:YES withKeyBoardSize:CGSizeZero];
     [[self.viewChatBox viewWithTag:90] removeFromSuperview];
     [self.keyboardBtn setSelected:NO];
     [self.msgTextView becomeFirstResponder];
@@ -1380,7 +1379,6 @@ const char stickerCreatorKey;
     if( [userdefaults boolForKey:@"userLoggedIn"])
         [[SocketStream sharedSocketObject] restartSocket];
     
-    if(sendEnabled){
         isSendButtonActive = true;
         if([self.msgTextView isFirstResponder])
             [self.msgTextView resignFirstResponder];
@@ -1388,12 +1386,6 @@ const char stickerCreatorKey;
             [self closeEmojiKeyboard];
             [self textViewDidEndEditing:self.msgTextView];
         }
-    }
-    else{
-        isSendButtonActive = false;
-        sendEnabled = true;
-        self.peakBtn.hidden = NO;
-    }
 }
 
 - (IBAction)moreAction:(id)sender {
@@ -1451,7 +1443,7 @@ const char stickerCreatorKey;
     {
         [self cancelSendingAudio:nil];
     }
-    sendEnabled = false;
+    sendEnabled = true;
     isSendButtonActive = false;
     if(!keyboardAreaShown)
         [self.msgTextView resignFirstResponder];
@@ -1490,16 +1482,20 @@ const char stickerCreatorKey;
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3]; // if you want to slide up the view
-    
+    CGRect frame = self.viewChatBox.frame;
+
     if (movedUp)
     {
         self.VSpaceKeyboardView.constant =  kbSize.height;
         self.verticalCollectionViewContraint.constant = 0;
+        self.viewChatBox.frame = CGRectMake(frame.origin.x, frame.origin.y-216, frame.size.width, frame.size.height);
     }
     else
     {
         self.VSpaceKeyboardView.constant = -216;
         self.verticalCollectionViewContraint.constant = 0;
+        self.viewChatBox.frame = CGRectMake(frame.origin.x, frame.origin.y+216, frame.size.width, frame.size.height);
+
     }
     
     [UIView commitAnimations];

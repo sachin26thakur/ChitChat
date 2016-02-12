@@ -681,6 +681,9 @@
                                         <state key="normal" image="message_icone">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sendAction:" destination="T0f-p1-oJM" eventType="touchUpInside" id="0dj-dc-Ysu"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
