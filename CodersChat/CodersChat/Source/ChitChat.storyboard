@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SinkinSans-400Italic.otf">
@@ -40,73 +40,52 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Chat Area View Controller-->
         <scene sceneID="167-Gc-xJp">
             <objects>
-                <viewController storyboardIdentifier="ChatAreaControllerID" id="T0f-p1-oJM" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatAreaControllerID" id="T0f-p1-oJM" customClass="ChatAreaViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Ed-WE-M9s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MrU-JV-nGY" userLabel="Back">
-                                <rect key="frame" x="0.0" y="29" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="back-arrow">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lE0-OV-GvF" userLabel="sound">
-                                <rect key="frame" x="240" y="29" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="sound-active">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="y3B-ss-9yB" userLabel="add_Friend">
-                                <rect key="frame" x="200" y="29" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="add-friend">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8r5-bm-tIx" userLabel="more">
-                                <rect key="frame" x="280" y="29" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="more_a">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <view contentMode="scaleToFill" id="O2i-W9-oRK">
-                                <rect key="frame" x="0.0" y="69" width="320" height="74"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="dWJ-SA-QPg">
-                                        <rect key="frame" x="0.0" y="0.0" width="244" height="74"/>
+                                        <rect key="frame" x="0.0" y="20" width="244" height="74"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultUser" id="2B7-MS-hOJ">
-                                                <rect key="frame" x="20" y="15" width="46" height="46"/>
+                                                <rect key="frame" x="42" y="15" width="46" height="46"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hyG-RL-RP0">
-                                                <rect key="frame" x="79" y="20" width="148" height="24"/>
+                                                <rect key="frame" x="88" y="20" width="148" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="SinkinSans-400Regular" family="Sinkin Sans" pointSize="16.5"/>
                                                 <color key="textColor" red="0.30980392159999998" green="0.35294117650000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ihv-Tg-RM3">
-                                                <rect key="frame" x="79" y="38" width="148" height="25"/>
+                                                <rect key="frame" x="88" y="38" width="148" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="SinkinSans-400Regular" family="Sinkin Sans" pointSize="10"/>
                                                 <color key="textColor" red="0.49803921569999998" green="0.53725490200000003" blue="0.59215686270000001" alpha="0.62" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MrU-JV-nGY" userLabel="Back">
+                                                <rect key="frame" x="-5" y="17" width="40" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="back-arrow">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jTK-jL-t6j">
-                                        <rect key="frame" x="244" y="0.0" width="76" height="74"/>
+                                        <rect key="frame" x="244" y="20" width="76" height="74"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="icons-show-photos-inactive">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -116,7 +95,7 @@
                                 <color key="backgroundColor" white="0.8422851562" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="RSa-Fh-0vO">
-                                <rect key="frame" x="0.0" y="143" width="320" height="372"/>
+                                <rect key="frame" x="0.0" y="94" width="320" height="401"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BY7-aW-MJG">
@@ -591,6 +570,10 @@
                                         <outlet property="whiteBackGroundView" destination="dd3-GF-YP3" id="dDF-QJ-pRm"/>
                                     </connections>
                                 </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="T0f-p1-oJM" id="isJ-nx-uCn"/>
+                                    <outlet property="delegate" destination="T0f-p1-oJM" id="D2Q-Si-ahP"/>
+                                </connections>
                             </collectionView>
                             <view hidden="YES" contentMode="scaleToFill" id="jKD-69-OQC">
                                 <rect key="frame" x="0.0" y="472" width="320" height="40"/>
@@ -693,24 +676,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V1Q-tX-V69" userLabel="forward">
-                                <rect key="frame" x="240" y="29" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="forward">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fLD-bP-iek" userLabel="peak">
                                 <rect key="frame" x="280" y="475" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="ghost_icon">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t6L-tU-77x" userLabel="delete">
-                                <rect key="frame" x="200" y="29" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="delete">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -774,21 +743,21 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="RSa-Fh-0vO" id="gyU-ca-wBO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGm-Cw-Q9j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="227.73333333333332" y="134.42666666666668"/>
+            <point key="canvasLocation" x="227" y="134"/>
         </scene>
     </scenes>
     <resources>
         <image name="DefaultUser" width="54" height="54"/>
-        <image name="add-friend" width="25" height="18"/>
         <image name="back-arrow" width="8" height="14"/>
         <image name="btn-play" width="18" height="22"/>
-        <image name="delete" width="27" height="27"/>
         <image name="donkey_icon" width="19" height="18"/>
         <image name="download-icon" width="35" height="35"/>
-        <image name="forward" width="27" height="27"/>
         <image name="ghost_icon" width="23" height="24"/>
         <image name="icon-sepretor-image" width="1" height="22"/>
         <image name="icon_009" width="95" height="90"/>
@@ -798,11 +767,9 @@
         <image name="image-gallery" width="27" height="27"/>
         <image name="keyboard_icon" width="34" height="15"/>
         <image name="message_icone" width="95" height="90"/>
-        <image name="more_a" width="17" height="17"/>
         <image name="music-gallery" width="27" height="27"/>
         <image name="sepretat" width="95" height="90"/>
         <image name="slider-blue" width="3" height="15"/>
-        <image name="sound-active" width="20" height="16"/>
         <image name="video-gallery" width="27" height="27"/>
         <image name="view_icon" width="13" height="13"/>
         <image name="white_chat_box" width="95" height="90"/>

@@ -488,8 +488,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    ChatAreaViewController *chatListVc = (ChatAreaViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChatArea];
-    [self.navigationController pushViewController:chatListVc animated:YES];
+    ChatAreaViewController *charAreadVc = (ChatAreaViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChatArea];
+    [self.navigationController pushViewController:charAreadVc animated:YES];
     //objChatIndividualController.cardObject = [self getVcardsForActiveMode][indexPath.row];
     //objChatIndividualController.chatType = [SocketStream sharedSocketObject].activeMode;
 }
@@ -722,9 +722,7 @@
 }
 
 -(NSArray *)getVcardsForActiveMode{
-    
-        return [SocketStream sharedSocketObject].historyChatData;
-    
+    return [[[SocketStream sharedSocketObject] getVCardsToAdd:false withGroupID:nil] mutableCopy];
 }
 
 -(void)newGroupCreated:(NSNotification *)notificationNeeded{

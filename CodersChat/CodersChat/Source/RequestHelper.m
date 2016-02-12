@@ -201,4 +201,38 @@
     return [req getRequestDict];
 }
 
+
++(NSDictionary *)getMessageForID:(NSString*)cardID{
+    
+    RequestHelper *req= [[RequestHelper alloc] init];
+    
+    req->reqType1 = rq_GET;
+    req->reqType2 = rq_MESSAGE;
+    
+    //Set AUth
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    
+    req->reqDetails = @{@"_id":@[cardID],@"highRes":@"true",@"msgType":@"private"};
+    
+    return [req getRequestDict];
+}
+
++(NSDictionary *)getIndividualImagesFor:(NSArray *)imagesArray forEmoji:(BOOL)forEmoji_{
+    
+    RequestHelper *req= [[RequestHelper alloc] init];
+    
+    req->reqType1 = (forEmoji_) ? rq_EMOJI : rq_STICKER;
+    req->reqType2 = rq_MISC_ACTIONS;
+    
+    //Set AUth
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    
+    req->reqDetails = @{@"image_ids":imagesArray, @"action":@"getImage"};
+    
+    return [req getRequestDict];
+    
+}
+
 @end
