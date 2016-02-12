@@ -45,6 +45,9 @@
 
 
 
+#define screenWidth [[UIScreen mainScreen] bounds].size.width
+#define screenHeight [[UIScreen mainScreen] bounds].size.height
+
 #define Card_Text_Resolution @"textOnly"
 #define Card_Thumbnail_Resolution @"thumbnail"
 #define Card_Low_Res_Resolution @"lowRes"

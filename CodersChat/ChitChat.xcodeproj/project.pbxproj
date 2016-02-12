@@ -59,6 +59,26 @@
 		74ADDCF21C6E4C450061736D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ADDCF01C6E4C450061736D /* AddressBookUI.framework */; };
 		74ADDCF41C6E4C6F0061736D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ADDCF31C6E4C6F0061736D /* libsqlite3.0.tbd */; };
 		74ADDCF71C6E4C950061736D /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCF61C6E4C950061736D /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
+		74ADDCFA1C6E5C6B0061736D /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCF91C6E5C6B0061736D /* ChatListCell.m */; };
+		74ADDCFD1C6E5E3B0061736D /* AddGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCFC1C6E5E3B0061736D /* AddGroupController.m */; };
+		74ADDD111C6E5FFC0061736D /* SinkinSans-100Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDCFF1C6E5FFC0061736D /* SinkinSans-100Thin.otf */; };
+		74ADDD121C6E5FFC0061736D /* SinkinSans-100ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD001C6E5FFC0061736D /* SinkinSans-100ThinItalic.otf */; };
+		74ADDD131C6E5FFC0061736D /* SinkinSans-200XLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD011C6E5FFC0061736D /* SinkinSans-200XLight.otf */; };
+		74ADDD141C6E5FFC0061736D /* SinkinSans-200XLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD021C6E5FFC0061736D /* SinkinSans-200XLightItalic.otf */; };
+		74ADDD151C6E5FFC0061736D /* SinkinSans-300Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD031C6E5FFC0061736D /* SinkinSans-300Light.otf */; };
+		74ADDD161C6E5FFC0061736D /* SinkinSans-300LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD041C6E5FFC0061736D /* SinkinSans-300LightItalic.otf */; };
+		74ADDD171C6E5FFC0061736D /* SinkinSans-400Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD051C6E5FFC0061736D /* SinkinSans-400Italic.otf */; };
+		74ADDD181C6E5FFC0061736D /* SinkinSans-400Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD061C6E5FFC0061736D /* SinkinSans-400Regular.otf */; };
+		74ADDD191C6E5FFC0061736D /* SinkinSans-500Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD071C6E5FFC0061736D /* SinkinSans-500Medium.otf */; };
+		74ADDD1A1C6E5FFC0061736D /* SinkinSans-500MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD081C6E5FFC0061736D /* SinkinSans-500MediumItalic.otf */; };
+		74ADDD1B1C6E5FFC0061736D /* SinkinSans-600SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD091C6E5FFC0061736D /* SinkinSans-600SemiBold.otf */; };
+		74ADDD1C1C6E5FFC0061736D /* SinkinSans-600SemiBoldItali.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD0A1C6E5FFC0061736D /* SinkinSans-600SemiBoldItali.otf */; };
+		74ADDD1D1C6E5FFC0061736D /* SinkinSans-700Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD0B1C6E5FFC0061736D /* SinkinSans-700Bold.otf */; };
+		74ADDD1E1C6E5FFC0061736D /* SinkinSans-700BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD0C1C6E5FFC0061736D /* SinkinSans-700BoldItalic.otf */; };
+		74ADDD1F1C6E5FFC0061736D /* SinkinSans-800Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD0D1C6E5FFC0061736D /* SinkinSans-800Black.otf */; };
+		74ADDD201C6E5FFC0061736D /* SinkinSans-800BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD0E1C6E5FFC0061736D /* SinkinSans-800BlackItalic.otf */; };
+		74ADDD211C6E5FFC0061736D /* SinkinSans-900XBlack.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD0F1C6E5FFC0061736D /* SinkinSans-900XBlack.otf */; };
+		74ADDD221C6E5FFC0061736D /* SinkinSans-900XBlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74ADDD101C6E5FFC0061736D /* SinkinSans-900XBlackItalic.otf */; };
 		74EACA0C1C6E08750041C842 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EACA0B1C6E08750041C842 /* ChatListViewController.m */; };
 		74EACA4C1C6E14690041C842 /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EACA4B1C6E14690041C842 /* RequestHelper.m */; };
 		74EACA4F1C6E16220041C842 /* SrvReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EACA4E1C6E16220041C842 /* SrvReq.m */; };
@@ -198,6 +218,28 @@
 		74ADDCF31C6E4C6F0061736D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		74ADDCF51C6E4C950061736D /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
 		74ADDCF61C6E4C950061736D /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
+		74ADDCF81C6E5C6B0061736D /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
+		74ADDCF91C6E5C6B0061736D /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
+		74ADDCFB1C6E5E3B0061736D /* AddGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGroupController.h; sourceTree = "<group>"; };
+		74ADDCFC1C6E5E3B0061736D /* AddGroupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddGroupController.m; sourceTree = "<group>"; };
+		74ADDCFF1C6E5FFC0061736D /* SinkinSans-100Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-100Thin.otf"; sourceTree = "<group>"; };
+		74ADDD001C6E5FFC0061736D /* SinkinSans-100ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-100ThinItalic.otf"; sourceTree = "<group>"; };
+		74ADDD011C6E5FFC0061736D /* SinkinSans-200XLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-200XLight.otf"; sourceTree = "<group>"; };
+		74ADDD021C6E5FFC0061736D /* SinkinSans-200XLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-200XLightItalic.otf"; sourceTree = "<group>"; };
+		74ADDD031C6E5FFC0061736D /* SinkinSans-300Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-300Light.otf"; sourceTree = "<group>"; };
+		74ADDD041C6E5FFC0061736D /* SinkinSans-300LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-300LightItalic.otf"; sourceTree = "<group>"; };
+		74ADDD051C6E5FFC0061736D /* SinkinSans-400Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-400Italic.otf"; sourceTree = "<group>"; };
+		74ADDD061C6E5FFC0061736D /* SinkinSans-400Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-400Regular.otf"; sourceTree = "<group>"; };
+		74ADDD071C6E5FFC0061736D /* SinkinSans-500Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-500Medium.otf"; sourceTree = "<group>"; };
+		74ADDD081C6E5FFC0061736D /* SinkinSans-500MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-500MediumItalic.otf"; sourceTree = "<group>"; };
+		74ADDD091C6E5FFC0061736D /* SinkinSans-600SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-600SemiBold.otf"; sourceTree = "<group>"; };
+		74ADDD0A1C6E5FFC0061736D /* SinkinSans-600SemiBoldItali.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-600SemiBoldItali.otf"; sourceTree = "<group>"; };
+		74ADDD0B1C6E5FFC0061736D /* SinkinSans-700Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-700Bold.otf"; sourceTree = "<group>"; };
+		74ADDD0C1C6E5FFC0061736D /* SinkinSans-700BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-700BoldItalic.otf"; sourceTree = "<group>"; };
+		74ADDD0D1C6E5FFC0061736D /* SinkinSans-800Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-800Black.otf"; sourceTree = "<group>"; };
+		74ADDD0E1C6E5FFC0061736D /* SinkinSans-800BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-800BlackItalic.otf"; sourceTree = "<group>"; };
+		74ADDD0F1C6E5FFC0061736D /* SinkinSans-900XBlack.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-900XBlack.otf"; sourceTree = "<group>"; };
+		74ADDD101C6E5FFC0061736D /* SinkinSans-900XBlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SinkinSans-900XBlackItalic.otf"; sourceTree = "<group>"; };
 		74EACA0A1C6E08750041C842 /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
 		74EACA0B1C6E08750041C842 /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
 		74EACA4A1C6E14690041C842 /* RequestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHelper.h; sourceTree = "<group>"; };
@@ -404,6 +446,7 @@
 		7439B5AE1C6DE0E0004A724D /* CodersChat */ = {
 			isa = PBXGroup;
 			children = (
+				74ADDCFE1C6E5FFC0061736D /* CustomFont */,
 				7436EF691C70FD3000A00B66 /* Translator */,
 				74ADDCDB1C6E44820061736D /* Socket */,
 				74ADDCD41C6E43B40061736D /* UserSync */,
@@ -513,6 +556,31 @@
 				74ADDCD91C6E44710061736D /* SocketStream.m */,
 			);
 			name = Socket;
+			sourceTree = "<group>";
+		};
+		74ADDCFE1C6E5FFC0061736D /* CustomFont */ = {
+			isa = PBXGroup;
+			children = (
+				74ADDCFF1C6E5FFC0061736D /* SinkinSans-100Thin.otf */,
+				74ADDD001C6E5FFC0061736D /* SinkinSans-100ThinItalic.otf */,
+				74ADDD011C6E5FFC0061736D /* SinkinSans-200XLight.otf */,
+				74ADDD021C6E5FFC0061736D /* SinkinSans-200XLightItalic.otf */,
+				74ADDD031C6E5FFC0061736D /* SinkinSans-300Light.otf */,
+				74ADDD041C6E5FFC0061736D /* SinkinSans-300LightItalic.otf */,
+				74ADDD051C6E5FFC0061736D /* SinkinSans-400Italic.otf */,
+				74ADDD061C6E5FFC0061736D /* SinkinSans-400Regular.otf */,
+				74ADDD071C6E5FFC0061736D /* SinkinSans-500Medium.otf */,
+				74ADDD081C6E5FFC0061736D /* SinkinSans-500MediumItalic.otf */,
+				74ADDD091C6E5FFC0061736D /* SinkinSans-600SemiBold.otf */,
+				74ADDD0A1C6E5FFC0061736D /* SinkinSans-600SemiBoldItali.otf */,
+				74ADDD0B1C6E5FFC0061736D /* SinkinSans-700Bold.otf */,
+				74ADDD0C1C6E5FFC0061736D /* SinkinSans-700BoldItalic.otf */,
+				74ADDD0D1C6E5FFC0061736D /* SinkinSans-800Black.otf */,
+				74ADDD0E1C6E5FFC0061736D /* SinkinSans-800BlackItalic.otf */,
+				74ADDD0F1C6E5FFC0061736D /* SinkinSans-900XBlack.otf */,
+				74ADDD101C6E5FFC0061736D /* SinkinSans-900XBlackItalic.otf */,
+			);
+			path = CustomFont;
 			sourceTree = "<group>";
 		};
 		74EACA491C6E144E0041C842 /* Helper */ = {
@@ -697,6 +765,8 @@
 				74EACAD81C6E2EC50041C842 /* SingleChatControllerViewController.h */,
 				74EACAD91C6E2EC50041C842 /* SingleChatControllerViewController.m */,
 				74EACA0B1C6E08750041C842 /* ChatListViewController.m */,
+				74ADDCF81C6E5C6B0061736D /* ChatListCell.h */,
+				74ADDCF91C6E5C6B0061736D /* ChatListCell.m */,
 				7439B5B21C6DE0E0004A724D /* AppDelegate.h */,
 				7439B5B31C6DE0E0004A724D /* AppDelegate.m */,
 				7439B5B81C6DE0E0004A724D /* Main.storyboard */,
@@ -711,6 +781,8 @@
 				A97126311C6DE5E7000B62E8 /* ChatAreaViewController.h */,
 				A97126321C6DE5E7000B62E8 /* ChatAreaViewController.m */,
 				A94BEDAE1C6DF90F00591BCE /* Constants.h */,
+				74ADDCFB1C6E5E3B0061736D /* AddGroupController.h */,
+				74ADDCFC1C6E5E3B0061736D /* AddGroupController.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -787,14 +859,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				7436EF661C70EAC800A00B66 /* wechat@2x.png in Resources */,
+				74ADDD111C6E5FFC0061736D /* SinkinSans-100Thin.otf in Resources */,
+				74ADDD221C6E5FFC0061736D /* SinkinSans-900XBlackItalic.otf in Resources */,
 				7436EF651C70EAC800A00B66 /* weChat.png in Resources */,
+				74ADDD191C6E5FFC0061736D /* SinkinSans-500Medium.otf in Resources */,
+				74ADDD131C6E5FFC0061736D /* SinkinSans-200XLight.otf in Resources */,
+				74ADDD1D1C6E5FFC0061736D /* SinkinSans-700Bold.otf in Resources */,
 				7439B5BC1C6DE0E0004A724D /* Assets.xcassets in Resources */,
+				74ADDD141C6E5FFC0061736D /* SinkinSans-200XLightItalic.otf in Resources */,
 				7436EF861C70FD6000A00B66 /* LICENSE.txt in Resources */,
+				74ADDD171C6E5FFC0061736D /* SinkinSans-400Italic.otf in Resources */,
+				74ADDD181C6E5FFC0061736D /* SinkinSans-400Regular.otf in Resources */,
+				74ADDD1C1C6E5FFC0061736D /* SinkinSans-600SemiBoldItali.otf in Resources */,
 				7439B5BA1C6DE0E0004A724D /* Main.storyboard in Resources */,
+				74ADDD201C6E5FFC0061736D /* SinkinSans-800BlackItalic.otf in Resources */,
 				7436EF681C70EAC800A00B66 /* zargow_logo.png in Resources */,
+				74ADDD121C6E5FFC0061736D /* SinkinSans-100ThinItalic.otf in Resources */,
+				74ADDD161C6E5FFC0061736D /* SinkinSans-300LightItalic.otf in Resources */,
 				74EACAD71C6E2E100041C842 /* ChitChat.storyboard in Resources */,
+				74ADDD1F1C6E5FFC0061736D /* SinkinSans-800Black.otf in Resources */,
 				74EACACA1C6E28810041C842 /* loader_rotate_arrow.png in Resources */,
+				74ADDD1B1C6E5FFC0061736D /* SinkinSans-600SemiBold.otf in Resources */,
 				7436EF671C70EAC800A00B66 /* weChat@3x.png in Resources */,
+				74ADDD1E1C6E5FFC0061736D /* SinkinSans-700BoldItalic.otf in Resources */,
+				74ADDD211C6E5FFC0061736D /* SinkinSans-900XBlack.otf in Resources */,
+				74ADDD1A1C6E5FFC0061736D /* SinkinSans-500MediumItalic.otf in Resources */,
+				74ADDD151C6E5FFC0061736D /* SinkinSans-300Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +910,7 @@
 				74ADDCE41C6E45570061736D /* DatabaseHelper.m in Sources */,
 				74ADDC521C6E3C970061736D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				74EACABB1C6E28180041C842 /* Reachability.m in Sources */,
+				74ADDCFA1C6E5C6B0061736D /* ChatListCell.m in Sources */,
 				A971262D1C6DE5A1000B62E8 /* LoginViewController.m in Sources */,
 				74EACAC11C6E28180041C842 /* UIImageView+AFNetworking.m in Sources */,
 				74EACAC41C6E28180041C842 /* UIWebView+AFNetworking.m in Sources */,
@@ -876,6 +967,7 @@
 				74EACA0C1C6E08750041C842 /* ChatListViewController.m in Sources */,
 				74EACA4C1C6E14690041C842 /* RequestHelper.m in Sources */,
 				7439B5B11C6DE0E0004A724D /* main.m in Sources */,
+				74ADDCFD1C6E5E3B0061736D /* AddGroupController.m in Sources */,
 				74ADDCC91C6E42B50061736D /* PhoneObject.m in Sources */,
 				74EACAB51C6E28180041C842 /* AFNetworkReachabilityManager.m in Sources */,
 				74EACAB91C6E28180041C842 /* AFURLResponseSerialization.m in Sources */,

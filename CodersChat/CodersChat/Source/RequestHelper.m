@@ -168,4 +168,37 @@
     return [req getRequestDict];
 }
 
++(NSDictionary *)getPrivateGroupRequest:(NSString *)grpID{
+    
+    RequestHelper *req= [[RequestHelper alloc] init];
+    
+    req->reqType1 = rq_GET;
+    req->reqType2 = rq_PRIVATE_GROUP;
+    
+    //Set AUth
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    
+    req->reqDetails = @{@"group_id":grpID};
+    
+    return [req getRequestDict];
+}
+
+
++(NSDictionary *)getGroupVCardRequest:(NSString *)grpID forHighRes:(BOOL)highRes{
+    
+    RequestHelper *req= [[RequestHelper alloc] init];
+    
+    req->reqType1 = rq_GET_VCARD;
+    req->reqType2 = rq_ID;
+    
+    //Set AUth
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    
+    req->reqDetails = @{@"highRes":(highRes)? @"true" :@"false",@"_id":grpID};
+    
+    return [req getRequestDict];
+}
+
 @end
