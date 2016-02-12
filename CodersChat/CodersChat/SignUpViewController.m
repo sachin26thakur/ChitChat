@@ -55,17 +55,17 @@
 
     }
     else if (![Utility isValidName:self.userName.text]) {
-        [self showAlertWithTitle:@"User Number" andDescription:@"Please enter valid user name."];
+        [self showAlertWithTitle:@"User Name" andDescription:@"Please enter valid user name."];
         isValidate = NO;
 
     }
     else if (![Utility isValidName:self.password.text]) {
-        [self showAlertWithTitle:@"User Number" andDescription:@"Please enter your password."];
+        [self showAlertWithTitle:@"Password" andDescription:@"Please enter your password."];
         isValidate = NO;
 
     }
     else if (![Utility isValidName:self.confirmPassword.text]) {
-        [self showAlertWithTitle:@"User Number" andDescription:@"Please enter confirm password."];
+        [self showAlertWithTitle:@"Confirm Password" andDescription:@"Please enter confirm password."];
         isValidate = NO;
 
     }
@@ -98,8 +98,14 @@
     
     else if ([segue.identifier isEqualToString:@"languageScreenSegue"])
     {
+        NSMutableDictionary *allValuesDict = [[NSMutableDictionary alloc] init];
+        [allValuesDict setValue:self.userName.text forKey:@"fullName"];
+        [allValuesDict setValue:self.phoneNumber.text forKey:@"phoneNumber"];
+        [allValuesDict setValue:self.userName.text forKey:@"userName"];
+        [allValuesDict setValue:self.password.text forKey:@"password"];
+        [allValuesDict setValue:self.confirmPassword.text forKey:@"confirmPassword"];
         SelectLanguageViewController *languageVC = (SelectLanguageViewController *)segue.destinationViewController;
-        
+        languageVC.allDataDict = allValuesDict;
     }
 }
 @end
