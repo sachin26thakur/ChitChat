@@ -11,6 +11,16 @@
 		7436EF661C70EAC800A00B66 /* wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7436EF621C70EAC800A00B66 /* wechat@2x.png */; };
 		7436EF671C70EAC800A00B66 /* weChat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7436EF631C70EAC800A00B66 /* weChat@3x.png */; };
 		7436EF681C70EAC800A00B66 /* zargow_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7436EF641C70EAC800A00B66 /* zargow_logo.png */; };
+		7436EF761C70FD3000A00B66 /* FGAzureToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF6C1C70FD3000A00B66 /* FGAzureToken.m */; };
+		7436EF771C70FD3000A00B66 /* FGTranslateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF6E1C70FD3000A00B66 /* FGTranslateRequest.m */; };
+		7436EF781C70FD3000A00B66 /* FGTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF701C70FD3000A00B66 /* FGTranslator.m */; };
+		7436EF791C70FD3000A00B66 /* NSString+FGTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF721C70FD3000A00B66 /* NSString+FGTranslator.m */; };
+		7436EF7A1C70FD3000A00B66 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF751C70FD3000A00B66 /* XMLDictionary.m */; };
+		7436EF861C70FD6000A00B66 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7436EF7C1C70FD6000A00B66 /* LICENSE.txt */; };
+		7436EF871C70FD6000A00B66 /* PINCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF801C70FD6000A00B66 /* PINCache.m */; };
+		7436EF881C70FD6000A00B66 /* PINDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF821C70FD6000A00B66 /* PINDiskCache.m */; };
+		7436EF891C70FD6000A00B66 /* PINMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF841C70FD6000A00B66 /* PINMemoryCache.m */; };
+		7436EF8A1C70FD6000A00B66 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF851C70FD6000A00B66 /* README.md */; };
 		7439B5B11C6DE0E0004A724D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439B5B01C6DE0E0004A724D /* main.m */; };
 		7439B5B41C6DE0E0004A724D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439B5B31C6DE0E0004A724D /* AppDelegate.m */; };
 		7439B5B71C6DE0E0004A724D /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439B5B61C6DE0E0004A724D /* SignUpViewController.m */; };
@@ -99,6 +109,25 @@
 		7436EF621C70EAC800A00B66 /* wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat@2x.png"; sourceTree = "<group>"; };
 		7436EF631C70EAC800A00B66 /* weChat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weChat@3x.png"; sourceTree = "<group>"; };
 		7436EF641C70EAC800A00B66 /* zargow_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zargow_logo.png; sourceTree = "<group>"; };
+		7436EF6B1C70FD3000A00B66 /* FGAzureToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGAzureToken.h; sourceTree = "<group>"; };
+		7436EF6C1C70FD3000A00B66 /* FGAzureToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGAzureToken.m; sourceTree = "<group>"; };
+		7436EF6D1C70FD3000A00B66 /* FGTranslateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGTranslateRequest.h; sourceTree = "<group>"; };
+		7436EF6E1C70FD3000A00B66 /* FGTranslateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGTranslateRequest.m; sourceTree = "<group>"; };
+		7436EF6F1C70FD3000A00B66 /* FGTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGTranslator.h; sourceTree = "<group>"; };
+		7436EF701C70FD3000A00B66 /* FGTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGTranslator.m; sourceTree = "<group>"; };
+		7436EF711C70FD3000A00B66 /* NSString+FGTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FGTranslator.h"; sourceTree = "<group>"; };
+		7436EF721C70FD3000A00B66 /* NSString+FGTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FGTranslator.m"; sourceTree = "<group>"; };
+		7436EF741C70FD3000A00B66 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
+		7436EF751C70FD3000A00B66 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
+		7436EF7C1C70FD6000A00B66 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		7436EF7E1C70FD6000A00B66 /* Nullability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nullability.h; sourceTree = "<group>"; };
+		7436EF7F1C70FD6000A00B66 /* PINCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PINCache.h; sourceTree = "<group>"; };
+		7436EF801C70FD6000A00B66 /* PINCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINCache.m; sourceTree = "<group>"; };
+		7436EF811C70FD6000A00B66 /* PINDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PINDiskCache.h; sourceTree = "<group>"; };
+		7436EF821C70FD6000A00B66 /* PINDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINDiskCache.m; sourceTree = "<group>"; };
+		7436EF831C70FD6000A00B66 /* PINMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PINMemoryCache.h; sourceTree = "<group>"; };
+		7436EF841C70FD6000A00B66 /* PINMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINMemoryCache.m; sourceTree = "<group>"; };
+		7436EF851C70FD6000A00B66 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7439B5AC1C6DE0E0004A724D /* ChitChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChitChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7439B5B01C6DE0E0004A724D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7439B5B21C6DE0E0004A724D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -286,6 +315,64 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		7436EF691C70FD3000A00B66 /* Translator */ = {
+			isa = PBXGroup;
+			children = (
+				7436EF7B1C70FD5F00A00B66 /* PINCache */,
+				7436EF6A1C70FD3000A00B66 /* FGTranslator */,
+			);
+			path = Translator;
+			sourceTree = "<group>";
+		};
+		7436EF6A1C70FD3000A00B66 /* FGTranslator */ = {
+			isa = PBXGroup;
+			children = (
+				7436EF6B1C70FD3000A00B66 /* FGAzureToken.h */,
+				7436EF6C1C70FD3000A00B66 /* FGAzureToken.m */,
+				7436EF6D1C70FD3000A00B66 /* FGTranslateRequest.h */,
+				7436EF6E1C70FD3000A00B66 /* FGTranslateRequest.m */,
+				7436EF6F1C70FD3000A00B66 /* FGTranslator.h */,
+				7436EF701C70FD3000A00B66 /* FGTranslator.m */,
+				7436EF711C70FD3000A00B66 /* NSString+FGTranslator.h */,
+				7436EF721C70FD3000A00B66 /* NSString+FGTranslator.m */,
+				7436EF731C70FD3000A00B66 /* XMLDictionary */,
+			);
+			path = FGTranslator;
+			sourceTree = "<group>";
+		};
+		7436EF731C70FD3000A00B66 /* XMLDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				7436EF741C70FD3000A00B66 /* XMLDictionary.h */,
+				7436EF751C70FD3000A00B66 /* XMLDictionary.m */,
+			);
+			path = XMLDictionary;
+			sourceTree = "<group>";
+		};
+		7436EF7B1C70FD5F00A00B66 /* PINCache */ = {
+			isa = PBXGroup;
+			children = (
+				7436EF7C1C70FD6000A00B66 /* LICENSE.txt */,
+				7436EF7D1C70FD6000A00B66 /* PINCache */,
+				7436EF851C70FD6000A00B66 /* README.md */,
+			);
+			path = PINCache;
+			sourceTree = "<group>";
+		};
+		7436EF7D1C70FD6000A00B66 /* PINCache */ = {
+			isa = PBXGroup;
+			children = (
+				7436EF7E1C70FD6000A00B66 /* Nullability.h */,
+				7436EF7F1C70FD6000A00B66 /* PINCache.h */,
+				7436EF801C70FD6000A00B66 /* PINCache.m */,
+				7436EF811C70FD6000A00B66 /* PINDiskCache.h */,
+				7436EF821C70FD6000A00B66 /* PINDiskCache.m */,
+				7436EF831C70FD6000A00B66 /* PINMemoryCache.h */,
+				7436EF841C70FD6000A00B66 /* PINMemoryCache.m */,
+			);
+			path = PINCache;
+			sourceTree = "<group>";
+		};
 		7439B5A31C6DE0E0004A724D = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +404,7 @@
 		7439B5AE1C6DE0E0004A724D /* CodersChat */ = {
 			isa = PBXGroup;
 			children = (
+				7436EF691C70FD3000A00B66 /* Translator */,
 				74ADDCDB1C6E44820061736D /* Socket */,
 				74ADDCD41C6E43B40061736D /* UserSync */,
 				74ADDC581C6E41BC0061736D /* DBModel */,
@@ -701,6 +789,7 @@
 				7436EF661C70EAC800A00B66 /* wechat@2x.png in Resources */,
 				7436EF651C70EAC800A00B66 /* weChat.png in Resources */,
 				7439B5BC1C6DE0E0004A724D /* Assets.xcassets in Resources */,
+				7436EF861C70FD6000A00B66 /* LICENSE.txt in Resources */,
 				7439B5BA1C6DE0E0004A724D /* Main.storyboard in Resources */,
 				7436EF681C70EAC800A00B66 /* zargow_logo.png in Resources */,
 				74EACAD71C6E2E100041C842 /* ChitChat.storyboard in Resources */,
@@ -716,11 +805,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7436EF781C70FD3000A00B66 /* FGTranslator.m in Sources */,
 				74EACAB81C6E28180041C842 /* AFURLRequestSerialization.m in Sources */,
+				7436EF7A1C70FD3000A00B66 /* XMLDictionary.m in Sources */,
 				74EACAB71C6E28180041C842 /* AFURLConnectionOperation.m in Sources */,
 				74ADDCC31C6E42B50061736D /* ChatMessageObject.m in Sources */,
 				74ADDCCE1C6E42B50061736D /* AlertObject+CoreDataProperties.m in Sources */,
 				74EACA7C1C6E24E80041C842 /* ChitchatUserDefault.m in Sources */,
+				7436EF891C70FD6000A00B66 /* PINMemoryCache.m in Sources */,
 				74ADDC5B1C6E41E10061736D /* DBModel.xcdatamodeld in Sources */,
 				74EACABE1C6E28180041C842 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				74EACADA1C6E2EC50041C842 /* SingleChatControllerViewController.m in Sources */,
@@ -743,6 +835,8 @@
 				74ADDCD01C6E42B50061736D /* PrivateGroupObject+CoreDataProperties.m in Sources */,
 				74ADDCCA1C6E42B50061736D /* MerchantAccount+CoreDataProperties.m in Sources */,
 				74EACA521C6E16300041C842 /* UserAuth.m in Sources */,
+				7436EF791C70FD3000A00B66 /* NSString+FGTranslator.m in Sources */,
+				7436EF8A1C70FD6000A00B66 /* README.md in Sources */,
 				74EACAD11C6E29CC0041C842 /* NSData+Base64.m in Sources */,
 				74ADDCD11C6E42B50061736D /* PrivateGroupObject.m in Sources */,
 				A97126331C6DE5E7000B62E8 /* ChatAreaViewController.m in Sources */,
@@ -755,6 +849,8 @@
 				74EACA621C6E200F0041C842 /* ActivityIndicator+UIView.m in Sources */,
 				74EACAB41C6E28180041C842 /* AFHTTPSessionManager.m in Sources */,
 				74EACA5E1C6E1AD30041C842 /* Media.m in Sources */,
+				7436EF881C70FD6000A00B66 /* PINDiskCache.m in Sources */,
+				7436EF871C70FD6000A00B66 /* PINCache.m in Sources */,
 				74ADDCC01C6E42B50061736D /* MediaObject+CoreDataProperties.m in Sources */,
 				74ADDCD71C6E43C90061736D /* SyncUser.m in Sources */,
 				74EACABD1C6E28180041C842 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -771,10 +867,12 @@
 				74EACABF1C6E28180041C842 /* UIAlertView+AFNetworking.m in Sources */,
 				74ADDCDA1C6E44710061736D /* SocketStream.m in Sources */,
 				74EACA5B1C6E1A360041C842 /* Utility.m in Sources */,
+				7436EF771C70FD3000A00B66 /* FGTranslateRequest.m in Sources */,
 				74EACAC31C6E28180041C842 /* UIRefreshControl+AFNetworking.m in Sources */,
 				74ADDCD31C6E42B50061736D /* GeoLocationObject.m in Sources */,
 				74EACAC21C6E28180041C842 /* UIProgressView+AFNetworking.m in Sources */,
 				74ADDCCF1C6E42B50061736D /* AlertObject.m in Sources */,
+				7436EF761C70FD3000A00B66 /* FGAzureToken.m in Sources */,
 				74EACA0C1C6E08750041C842 /* ChatListViewController.m in Sources */,
 				74EACA4C1C6E14690041C842 /* RequestHelper.m in Sources */,
 				7439B5B11C6DE0E0004A724D /* main.m in Sources */,
