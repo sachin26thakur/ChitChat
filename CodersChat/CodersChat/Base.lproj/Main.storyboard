@@ -343,6 +343,9 @@
                                 <color key="textColor" red="0.66274509800000003" green="0.66274509800000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SinkinSans-400Regular" family="Sinkin Sans" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hVK-5s-nqS" id="w23-Wa-Njo"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="seL-4G-HXB">
                                 <rect key="frame" x="40" y="254" width="236" height="33"/>
@@ -353,6 +356,9 @@
                                 <color key="textColor" red="0.66274509800000003" green="0.66274509800000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SinkinSans-400Regular" family="Sinkin Sans" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hVK-5s-nqS" id="AHX-In-O72"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGk-X4-K8v">
                                 <rect key="frame" x="26" y="303" width="264" height="48"/>
@@ -390,6 +396,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lF4-1U-b1X"/>
+                    <connections>
+                        <outlet property="password" destination="seL-4G-HXB" id="e1g-Cs-TWj"/>
+                        <outlet property="signInButton" destination="cGk-X4-K8v" id="S29-M3-9dc"/>
+                        <outlet property="userName" destination="meO-UK-LX1" id="CX8-Ih-Aer"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Juj-NP-Ocg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

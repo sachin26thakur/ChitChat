@@ -65,14 +65,15 @@
 {
     if (textField == self.userName)
     {
-        if ([textField.text length])
+        NSMutableString *userNameString = [textField.text mutableCopy];
+        if ([userNameString length])
         {
-            NSString *userNameString = [NSString stringWithFormat:@"\\@%@",textField.text];
-            self.userNameValue = textField.text;
-        }
-        else
-        {
-            [self showAlertView];
+            if (![textField.text hasPrefix:@"@"])
+            {
+                userNameString = [NSMutableString stringWithFormat:@"\\@%@",textField.text];
+                [userNameString replaceCharactersInRange:NSMakeRange(0, 1) withString:@""];
+            }
+            self.userNameValue = userNameString;
         }
         
     }
@@ -84,13 +85,13 @@
         }
         else
         {
-            [self showAlertView];
+            //[self showAlertView];
         }
         
     }
 }
 
-- (void)showAlertView
+- (void)showAlertVieWithTitle:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)cTitle
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please enter user name" delegate:self cancelButtonTitle:@"" otherButtonTitles:@"", nil];
     [alertView show];
@@ -117,7 +118,19 @@
 
 - (IBAction)signInButtonClicked:(id)sender
 {
-    [self callServiceForDashboard];
+    if (![self.userNameValue length])
+    {
+        [self showAlertVieWithTitle:@"Alert" message:@"Please enter user name" cancelButtonTitle:@""];
+    }
+    else if (![self.passwordValue length])
+    {
+        [self showAlertVieWithTitle:@"Alert" message:@"Please enter password" cancelButtonTitle:@""];
+    }
+    else
+    {
+        [self callServiceForDashboard];
+    }
+    
 }
 
 // call web services
