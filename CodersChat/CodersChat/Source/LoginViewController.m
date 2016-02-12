@@ -64,6 +64,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    if (textField.tag == 1) {
+        [_password becomeFirstResponder];
+    }
+    else if (textField == _password) {
+        [textField resignFirstResponder];
+    }
+    return YES;
+    
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField == self.userName)
@@ -169,7 +182,6 @@
         [ChitchatUserDefault setUserID:responce[@"respDetails"]];
         [ChitchatUserDefault setUserName:_userName.text];
         [ChitchatUserDefault setPassword:_password.text];
-        [self gotoHomeScreen];
         
         [appDelegate startActivityIndicator:self.view withText:NSLocalizedString(@"Synchronizing Contacts", nil)];
         SyncUser *syncUser = [[SyncUser alloc] init];

@@ -208,7 +208,7 @@
             
         }
         else if([webHandler.str isEqualToString:GET_MUTE_LIST]){
-            [Utility createMuteList:dicResponse[@"respDetails"]];
+         //   [Utility createMuteList:dicResponse[@"respDetails"]];
             [self callServiceForCards];
         }
         else if([webHandler.str isEqualToString:GET_CARDS]){

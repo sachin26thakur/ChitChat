@@ -9,8 +9,8 @@
 #import "ChitchatUserDefault.h"
 
 #define SELECTED_LANGUAGE @"selectedLanguage"
-#define Username @"Username"
-#define Password @"Password"
+#define Username @"UserName"
+#define Password @"UserPass"
 #define UserID @"userID"
 
 #define contactSynced @"contactSynced"

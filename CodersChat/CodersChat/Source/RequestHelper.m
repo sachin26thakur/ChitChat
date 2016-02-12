@@ -122,7 +122,6 @@
     //Set AUth
     NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
     req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
-    
     return [req getRequestDict];
 }
 
