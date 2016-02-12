@@ -13,6 +13,9 @@
 		7439B5BA1C6DE0E0004A724D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7439B5B81C6DE0E0004A724D /* Main.storyboard */; };
 		7439B5BC1C6DE0E0004A724D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7439B5BB1C6DE0E0004A724D /* Assets.xcassets */; };
 		745365B61C6E057700A7B83C /* SelectLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 745365B51C6E057700A7B83C /* SelectLanguageViewController.m */; };
+		74ADDC521C6E3C970061736D /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC4D1C6E3C970061736D /* TPKeyboardAvoidingScrollView.m */; };
+		74ADDC531C6E3C970061736D /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC4F1C6E3C970061736D /* TPKeyboardAvoidingTableView.m */; };
+		74ADDC541C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC511C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		74EACA0C1C6E08750041C842 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EACA0B1C6E08750041C842 /* ChatListViewController.m */; };
 		74EACA4C1C6E14690041C842 /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EACA4B1C6E14690041C842 /* RequestHelper.m */; };
 		74EACA4F1C6E16220041C842 /* SrvReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EACA4E1C6E16220041C842 /* SrvReq.m */; };
@@ -73,6 +76,12 @@
 		7439B5D61C6DE0E0004A724D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		745365B41C6E057700A7B83C /* SelectLanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLanguageViewController.h; sourceTree = "<group>"; };
 		745365B51C6E057700A7B83C /* SelectLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLanguageViewController.m; sourceTree = "<group>"; };
+		74ADDC4C1C6E3C970061736D /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		74ADDC4D1C6E3C970061736D /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		74ADDC4E1C6E3C970061736D /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		74ADDC4F1C6E3C970061736D /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
+		74ADDC501C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		74ADDC511C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		74EACA0A1C6E08750041C842 /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
 		74EACA0B1C6E08750041C842 /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
 		74EACA4A1C6E14690041C842 /* RequestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHelper.h; sourceTree = "<group>"; };
@@ -398,6 +407,12 @@
 		A97126281C6DE4AB000B62E8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				74ADDC4C1C6E3C970061736D /* TPKeyboardAvoidingScrollView.h */,
+				74ADDC4D1C6E3C970061736D /* TPKeyboardAvoidingScrollView.m */,
+				74ADDC4E1C6E3C970061736D /* TPKeyboardAvoidingTableView.h */,
+				74ADDC4F1C6E3C970061736D /* TPKeyboardAvoidingTableView.m */,
+				74ADDC501C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				74ADDC511C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
 				74EACAD61C6E2E100041C842 /* ChitChat.storyboard */,
 				74EACAD21C6E29DF0041C842 /* Encryption */,
 				74EACACB1C6E29CC0041C842 /* Base64 */,
@@ -522,6 +537,7 @@
 				74EACABE1C6E28180041C842 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				74EACADA1C6E2EC50041C842 /* SingleChatControllerViewController.m in Sources */,
 				74EACA581C6E19D80041C842 /* VCard.m in Sources */,
+				74ADDC521C6E3C970061736D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				74EACABB1C6E28180041C842 /* Reachability.m in Sources */,
 				A971262D1C6DE5A1000B62E8 /* LoginViewController.m in Sources */,
 				74EACAC11C6E28180041C842 /* UIImageView+AFNetworking.m in Sources */,
@@ -547,6 +563,7 @@
 				74EACA5E1C6E1AD30041C842 /* Media.m in Sources */,
 				74EACABD1C6E28180041C842 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				74EACA791C6E24CE0041C842 /* ChitChatFactoryContorller.m in Sources */,
+				74ADDC541C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				74EACA4F1C6E16220041C842 /* SrvReq.m in Sources */,
 				74EACAB31C6E28180041C842 /* AFHTTPRequestOperationManager.m in Sources */,
 				74EACABC1C6E28180041C842 /* WebserviceHandler.m in Sources */,
@@ -560,6 +577,7 @@
 				74EACAB51C6E28180041C842 /* AFNetworkReachabilityManager.m in Sources */,
 				74EACAB91C6E28180041C842 /* AFURLResponseSerialization.m in Sources */,
 				74EACA831C6E264E0041C842 /* JSONParser.m in Sources */,
+				74ADDC531C6E3C970061736D /* TPKeyboardAvoidingTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

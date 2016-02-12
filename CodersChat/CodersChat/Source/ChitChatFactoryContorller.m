@@ -13,7 +13,7 @@ NSString * const ChitChatListViewControllerID = @"chitChatListViewControllerID";
 
 NSString * const SelectLangugeControllerID = @"selectLangugeControllerID";
 
-
+NSString * const SignUPControllerID = @"signUPControllerID";
 
 
 
@@ -70,8 +70,14 @@ NSString * const SelectLangugeControllerID = @"selectLangugeControllerID";
            // self.cache[@(type)] = vc;
         }
             break;
+          
+        case ViewControllerTypeSignUp:
+        {
             
-            
+            vc = [storyboard instantiateViewControllerWithIdentifier:SignUPControllerID];
+            // self.cache[@(type)] = vc;
+        }
+            break;
                        
         default:
             break;

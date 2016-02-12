@@ -9,22 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CodersChat/Source/LoginViewController.m"
-            timestampString = "476981854.534283"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "-didReceiveMemoryWarning"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "CodersChat/Source/NetworkHandler/NetworkHandler.m"
             timestampString = "476980830.19673"
             startingColumnNumber = "9223372036854775807"
@@ -90,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CodersChat/Source/LoginViewController.m"
-            timestampString = "476982399.280289"
+            timestampString = "476986865.660862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-webServiceHandler:requestFailedWithError:"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "-webServiceHandler:recievedResponse:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

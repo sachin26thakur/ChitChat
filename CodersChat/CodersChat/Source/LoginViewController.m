@@ -19,6 +19,7 @@
 #import "AppDelegate.h"
 
 #import "SelectLanguageViewController.h"
+#import "SignUpViewController.h"
 
 
 
@@ -133,5 +134,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)signUpPressed:(UIButton *)sender {
+    
+    SignUpViewController *chatListVc = (SignUpViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeSignUp];
+    
+    [self.navigationController pushViewController:chatListVc animated:YES];
+}
 
 @end
