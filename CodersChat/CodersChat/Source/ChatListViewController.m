@@ -489,9 +489,10 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     ChatAreaViewController *charAreadVc = (ChatAreaViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChatArea];
+    charAreadVc.cardObject = [self getVcardsForActiveMode][indexPath.row];
+    charAreadVc.chatType = [SocketStream sharedSocketObject].activeMode;
     [self.navigationController pushViewController:charAreadVc animated:YES];
-    //objChatIndividualController.cardObject = [self getVcardsForActiveMode][indexPath.row];
-    //objChatIndividualController.chatType = [SocketStream sharedSocketObject].activeMode;
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{

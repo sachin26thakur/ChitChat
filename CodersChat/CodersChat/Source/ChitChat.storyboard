@@ -80,6 +80,9 @@
                                                 <state key="normal" image="back-arrow">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="backAction:" destination="T0f-p1-oJM" eventType="touchUpInside" id="CZD-Rs-YQW"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -628,6 +631,9 @@
                                             </fragment>
                                         </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="T0f-p1-oJM" id="vL6-PH-Qcw"/>
+                                        </connections>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="N3c-Lq-hhr" userLabel="Camera">
                                         <rect key="frame" x="200" y="4" width="40" height="45"/>
@@ -635,6 +641,9 @@
                                         <state key="normal" image="icon_015">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="cameraAction:" destination="T0f-p1-oJM" eventType="touchUpInside" id="P0S-Tf-0Gc"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-sepretor-image" id="V14-Ay-gYS">
                                         <rect key="frame" x="240" y="8" width="2" height="30"/>
@@ -744,7 +753,18 @@
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="cameraBtn" destination="N3c-Lq-hhr" id="Ufn-dC-8GH"/>
                         <outlet property="collectionView" destination="RSa-Fh-0vO" id="gyU-ca-wBO"/>
+                        <outlet property="friendActiveStatus" destination="Ihv-Tg-RM3" id="AT9-ol-p6p"/>
+                        <outlet property="friendImage" destination="2B7-MS-hOJ" id="NHB-46-O2E"/>
+                        <outlet property="friendName" destination="hyG-RL-RP0" id="JBf-JV-9HZ"/>
+                        <outlet property="imgFilterBtn" destination="jTK-jL-t6j" id="oto-aP-0rY"/>
+                        <outlet property="mikeBtn" destination="7sY-lP-meR" id="bhU-T7-oMs"/>
+                        <outlet property="moreBtn" destination="1u5-A6-L4L" id="XqO-MB-5pM"/>
+                        <outlet property="msgTextView" destination="7Vu-Ai-3Br" id="JkQ-iY-Wra"/>
+                        <outlet property="peakBtn" destination="fLD-bP-iek" id="YK4-ki-F9Y"/>
+                        <outlet property="sendBtn" destination="D8N-e3-Ca1" id="2vx-bP-MEZ"/>
+                        <outlet property="viewChatBox" destination="b4q-JZ-5DC" id="5ZY-Uv-Pec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGm-Cw-Q9j" userLabel="First Responder" sceneMemberID="firstResponder"/>

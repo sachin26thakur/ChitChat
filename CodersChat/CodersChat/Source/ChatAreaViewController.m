@@ -1187,6 +1187,7 @@ const char stickerCreatorKey;
     else{
         self.backBtn.enabled = false;
         self.msgTextView.delegate = nil;
+        [self.navigationController popViewControllerAnimated:YES];
 //        for (UIViewController *controller in appDelegate.objNavigationController.viewControllers) {
 //            if([controller isKindOfClass:[ChatListViewController class]]){
 //                
