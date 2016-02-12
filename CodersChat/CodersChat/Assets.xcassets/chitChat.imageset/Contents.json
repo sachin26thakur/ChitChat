@@ -7,11 +7,12 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "login-arrow@2x.png"
+      "filename" : "chitChat@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "chitChat@3x.png"
     }
   ],
   "info" : {

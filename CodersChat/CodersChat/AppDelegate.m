@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "Utility.h"
 #import "Reachability.h"
+#import "ChatListViewController.h"
+#import "ChitchatUserDefault.h"
+
 
 AppDelegate *appDelegate;
 
@@ -30,6 +33,17 @@ AppDelegate *appDelegate;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    if ([[NSUserDefaults standardUserDefaults]  boolForKey:@"userLoggedIn"] && [[NSUserDefaults standardUserDefaults]  valueForKey:@"selectedLanguage"])
+    {
+        static UIStoryboard *storyboard = nil;
+        if(storyboard == nil) {
+            storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            ChatListViewController *chatVC = [storyboard instantiateViewControllerWithIdentifier:@"chitChatListViewControllerID"];
+            UINavigationController *navigVC = (UINavigationController *)self.window.rootViewController;
+            [navigVC pushViewController:chatVC animated:YES];
+        }
+
+    }
     
     [self callNetwork];
     
