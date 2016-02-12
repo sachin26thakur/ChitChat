@@ -39,14 +39,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *timeUpdated;
 @property (nullable, nonatomic, retain) NSString *uname;
 @property (nullable, nonatomic, retain) NSString *unReadMessageCount;
-@property (nullable, nonatomic, retain) NSSet<EmojiStickerSet *> *downloaded_emoji_sticker_relationship;
-@property (nullable, nonatomic, retain) NSSet<PrivateGroupObject *> *group_admin_relationship;
+@property (nullable, nonatomic, retain) NSSet *group_admin_relationship;
 @property (nullable, nonatomic, retain) PrivateGroupObject *group_card_relationship;
-@property (nullable, nonatomic, retain) NSSet<PrivateGroupObject *> *group_relationship;
+@property (nullable, nonatomic, retain) NSSet *group_relationship;
 @property (nullable, nonatomic, retain) MediaObject *image_relationship;
-@property (nullable, nonatomic, retain) NSSet<EmojiStickerSet *> *my_emoji_sticker_relationship;
 @property (nullable, nonatomic, retain) PhoneObject *phone_relationship;
-@property (nullable, nonatomic, retain) NSSet<ChatMessageObject *> *post_relationship;
+@property (nullable, nonatomic, retain) NSSet *post_relationship;
 @property (nullable, nonatomic, retain) MediaObject *video_relationship;
 
 +(VcardObject *)setObjectFromDict:(NSDictionary *)cardDict;
@@ -57,30 +55,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VcardObject (CoreDataGeneratedAccessors)
 
-- (void)addDownloaded_emoji_sticker_relationshipObject:(EmojiStickerSet *)value;
-- (void)removeDownloaded_emoji_sticker_relationshipObject:(EmojiStickerSet *)value;
-- (void)addDownloaded_emoji_sticker_relationship:(NSSet<EmojiStickerSet *> *)values;
-- (void)removeDownloaded_emoji_sticker_relationship:(NSSet<EmojiStickerSet *> *)values;
-
 - (void)addGroup_admin_relationshipObject:(PrivateGroupObject *)value;
 - (void)removeGroup_admin_relationshipObject:(PrivateGroupObject *)value;
-- (void)addGroup_admin_relationship:(NSSet<PrivateGroupObject *> *)values;
-- (void)removeGroup_admin_relationship:(NSSet<PrivateGroupObject *> *)values;
+- (void)addGroup_admin_relationship:(NSSet *)values;
+- (void)removeGroup_admin_relationship:(NSSet*)values;
 
 - (void)addGroup_relationshipObject:(PrivateGroupObject *)value;
 - (void)removeGroup_relationshipObject:(PrivateGroupObject *)value;
-- (void)addGroup_relationship:(NSSet<PrivateGroupObject *> *)values;
-- (void)removeGroup_relationship:(NSSet<PrivateGroupObject *> *)values;
-
-- (void)addMy_emoji_sticker_relationshipObject:(EmojiStickerSet *)value;
-- (void)removeMy_emoji_sticker_relationshipObject:(EmojiStickerSet *)value;
-- (void)addMy_emoji_sticker_relationship:(NSSet<EmojiStickerSet *> *)values;
-- (void)removeMy_emoji_sticker_relationship:(NSSet<EmojiStickerSet *> *)values;
+- (void)addGroup_relationship:(NSSet *)values;
+- (void)removeGroup_relationship:(NSSet*)values;
 
 - (void)addPost_relationshipObject:(ChatMessageObject *)value;
 - (void)removePost_relationshipObject:(ChatMessageObject *)value;
-- (void)addPost_relationship:(NSSet<ChatMessageObject *> *)values;
-- (void)removePost_relationship:(NSSet<ChatMessageObject *> *)values;
+- (void)addPost_relationship:(NSSet *)values;
+- (void)removePost_relationship:(NSSet*)values;
 
 @end
 

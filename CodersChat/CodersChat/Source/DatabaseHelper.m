@@ -360,16 +360,4 @@
 }
 
 
-+(BOOL)isDefaultSetDownloaded{
-    
-    VcardObject *cardObj = [DatabaseHelper getExistingRecordModel:VCard_OBJ byID:[SocketStream sharedSocketObject].userID];
-    NSPredicate *defaultPredicate = [NSPredicate predicateWithFormat:@"SELF.creator_id = %@",Default_Creator_ID];
-    NSSet *defaultSets = [cardObj.downloaded_emoji_sticker_relationship filteredSetUsingPredicate:defaultPredicate];
-    
-    if(defaultSets && [defaultSets count])
-        return true;
-    else
-        return false;
-}
-
 @end

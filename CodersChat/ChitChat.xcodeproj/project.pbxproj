@@ -25,10 +25,6 @@
 		74ADDCC11C6E42B50061736D /* MediaObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC9B1C6E42B50061736D /* MediaObject.m */; };
 		74ADDCC21C6E42B50061736D /* ChatMessageObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC9D1C6E42B50061736D /* ChatMessageObject+CoreDataProperties.m */; };
 		74ADDCC31C6E42B50061736D /* ChatMessageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC9F1C6E42B50061736D /* ChatMessageObject.m */; };
-		74ADDCC41C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCA11C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.m */; };
-		74ADDCC51C6E42B50061736D /* EmojiStickerImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCA31C6E42B50061736D /* EmojiStickerImage.m */; };
-		74ADDCC61C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCA51C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.m */; };
-		74ADDCC71C6E42B50061736D /* EmojiStickerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCA71C6E42B50061736D /* EmojiStickerSet.m */; };
 		74ADDCC81C6E42B50061736D /* PhoneObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCA91C6E42B50061736D /* PhoneObject+CoreDataProperties.m */; };
 		74ADDCC91C6E42B50061736D /* PhoneObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCAB1C6E42B50061736D /* PhoneObject.m */; };
 		74ADDCCA1C6E42B50061736D /* MerchantAccount+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCAD1C6E42B50061736D /* MerchantAccount+CoreDataProperties.m */; };
@@ -133,14 +129,6 @@
 		74ADDC9D1C6E42B50061736D /* ChatMessageObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChatMessageObject+CoreDataProperties.m"; sourceTree = "<group>"; };
 		74ADDC9E1C6E42B50061736D /* ChatMessageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageObject.h; sourceTree = "<group>"; };
 		74ADDC9F1C6E42B50061736D /* ChatMessageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageObject.m; sourceTree = "<group>"; };
-		74ADDCA01C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EmojiStickerImage+CoreDataProperties.h"; sourceTree = "<group>"; };
-		74ADDCA11C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EmojiStickerImage+CoreDataProperties.m"; sourceTree = "<group>"; };
-		74ADDCA21C6E42B50061736D /* EmojiStickerImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiStickerImage.h; sourceTree = "<group>"; };
-		74ADDCA31C6E42B50061736D /* EmojiStickerImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiStickerImage.m; sourceTree = "<group>"; };
-		74ADDCA41C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EmojiStickerSet+CoreDataProperties.h"; sourceTree = "<group>"; };
-		74ADDCA51C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EmojiStickerSet+CoreDataProperties.m"; sourceTree = "<group>"; };
-		74ADDCA61C6E42B50061736D /* EmojiStickerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiStickerSet.h; sourceTree = "<group>"; };
-		74ADDCA71C6E42B50061736D /* EmojiStickerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiStickerSet.m; sourceTree = "<group>"; };
 		74ADDCA81C6E42B50061736D /* PhoneObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhoneObject+CoreDataProperties.h"; sourceTree = "<group>"; };
 		74ADDCA91C6E42B50061736D /* PhoneObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhoneObject+CoreDataProperties.m"; sourceTree = "<group>"; };
 		74ADDCAA1C6E42B50061736D /* PhoneObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneObject.h; sourceTree = "<group>"; };
@@ -389,14 +377,6 @@
 				74ADDC9D1C6E42B50061736D /* ChatMessageObject+CoreDataProperties.m */,
 				74ADDC9E1C6E42B50061736D /* ChatMessageObject.h */,
 				74ADDC9F1C6E42B50061736D /* ChatMessageObject.m */,
-				74ADDCA01C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.h */,
-				74ADDCA11C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.m */,
-				74ADDCA21C6E42B50061736D /* EmojiStickerImage.h */,
-				74ADDCA31C6E42B50061736D /* EmojiStickerImage.m */,
-				74ADDCA41C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.h */,
-				74ADDCA51C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.m */,
-				74ADDCA61C6E42B50061736D /* EmojiStickerSet.h */,
-				74ADDCA71C6E42B50061736D /* EmojiStickerSet.m */,
 				74ADDCA81C6E42B50061736D /* PhoneObject+CoreDataProperties.h */,
 				74ADDCA91C6E42B50061736D /* PhoneObject+CoreDataProperties.m */,
 				74ADDCAA1C6E42B50061736D /* PhoneObject.h */,
@@ -736,8 +716,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74ADDCC41C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.m in Sources */,
-				74ADDCC61C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.m in Sources */,
 				74EACAB81C6E28180041C842 /* AFURLRequestSerialization.m in Sources */,
 				74EACAB71C6E28180041C842 /* AFURLConnectionOperation.m in Sources */,
 				74ADDCC31C6E42B50061736D /* ChatMessageObject.m in Sources */,
@@ -762,7 +740,6 @@
 				74EACAB21C6E28180041C842 /* AFHTTPRequestOperation.m in Sources */,
 				74EACAD01C6E29CC0041C842 /* Base64.m in Sources */,
 				74EACAD51C6E29DF0041C842 /* StringEncryption.m in Sources */,
-				74ADDCC51C6E42B50061736D /* EmojiStickerImage.m in Sources */,
 				74ADDCD01C6E42B50061736D /* PrivateGroupObject+CoreDataProperties.m in Sources */,
 				74ADDCCA1C6E42B50061736D /* MerchantAccount+CoreDataProperties.m in Sources */,
 				74EACA521C6E16300041C842 /* UserAuth.m in Sources */,
@@ -786,7 +763,6 @@
 				74EACA791C6E24CE0041C842 /* ChitChatFactoryContorller.m in Sources */,
 				74ADDC541C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				74ADDCCB1C6E42B50061736D /* MerchantAccount.m in Sources */,
-				74ADDCC71C6E42B50061736D /* EmojiStickerSet.m in Sources */,
 				74EACA4F1C6E16220041C842 /* SrvReq.m in Sources */,
 				74ADDCD21C6E42B50061736D /* GeoLocationObject+CoreDataProperties.m in Sources */,
 				74EACAB31C6E28180041C842 /* AFHTTPRequestOperationManager.m in Sources */,

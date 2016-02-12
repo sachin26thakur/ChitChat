@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *tx_name;
 @property (nullable, nonatomic, retain) NSString *tx_uname;
 @property (nullable, nonatomic, retain) MediaObject *media_relationship;
-@property (nullable, nonatomic, retain) NSSet<VcardObject *> *post_card_relationship;
+@property (nullable, nonatomic, retain) NSSet *post_card_relationship;
 
 +(instancetype)getEntityFor:(eObjType)objType_ ackType:(eAckType)ackType_ chatType:(eChatType)chatType_ notifyType:(eNotifyType)notifyType_ msgReqType:(eMsgReqType)msgReqType_ clientMsgID:(long long)clientMsgID_ id:(NSString *)id_ org_id:(NSString *)org_id_ msgLife:(int)msgLife_ msgDetails:(NSString *)msgDetails_ status:(NSString *)status_ nTimesSent:(int)nTimesSent_ timeFirstSent:(long long)timeFirstSent_ timeLastSent:(long long)timeLastSent_ tx_id:(NSString *)tx_id_ tx_name:(NSString *)tx_name_ tx_uname:(NSString *)tx_uname_ tx_avatar_id:(NSString *)tx_avatar_id_ tx_avatar_uname:(NSString *)tx_avatar_uname_ msgText:(NSString *)msgText_ rx_id:(NSArray *)rx_id_ rxg_id:(NSArray *)rxg_id_ mediaObject:(MediaObject *)mediaObject_;
 
@@ -98,8 +98,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addPost_card_relationshipObject:(VcardObject *)value;
 - (void)removePost_card_relationshipObject:(VcardObject *)value;
-- (void)addPost_card_relationship:(NSSet<VcardObject *> *)values;
-- (void)removePost_card_relationship:(NSSet<VcardObject *> *)values;
+- (void)addPost_card_relationship:(NSSet*)values;
+- (void)removePost_card_relationship:(NSSet*)values;
 
 @end
 

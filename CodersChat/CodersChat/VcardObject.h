@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ChatMessageObject, EmojiStickerSet, MediaObject, PhoneObject, PrivateGroupObject;
+@class ChatMessageObject, MediaObject, PhoneObject, PrivateGroupObject;
 
 NS_ASSUME_NONNULL_BEGIN
 

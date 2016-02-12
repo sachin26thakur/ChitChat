@@ -10,8 +10,6 @@
 #import "AppDelegate.h"
 #import "VcardObject.h"
 #import "PrivateGroupObject.h"
-#import "EmojiStickerImage.h"
-#import "EmojiStickerSet.h"
 #import "MerchantAccount.h"
 #import <CoreData/CoreData.h>
 

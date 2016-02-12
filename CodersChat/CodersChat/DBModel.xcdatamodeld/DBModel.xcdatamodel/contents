@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15A284" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14A389" minimumToolsVersion="Xcode 7.0">
     <entity name="AlertObject" representedClassName="AlertObject" syncable="YES">
         <attribute name="isViewed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="notif_type" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,59 +31,6 @@
         <attribute name="tx_uname" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="media_relationship" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="MediaObject" syncable="YES"/>
         <relationship name="post_card_relationship" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="VcardObject" syncable="YES"/>
-    </entity>
-    <entity name="EmojiStickerImage" representedClassName="EmojiStickerImage" syncable="YES">
-        <attribute name="crc_checksum" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="creatorId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="fileFormat" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="height" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="id_" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="imageType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isActive" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
-        <attribute name="isAnimated" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="isFree" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
-        <attribute name="isPublished" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="kb_image" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="kheight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="kwidth" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="objType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="set_id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sizeInBytes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="timeStamp" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="url_highRes" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="width" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="x0" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="y0" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="headerStickerSet" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="EmojiStickerSet" syncable="YES"/>
-        <relationship name="sticketSet" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="EmojiStickerSet" syncable="YES"/>
-    </entity>
-    <entity name="EmojiStickerSet" representedClassName="EmojiStickerSet" syncable="YES">
-        <attribute name="creator_id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="creator_name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="creator_uname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="dateCreated" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="dateLastUpdated" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="height" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="id_" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isActiveSet" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
-        <attribute name="isFree" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
-        <attribute name="isPublished" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="keywords" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="numberOfDownloads" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="numOfImages" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="objType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="padding" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="rawKeywords" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="scaleFactor" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="width" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="headerImage" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="EmojiStickerImage" syncable="YES"/>
-        <relationship name="screenshot_relationship" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="MediaObject" syncable="YES"/>
-        <relationship name="stickerImages" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="EmojiStickerImage" syncable="YES"/>
     </entity>
     <entity name="GeoLocationObject" representedClassName="GeoLocationObject" syncable="YES">
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="-99999.89999999999" syncable="YES"/>
@@ -148,26 +95,22 @@
         <attribute name="timeUpdated" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="uname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unReadMessageCount" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="downloaded_emoji_sticker_relationship" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="EmojiStickerSet" syncable="YES"/>
         <relationship name="group_admin_relationship" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="PrivateGroupObject" syncable="YES"/>
         <relationship name="group_card_relationship" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="PrivateGroupObject" inverseName="group_card_relationship" inverseEntity="VcardObject" syncable="YES"/>
         <relationship name="group_relationship" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="PrivateGroupObject" syncable="YES"/>
         <relationship name="image_relationship" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="MediaObject" syncable="YES"/>
-        <relationship name="my_emoji_sticker_relationship" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="EmojiStickerSet" syncable="YES"/>
         <relationship name="phone_relationship" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="PhoneObject" syncable="YES"/>
         <relationship name="post_relationship" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="ChatMessageObject" syncable="YES"/>
         <relationship name="video_relationship" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="MediaObject" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ChatMessageObject" positionX="-27" positionY="18" width="128" height="420"/>
+        <element name="AlertObject" positionX="115" positionY="-63" width="128" height="90"/>
+        <element name="ChatMessageObject" positionX="-234" positionY="18" width="128" height="420"/>
+        <element name="GeoLocationObject" positionX="126" positionY="-543" width="128" height="75"/>
         <element name="MediaObject" positionX="18" positionY="63" width="128" height="240"/>
-        <element name="VcardObject" positionX="54" positionY="99" width="128" height="480"/>
-        <element name="EmojiStickerImage" positionX="18" positionY="63" width="128" height="420"/>
-        <element name="GeoLocationObject" positionX="27" positionY="72" width="128" height="75"/>
-        <element name="AlertObject" positionX="36" positionY="81" width="128" height="90"/>
-        <element name="EmojiStickerSet" positionX="45" positionY="90" width="128" height="405"/>
-        <element name="MerchantAccount" positionX="54" positionY="99" width="128" height="135"/>
-        <element name="PhoneObject" positionX="63" positionY="108" width="128" height="120"/>
-        <element name="PrivateGroupObject" positionX="72" positionY="117" width="128" height="135"/>
+        <element name="MerchantAccount" positionX="18" positionY="657" width="128" height="135"/>
+        <element name="PhoneObject" positionX="-189" positionY="540" width="128" height="120"/>
+        <element name="PrivateGroupObject" positionX="250" positionY="36" width="128" height="135"/>
+        <element name="VcardObject" positionX="187" positionY="225" width="128" height="448"/>
     </elements>
 </model>

@@ -21,9 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *id_;
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSString *objType;
-@property (nullable, nonatomic, retain) NSSet<VcardObject *> *admin_relationship;
+@property (nullable, nonatomic, retain) NSSet *admin_relationship;
 @property (nullable, nonatomic, retain) VcardObject *group_card_relationship;
-@property (nullable, nonatomic, retain) NSSet<VcardObject *> *member_relationship;
+@property (nullable, nonatomic, retain) NSSet *member_relationship;
 
 +(instancetype)setObjectFromDict:(NSDictionary *)groupDict;
 +(BOOL)saveObjectFromDict:(NSDictionary *)groupDict;
@@ -36,13 +36,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addAdmin_relationshipObject:(VcardObject *)value;
 - (void)removeAdmin_relationshipObject:(VcardObject *)value;
-- (void)addAdmin_relationship:(NSSet<VcardObject *> *)values;
-- (void)removeAdmin_relationship:(NSSet<VcardObject *> *)values;
+- (void)addAdmin_relationship:(NSSet*)values;
+- (void)removeAdmin_relationship:(NSSet*)values;
 
 - (void)addMember_relationshipObject:(VcardObject *)value;
 - (void)removeMember_relationshipObject:(VcardObject *)value;
-- (void)addMember_relationship:(NSSet<VcardObject *> *)values;
-- (void)removeMember_relationship:(NSSet<VcardObject *> *)values;
+- (void)addMember_relationship:(NSSet*)values;
+- (void)removeMember_relationship:(NSSet*)values;
 
 @end
 

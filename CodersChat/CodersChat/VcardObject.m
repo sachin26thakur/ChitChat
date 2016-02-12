@@ -8,7 +8,6 @@
 
 #import "VcardObject.h"
 #import "ChatMessageObject.h"
-#import "EmojiStickerSet.h"
 #import "MediaObject.h"
 #import "PhoneObject.h"
 #import "PrivateGroupObject.h"

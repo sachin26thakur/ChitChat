@@ -26,10 +26,18 @@
 
 
 
-@interface LoginViewController ()<WebServiceHandlerDelegate>
+@interface LoginViewController ()
+<
+  WebServiceHandlerDelegate,
+  UITextFieldDelegate,
+  UIAlertViewDelegate
+>
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UIButton *signInButton;
+
+@property (strong, nonatomic) NSString *userNameValue;
+@property (strong, nonatomic) NSString *passwordValue;
 
 @end
 
@@ -53,6 +61,59 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == self.userName)
+    {
+        if ([textField.text length])
+        {
+            NSString *userNameString = [NSString stringWithFormat:@"\\@%@",textField.text];
+            self.userNameValue = textField.text;
+        }
+        else
+        {
+            [self showAlertView];
+        }
+        
+    }
+    else if (textField == self.password)
+    {
+        if ([textField.text length])
+        {
+            self.passwordValue = textField.text;
+        }
+        else
+        {
+            [self showAlertView];
+        }
+        
+    }
+}
+
+- (void)showAlertView
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please enter user name" delegate:self cancelButtonTitle:@"" otherButtonTitles:@"", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex)
+    {
+        case 0://Cancel
+        {
+            [alertView dismissWithClickedButtonIndex:buttonIndex animated:YES];
+        }
+            break;
+        case 1://OK
+        {
+            [alertView dismissWithClickedButtonIndex:buttonIndex animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+}
 
 - (IBAction)signInButtonClicked:(id)sender
 {

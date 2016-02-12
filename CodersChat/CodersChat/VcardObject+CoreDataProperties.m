@@ -37,12 +37,10 @@
 @dynamic timeUpdated;
 @dynamic uname;
 @dynamic unReadMessageCount;
-@dynamic downloaded_emoji_sticker_relationship;
 @dynamic group_admin_relationship;
 @dynamic group_card_relationship;
 @dynamic group_relationship;
 @dynamic image_relationship;
-@dynamic my_emoji_sticker_relationship;
 @dynamic phone_relationship;
 @dynamic post_relationship;
 @dynamic video_relationship;
