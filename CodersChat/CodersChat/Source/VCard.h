@@ -18,7 +18,7 @@
 -(VCard *)initCard:(eCardType)cardType_ cardName:(NSString *)name_ Uname:(NSString *)uName_ andStuff:(NSString *)stuff_ picture:(NSData *)picture_ video:(NSData *)video_;
 -(NSDictionary *)getCardDict;
 -(NSString *)getCardID;
-+(NSDictionary *)getUserCardDict;
++(NSDictionary *)getUserCardDictWithName:(NSString *)name number:(NSString*)number uname:(NSString *)uname pass:(NSString *)pass;
 +(NSDictionary *)getAvatarCardDict;
 +(NSDictionary *)getEditedCardDictForType:(eCardType)cardType_ WithID:(NSString *)id_ andRequestData:(NSDictionary *)requestDict;
 +(instancetype)setCardFromDict:(NSDictionary *)cardDict;

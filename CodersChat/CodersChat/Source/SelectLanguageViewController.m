@@ -12,10 +12,13 @@
 #import "ChatListViewController.h"
 #import "ChitChatFactoryContorller.h"
 #import "ChatAreaViewController.h"
+#import "WebserviceHandler.h"
+#import "RequestHelper.h"
+#import "SyncUser.h"
 
 
 
-@interface SelectLanguageViewController ()
+@interface SelectLanguageViewController ()<WebServiceHandlerDelegate,UserSyncDelegate>
 @property (nonatomic, strong) NSArray *langugeData;
 @end
 
@@ -33,10 +36,78 @@
 }
 
 
-- (IBAction)finishAction:(UIButton *)sender
+// call web services
+-(void)callServiceForSignUp
 {
-}
+    WebserviceHandler *objWebServiceHandler=[[WebserviceHandler alloc]init];
+    objWebServiceHandler.delegate = self;
     
+    //for ActivityIndicator start
+    [appDelegate startActivityIndicator:self.view withText:Progressing];
+
+    NSString *userName = [NSString stringWithFormat:@"/@%@",self.allDataDict[@"userName"]];
+    
+    [objWebServiceHandler AFNcallThePassedURLASynchronouslyWithRequest:[RequestHelper getSignUpRequestWithName:self.allDataDict[@"fullName"] number:self.allDataDict[@"phoneNumber"] uname:userName pass:self.allDataDict[@"password"]] withMethod:@"" withUrl:@"" forKey:@""];
+    
+}
+
+-(void)webServiceHandler:(WebserviceHandler *)webHandler recievedResponse:(NSDictionary *)dicResponce
+{
+    //check resvice responce
+    if([dicResponce[@"oprSuccess"] integerValue]){
+       
+        [ChitchatUserDefault setIsUserLoggin:YES];
+        [ChitchatUserDefault setContactSynced:false];
+        [ChitchatUserDefault setUserID:dicResponce[@"respDetails"]];
+        [ChitchatUserDefault setUserName:self.allDataDict[@"userName"]];
+        [ChitchatUserDefault setPassword:self.allDataDict[@"password"]];
+
+     
+        
+        [appDelegate startActivityIndicator:self.view withText:NSLocalizedString(@"Synchronizing Contacts", nil)];
+        SyncUser *syncUser = [[SyncUser alloc] init];
+        syncUser.delegate =self;
+        [syncUser startUserSyncing:YES];
+        
+
+        
+    } else {
+        [appDelegate stopActivityIndicator];
+       // ShowAlert(AppName,dicResponce[@"respDetails"]);
+    }
+}
+
+
+- (void)userSyncFinished:(BOOL)ifSuccess{
+    
+    [appDelegate stopActivityIndicator];
+    [self gotoHomeScreen];
+    
+}
+
+
+- (void)gotoHomeScreen{
+    
+    if ([ChitchatUserDefault selectedUserLanguage]) {
+        // go to home screen
+        
+        ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
+        [self.navigationController pushViewController:chatListVc animated:YES];
+    }else{
+        //go for select languge screen
+        SelectLanguageViewController *selectLngVc = (SelectLanguageViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeSelectLanguage];
+        [self.navigationController pushViewController:selectLngVc animated:YES];
+    }
+}
+
+-(void) webServiceHandler:(WebserviceHandler *)webHandler requestFailedWithError:(NSError *)error
+{
+    
+    //NSLog(@"dicResponce:-%@",[error description]);
+    [appDelegate stopActivityIndicator];
+    //remove it after WS call
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -94,12 +165,12 @@
     }
     
     
-    
-    ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
-    
-    [self.navigationController pushViewController:chatListVc animated:YES];
-    
-    [tableView reloadData];
+    [self callServiceForSignUp];
+//    ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
+//    
+//    [self.navigationController pushViewController:chatListVc animated:YES];
+//    
+//    [tableView reloadData];
 }
 
 

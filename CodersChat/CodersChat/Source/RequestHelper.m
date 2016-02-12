@@ -44,11 +44,11 @@
     NSMutableDictionary *requestDetail = [NSMutableDictionary dictionary];
     
 
-    Phone *phone = [Phone initWithCountry:@"in" andNumber:phone];
+    Phone *phone = [Phone initWithCountry:@"+91" andNumber:phone];
     requestDetail[@"phone"] = [phone getPhoneDict];    
     
     //Set Vcard
-    requestDetail[@"vCard"] = [VCard getUserCardDict];
+    requestDetail[@"vCard"] = [VCard getUserCardDictWithName:name number:number uname:uname pass:pass];
     
     req->reqDetails = requestDetail;
     

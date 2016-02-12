@@ -15,7 +15,7 @@
 +(NSDictionary *)getUniqueNameRequestForSignUP:(BOOL)forSignUp;
 +(NSDictionary *)getUniquePhoneRequest:(NSString *)country andNumber:(NSString *)number;
 +(NSDictionary *)getLoginRequestWithUsername:(NSString *)user andPassword:(NSString *)pass;
-+(NSDictionary *)getSignUpRequest;
++(NSDictionary *)getSignUpRequestWithName:(NSString *)name number:(NSString*)number uname:(NSString *)uname pass:(NSString *)pass;
 +(NSDictionary *)getCreateAvatarRequest;
 +(NSDictionary *)getEditVCardRequestForType:(eCardType)cardType_ WithID:(NSString *)id_ andRequestData:(NSDictionary *)requestDict;
 +(NSDictionary *)getPrivateGroupCreationRequest:(NSArray *)members grpName:(NSString *)name grpImage:(NSData *)imageData;
