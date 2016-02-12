@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "AlertDialogProgressView.h"
+#import <CoreData/CoreData.h>
+
 
 @class AppDelegate;
 
@@ -18,12 +20,23 @@ extern AppDelegate *appDelegate;
     AlertDialogProgressView *_alertDialogProgressView;
 
 }
+@property (nonatomic, assign) BOOL networkStatus;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic, readonly) NSString *latestDeviceToken;
 //Methods
 -(void)startActivityIndicator:(UIView *)view withText:(NSString *)text;
 -(void)stopActivityIndicator;
 -(void)showAlertwithselctor:(SEL)seletor anddelegate:(id)del andTitle:(NSString *)title;
+
+- (void)saveContext;
+- (NSURL *)applicationDocumentsDirectory;
+- (BOOL) resetApplicationModel;
+
+
+
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @end
 

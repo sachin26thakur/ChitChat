@@ -89,5 +89,88 @@
     
 }
 
++(NSDictionary *)syncAddressBookRequest:(NSArray *)numbers {
+    
+    RequestHelper *req= [[RequestHelper alloc] init];
+    req->reqType1 = rq_ADD_PRIVATE_FRIEND;
+    req->reqType2 = rq_PHONE;
+    req->reqDetails = @{@"phones":numbers};
+    
+    //Set AUth
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    
+    return [req getRequestDict];
+}
+
+
++(NSDictionary *)getPrivateFriendsRequest{
+    
+    RequestHelper *req= [[RequestHelper alloc] init];
+    req->reqType1 = rq_GET_PRIVATE_FRIENDS;
+    //Set AUth
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    
+    return [req getRequestDict];
+}
+
+
++(NSDictionary *)getPrivateGroupsRequest{
+    
+    RequestHelper *req= [[RequestHelper alloc] init];
+    req->reqType1 = rq_GET_PRIVATE_GROUPS;
+    //Set AUth
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    
+    return [req getRequestDict];
+}
+
++(NSDictionary *)getVcards:(NSArray *)cardIDS withResolution:(NSString *)resolution {
+    
+    RequestHelper *req= [[RequestHelper alloc] init];
+    req->reqType1 = rq_GET;
+    req->reqType2 = rq_GET_VCARD;
+    req->reqDetails = @{@"vcard_ids":cardIDS,@"resolution":resolution};
+    
+    //Set AUth
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    
+    return [req getRequestDict];
+}
+
++(NSDictionary *)getVcardBy:(eReqType)type_ andValue:(NSString *)value_ andHighRes:(BOOL)ifHighRes{
+    
+    RequestHelper *req= [[RequestHelper alloc] init];
+    req->reqType1 = rq_GET_VCARD;
+    req->reqType2 = type_;
+    if(value_)
+        req->reqDetails = @{@"highRes":(ifHighRes) ? @"true" :@"false",@"_id":value_};
+    else
+        req->reqDetails = @{@"highRes":(ifHighRes) ? @"true" :@"false"};
+    
+    
+    //Set AUth
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    
+    return [req getRequestDict];
+}
+
+
++(NSDictionary *)getMuteListRequest{
+    
+    RequestHelper *req= [[RequestHelper alloc] init];
+    req->reqType1 = rq_GET;
+    req->reqType2 = rq_MUTE;
+    
+    //Set AUth
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    
+    return [req getRequestDict];
+}
 
 @end

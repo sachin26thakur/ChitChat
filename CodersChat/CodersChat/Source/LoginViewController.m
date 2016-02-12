@@ -20,6 +20,7 @@
 
 #import "SelectLanguageViewController.h"
 #import "SignUpViewController.h"
+#import "SyncUser.h"
 
 
 
@@ -81,6 +82,11 @@
     
     //check service responce
     if([responce[@"oprSuccess"] integerValue]){
+        
+        [appDelegate startActivityIndicator:self.view withText:NSLocalizedString(@"Synchronizing Contacts", nil)];
+        SyncUser *syncUser = [[SyncUser alloc] init];
+        syncUser.delegate =self;
+        [syncUser startUserSyncing:YES];
         
             if (YES || [ChitchatUserDefault selectedUserLanguage]) {
                 // go to home screen

@@ -24,6 +24,45 @@
 #define URL_DOMAIN               @"http://54.174.18.36:8080/webServlet/restAPI"
 #define URL_SOCKET               @"ws://54.174.18.36:8080/webSocket/socketAPI"
 #define Progressing       @""
+#define Name     @"Name"
+#define UserName @"UserName"
+#define UserPass @"UserPass"
+#define ES_IMG_MIN_HEIGHT @"imgMinHeight"
+#define ES_IMG_MAX_HEIGHT @"imgMaxHeight"
+#define ES_IMG_MIN_WIDTH @"imgMinWidth"
+#define ES_IMG_MAX_WIDTH @"imgMaxWidth"
+#define ES_IMG_MIN_ASPECT @"imgMinAspect"
+#define ES_IMG_MAX_ASPECT @"imgMaxAspect"
+#define ES_HEADER_IMG_HEIGHT @"headerImgHeight"
+#define ES_HEADER_IMG_WIDTH @"headerImgWidth"
+#define ES_SNAPSHOT_HEIGHT @"snapShotHeight"
+#define ES_SNAPSHOT_WIDTH @"snapShotWidth"
+#define ES_MIN_COUNT @"minCount"
+#define ES_MAX_COUNT @"maxCount"
+#define ES_MIN_PRICE @"minPrice"
+#define ES_MAX_PRICE @"maxPrice"
+#define ES_MIN_DOWNLOADS @"minDownloadsToSetPrice"
+
+
+
+#define Card_Text_Resolution @"textOnly"
+#define Card_Thumbnail_Resolution @"thumbnail"
+#define Card_Low_Res_Resolution @"lowRes"
+#define Card_High_Res_Resolution @"highRes"
+
+#define VCard_OBJ @"VcardObject"
+#define PrivateGroup_OBJ @"PrivateGroupObject"
+#define ChatMessage_OBJ @"ChatMessageObject"
+#define EmojiStickerSet_OBJ @"EmojiStickerSet"
+
+#define MuteList @"MuteList"
+
+#define YouTubeIdentifier @"_#youtube#_"
+#define EmojiMessageIdentifier @"_#emoji#_"
+#define StickerMessageIdentifier @"_#sticker#_"
+
+#define Default_Creator_ID @"562ce46ee4b0a22df05b2dce"
+
 //Enums for Chat Message Object
 typedef enum {
     oj_MESSAGE,			// This object represents a message. Check the msgType for details.

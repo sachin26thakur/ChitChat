@@ -16,6 +16,39 @@
 		74ADDC521C6E3C970061736D /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC4D1C6E3C970061736D /* TPKeyboardAvoidingScrollView.m */; };
 		74ADDC531C6E3C970061736D /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC4F1C6E3C970061736D /* TPKeyboardAvoidingTableView.m */; };
 		74ADDC541C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC511C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		74ADDC5B1C6E41E10061736D /* DBModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC591C6E41E10061736D /* DBModel.xcdatamodeld */; };
+		74ADDCC01C6E42B50061736D /* MediaObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC991C6E42B50061736D /* MediaObject+CoreDataProperties.m */; };
+		74ADDCC11C6E42B50061736D /* MediaObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC9B1C6E42B50061736D /* MediaObject.m */; };
+		74ADDCC21C6E42B50061736D /* ChatMessageObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC9D1C6E42B50061736D /* ChatMessageObject+CoreDataProperties.m */; };
+		74ADDCC31C6E42B50061736D /* ChatMessageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDC9F1C6E42B50061736D /* ChatMessageObject.m */; };
+		74ADDCC41C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCA11C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.m */; };
+		74ADDCC51C6E42B50061736D /* EmojiStickerImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCA31C6E42B50061736D /* EmojiStickerImage.m */; };
+		74ADDCC61C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCA51C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.m */; };
+		74ADDCC71C6E42B50061736D /* EmojiStickerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCA71C6E42B50061736D /* EmojiStickerSet.m */; };
+		74ADDCC81C6E42B50061736D /* PhoneObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCA91C6E42B50061736D /* PhoneObject+CoreDataProperties.m */; };
+		74ADDCC91C6E42B50061736D /* PhoneObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCAB1C6E42B50061736D /* PhoneObject.m */; };
+		74ADDCCA1C6E42B50061736D /* MerchantAccount+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCAD1C6E42B50061736D /* MerchantAccount+CoreDataProperties.m */; };
+		74ADDCCB1C6E42B50061736D /* MerchantAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCAF1C6E42B50061736D /* MerchantAccount.m */; };
+		74ADDCCC1C6E42B50061736D /* VcardObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCB11C6E42B50061736D /* VcardObject+CoreDataProperties.m */; };
+		74ADDCCD1C6E42B50061736D /* VcardObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCB31C6E42B50061736D /* VcardObject.m */; };
+		74ADDCCE1C6E42B50061736D /* AlertObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCB51C6E42B50061736D /* AlertObject+CoreDataProperties.m */; };
+		74ADDCCF1C6E42B50061736D /* AlertObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCB71C6E42B50061736D /* AlertObject.m */; };
+		74ADDCD01C6E42B50061736D /* PrivateGroupObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCB91C6E42B50061736D /* PrivateGroupObject+CoreDataProperties.m */; };
+		74ADDCD11C6E42B50061736D /* PrivateGroupObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCBB1C6E42B50061736D /* PrivateGroupObject.m */; };
+		74ADDCD21C6E42B50061736D /* GeoLocationObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCBD1C6E42B50061736D /* GeoLocationObject+CoreDataProperties.m */; };
+		74ADDCD31C6E42B50061736D /* GeoLocationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCBF1C6E42B50061736D /* GeoLocationObject.m */; };
+		74ADDCD71C6E43C90061736D /* SyncUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCD61C6E43C90061736D /* SyncUser.m */; };
+		74ADDCDA1C6E44710061736D /* SocketStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCD91C6E44710061736D /* SocketStream.m */; };
+		74ADDCE41C6E45570061736D /* DatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCE31C6E45570061736D /* DatabaseHelper.m */; };
+		74ADDCE61C6E4C1D0061736D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ADDCE51C6E4C1D0061736D /* AVFoundation.framework */; };
+		74ADDCE81C6E4C250061736D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ADDCE71C6E4C250061736D /* MessageUI.framework */; };
+		74ADDCEA1C6E4C300061736D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ADDCE91C6E4C300061736D /* SystemConfiguration.framework */; };
+		74ADDCEC1C6E4C360061736D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ADDCEB1C6E4C360061736D /* MobileCoreServices.framework */; };
+		74ADDCEE1C6E4C3C0061736D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ADDCED1C6E4C3C0061736D /* Security.framework */; };
+		74ADDCF11C6E4C450061736D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ADDCEF1C6E4C450061736D /* AddressBook.framework */; };
+		74ADDCF21C6E4C450061736D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ADDCF01C6E4C450061736D /* AddressBookUI.framework */; };
+		74ADDCF41C6E4C6F0061736D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ADDCF31C6E4C6F0061736D /* libsqlite3.0.tbd */; };
+		74ADDCF71C6E4C950061736D /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ADDCF61C6E4C950061736D /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
 		74EACA0C1C6E08750041C842 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EACA0B1C6E08750041C842 /* ChatListViewController.m */; };
 		74EACA4C1C6E14690041C842 /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EACA4B1C6E14690041C842 /* RequestHelper.m */; };
 		74EACA4F1C6E16220041C842 /* SrvReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EACA4E1C6E16220041C842 /* SrvReq.m */; };
@@ -83,6 +116,63 @@
 		74ADDC4F1C6E3C970061736D /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		74ADDC501C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		74ADDC511C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		74ADDC5A1C6E41E10061736D /* DBModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DBModel.xcdatamodel; sourceTree = "<group>"; };
+		74ADDC981C6E42B50061736D /* MediaObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MediaObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74ADDC991C6E42B50061736D /* MediaObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MediaObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		74ADDC9A1C6E42B50061736D /* MediaObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaObject.h; sourceTree = "<group>"; };
+		74ADDC9B1C6E42B50061736D /* MediaObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaObject.m; sourceTree = "<group>"; };
+		74ADDC9C1C6E42B50061736D /* ChatMessageObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChatMessageObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74ADDC9D1C6E42B50061736D /* ChatMessageObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChatMessageObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		74ADDC9E1C6E42B50061736D /* ChatMessageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageObject.h; sourceTree = "<group>"; };
+		74ADDC9F1C6E42B50061736D /* ChatMessageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageObject.m; sourceTree = "<group>"; };
+		74ADDCA01C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EmojiStickerImage+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74ADDCA11C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EmojiStickerImage+CoreDataProperties.m"; sourceTree = "<group>"; };
+		74ADDCA21C6E42B50061736D /* EmojiStickerImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiStickerImage.h; sourceTree = "<group>"; };
+		74ADDCA31C6E42B50061736D /* EmojiStickerImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiStickerImage.m; sourceTree = "<group>"; };
+		74ADDCA41C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EmojiStickerSet+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74ADDCA51C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EmojiStickerSet+CoreDataProperties.m"; sourceTree = "<group>"; };
+		74ADDCA61C6E42B50061736D /* EmojiStickerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiStickerSet.h; sourceTree = "<group>"; };
+		74ADDCA71C6E42B50061736D /* EmojiStickerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiStickerSet.m; sourceTree = "<group>"; };
+		74ADDCA81C6E42B50061736D /* PhoneObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhoneObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74ADDCA91C6E42B50061736D /* PhoneObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhoneObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		74ADDCAA1C6E42B50061736D /* PhoneObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneObject.h; sourceTree = "<group>"; };
+		74ADDCAB1C6E42B50061736D /* PhoneObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneObject.m; sourceTree = "<group>"; };
+		74ADDCAC1C6E42B50061736D /* MerchantAccount+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MerchantAccount+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74ADDCAD1C6E42B50061736D /* MerchantAccount+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MerchantAccount+CoreDataProperties.m"; sourceTree = "<group>"; };
+		74ADDCAE1C6E42B50061736D /* MerchantAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantAccount.h; sourceTree = "<group>"; };
+		74ADDCAF1C6E42B50061736D /* MerchantAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantAccount.m; sourceTree = "<group>"; };
+		74ADDCB01C6E42B50061736D /* VcardObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VcardObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74ADDCB11C6E42B50061736D /* VcardObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VcardObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		74ADDCB21C6E42B50061736D /* VcardObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VcardObject.h; sourceTree = "<group>"; };
+		74ADDCB31C6E42B50061736D /* VcardObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VcardObject.m; sourceTree = "<group>"; };
+		74ADDCB41C6E42B50061736D /* AlertObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AlertObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74ADDCB51C6E42B50061736D /* AlertObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AlertObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		74ADDCB61C6E42B50061736D /* AlertObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertObject.h; sourceTree = "<group>"; };
+		74ADDCB71C6E42B50061736D /* AlertObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertObject.m; sourceTree = "<group>"; };
+		74ADDCB81C6E42B50061736D /* PrivateGroupObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PrivateGroupObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74ADDCB91C6E42B50061736D /* PrivateGroupObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PrivateGroupObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		74ADDCBA1C6E42B50061736D /* PrivateGroupObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateGroupObject.h; sourceTree = "<group>"; };
+		74ADDCBB1C6E42B50061736D /* PrivateGroupObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateGroupObject.m; sourceTree = "<group>"; };
+		74ADDCBC1C6E42B50061736D /* GeoLocationObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoLocationObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74ADDCBD1C6E42B50061736D /* GeoLocationObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GeoLocationObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		74ADDCBE1C6E42B50061736D /* GeoLocationObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoLocationObject.h; sourceTree = "<group>"; };
+		74ADDCBF1C6E42B50061736D /* GeoLocationObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoLocationObject.m; sourceTree = "<group>"; };
+		74ADDCD51C6E43C90061736D /* SyncUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncUser.h; sourceTree = "<group>"; };
+		74ADDCD61C6E43C90061736D /* SyncUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncUser.m; sourceTree = "<group>"; };
+		74ADDCD81C6E44710061736D /* SocketStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketStream.h; sourceTree = "<group>"; };
+		74ADDCD91C6E44710061736D /* SocketStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketStream.m; sourceTree = "<group>"; };
+		74ADDCE21C6E45570061736D /* DatabaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatabaseHelper.h; path = Source/DatabaseHelper.h; sourceTree = "<group>"; };
+		74ADDCE31C6E45570061736D /* DatabaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatabaseHelper.m; path = Source/DatabaseHelper.m; sourceTree = "<group>"; };
+		74ADDCE51C6E4C1D0061736D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		74ADDCE71C6E4C250061736D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		74ADDCE91C6E4C300061736D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		74ADDCEB1C6E4C360061736D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		74ADDCED1C6E4C3C0061736D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		74ADDCEF1C6E4C450061736D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		74ADDCF01C6E4C450061736D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		74ADDCF31C6E4C6F0061736D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		74ADDCF51C6E4C950061736D /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
+		74ADDCF61C6E4C950061736D /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
 		74EACA0A1C6E08750041C842 /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
 		74EACA0B1C6E08750041C842 /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
 		74EACA4A1C6E14690041C842 /* RequestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHelper.h; sourceTree = "<group>"; };
@@ -175,6 +265,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74ADDCF41C6E4C6F0061736D /* libsqlite3.0.tbd in Frameworks */,
+				74ADDCF11C6E4C450061736D /* AddressBook.framework in Frameworks */,
+				74ADDCF21C6E4C450061736D /* AddressBookUI.framework in Frameworks */,
+				74ADDCEE1C6E4C3C0061736D /* Security.framework in Frameworks */,
+				74ADDCEC1C6E4C360061736D /* MobileCoreServices.framework in Frameworks */,
+				74ADDCEA1C6E4C300061736D /* SystemConfiguration.framework in Frameworks */,
+				74ADDCE81C6E4C250061736D /* MessageUI.framework in Frameworks */,
+				74ADDCE61C6E4C1D0061736D /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +282,14 @@
 		7439B5A31C6DE0E0004A724D = {
 			isa = PBXGroup;
 			children = (
+				74ADDCF31C6E4C6F0061736D /* libsqlite3.0.tbd */,
+				74ADDCEF1C6E4C450061736D /* AddressBook.framework */,
+				74ADDCF01C6E4C450061736D /* AddressBookUI.framework */,
+				74ADDCED1C6E4C3C0061736D /* Security.framework */,
+				74ADDCEB1C6E4C360061736D /* MobileCoreServices.framework */,
+				74ADDCE91C6E4C300061736D /* SystemConfiguration.framework */,
+				74ADDCE71C6E4C250061736D /* MessageUI.framework */,
+				74ADDCE51C6E4C1D0061736D /* AVFoundation.framework */,
 				7436EF5A1C70E19A00A00B66 /* .gitignore */,
 				7439B5AE1C6DE0E0004A724D /* CodersChat */,
 				7439B5C81C6DE0E0004A724D /* CodersChatTests */,
@@ -203,6 +309,9 @@
 		7439B5AE1C6DE0E0004A724D /* CodersChat */ = {
 			isa = PBXGroup;
 			children = (
+				74ADDCDB1C6E44820061736D /* Socket */,
+				74ADDCD41C6E43B40061736D /* UserSync */,
+				74ADDC581C6E41BC0061736D /* DBModel */,
 				A971262A1C6DE4EB000B62E8 /* Documentation */,
 				A97126291C6DE4DA000B62E8 /* Presentation */,
 				A97126281C6DE4AB000B62E8 /* Source */,
@@ -246,6 +355,76 @@
 				74EACA7B1C6E24E80041C842 /* ChitchatUserDefault.m */,
 			);
 			name = "Sign Up";
+			sourceTree = "<group>";
+		};
+		74ADDC581C6E41BC0061736D /* DBModel */ = {
+			isa = PBXGroup;
+			children = (
+				74ADDC591C6E41E10061736D /* DBModel.xcdatamodeld */,
+				74ADDC981C6E42B50061736D /* MediaObject+CoreDataProperties.h */,
+				74ADDC991C6E42B50061736D /* MediaObject+CoreDataProperties.m */,
+				74ADDC9A1C6E42B50061736D /* MediaObject.h */,
+				74ADDC9B1C6E42B50061736D /* MediaObject.m */,
+				74ADDC9C1C6E42B50061736D /* ChatMessageObject+CoreDataProperties.h */,
+				74ADDC9D1C6E42B50061736D /* ChatMessageObject+CoreDataProperties.m */,
+				74ADDC9E1C6E42B50061736D /* ChatMessageObject.h */,
+				74ADDC9F1C6E42B50061736D /* ChatMessageObject.m */,
+				74ADDCA01C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.h */,
+				74ADDCA11C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.m */,
+				74ADDCA21C6E42B50061736D /* EmojiStickerImage.h */,
+				74ADDCA31C6E42B50061736D /* EmojiStickerImage.m */,
+				74ADDCA41C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.h */,
+				74ADDCA51C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.m */,
+				74ADDCA61C6E42B50061736D /* EmojiStickerSet.h */,
+				74ADDCA71C6E42B50061736D /* EmojiStickerSet.m */,
+				74ADDCA81C6E42B50061736D /* PhoneObject+CoreDataProperties.h */,
+				74ADDCA91C6E42B50061736D /* PhoneObject+CoreDataProperties.m */,
+				74ADDCAA1C6E42B50061736D /* PhoneObject.h */,
+				74ADDCAB1C6E42B50061736D /* PhoneObject.m */,
+				74ADDCAC1C6E42B50061736D /* MerchantAccount+CoreDataProperties.h */,
+				74ADDCAD1C6E42B50061736D /* MerchantAccount+CoreDataProperties.m */,
+				74ADDCAE1C6E42B50061736D /* MerchantAccount.h */,
+				74ADDCAF1C6E42B50061736D /* MerchantAccount.m */,
+				74ADDCB01C6E42B50061736D /* VcardObject+CoreDataProperties.h */,
+				74ADDCB11C6E42B50061736D /* VcardObject+CoreDataProperties.m */,
+				74ADDCB21C6E42B50061736D /* VcardObject.h */,
+				74ADDCB31C6E42B50061736D /* VcardObject.m */,
+				74ADDCB41C6E42B50061736D /* AlertObject+CoreDataProperties.h */,
+				74ADDCB51C6E42B50061736D /* AlertObject+CoreDataProperties.m */,
+				74ADDCB61C6E42B50061736D /* AlertObject.h */,
+				74ADDCB71C6E42B50061736D /* AlertObject.m */,
+				74ADDCB81C6E42B50061736D /* PrivateGroupObject+CoreDataProperties.h */,
+				74ADDCB91C6E42B50061736D /* PrivateGroupObject+CoreDataProperties.m */,
+				74ADDCBA1C6E42B50061736D /* PrivateGroupObject.h */,
+				74ADDCBB1C6E42B50061736D /* PrivateGroupObject.m */,
+				74ADDCBC1C6E42B50061736D /* GeoLocationObject+CoreDataProperties.h */,
+				74ADDCBD1C6E42B50061736D /* GeoLocationObject+CoreDataProperties.m */,
+				74ADDCBE1C6E42B50061736D /* GeoLocationObject.h */,
+				74ADDCBF1C6E42B50061736D /* GeoLocationObject.m */,
+				74ADDCE21C6E45570061736D /* DatabaseHelper.h */,
+				74ADDCE31C6E45570061736D /* DatabaseHelper.m */,
+			);
+			name = DBModel;
+			sourceTree = "<group>";
+		};
+		74ADDCD41C6E43B40061736D /* UserSync */ = {
+			isa = PBXGroup;
+			children = (
+				74ADDCF51C6E4C950061736D /* ALAssetsLibrary+CustomPhotoAlbum.h */,
+				74ADDCF61C6E4C950061736D /* ALAssetsLibrary+CustomPhotoAlbum.m */,
+				74ADDCD51C6E43C90061736D /* SyncUser.h */,
+				74ADDCD61C6E43C90061736D /* SyncUser.m */,
+			);
+			name = UserSync;
+			sourceTree = "<group>";
+		};
+		74ADDCDB1C6E44820061736D /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				74ADDCD81C6E44710061736D /* SocketStream.h */,
+				74ADDCD91C6E44710061736D /* SocketStream.m */,
+			);
+			name = Socket;
 			sourceTree = "<group>";
 		};
 		74EACA491C6E144E0041C842 /* Helper */ = {
@@ -533,12 +712,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74ADDCC41C6E42B50061736D /* EmojiStickerImage+CoreDataProperties.m in Sources */,
+				74ADDCC61C6E42B50061736D /* EmojiStickerSet+CoreDataProperties.m in Sources */,
 				74EACAB81C6E28180041C842 /* AFURLRequestSerialization.m in Sources */,
 				74EACAB71C6E28180041C842 /* AFURLConnectionOperation.m in Sources */,
+				74ADDCC31C6E42B50061736D /* ChatMessageObject.m in Sources */,
+				74ADDCCE1C6E42B50061736D /* AlertObject+CoreDataProperties.m in Sources */,
 				74EACA7C1C6E24E80041C842 /* ChitchatUserDefault.m in Sources */,
+				74ADDC5B1C6E41E10061736D /* DBModel.xcdatamodeld in Sources */,
 				74EACABE1C6E28180041C842 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				74EACADA1C6E2EC50041C842 /* SingleChatControllerViewController.m in Sources */,
 				74EACA581C6E19D80041C842 /* VCard.m in Sources */,
+				74ADDCE41C6E45570061736D /* DatabaseHelper.m in Sources */,
 				74ADDC521C6E3C970061736D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				74EACABB1C6E28180041C842 /* Reachability.m in Sources */,
 				A971262D1C6DE5A1000B62E8 /* LoginViewController.m in Sources */,
@@ -547,37 +732,56 @@
 				74EACABA1C6E28180041C842 /* AFURLSessionManager.m in Sources */,
 				74EACA551C6E19780041C842 /* Phone.m in Sources */,
 				74EACA841C6E264E0041C842 /* JFRWebSocket.m in Sources */,
+				74ADDCCC1C6E42B50061736D /* VcardObject+CoreDataProperties.m in Sources */,
 				745365B61C6E057700A7B83C /* SelectLanguageViewController.m in Sources */,
 				74EACAB61C6E28180041C842 /* AFSecurityPolicy.m in Sources */,
 				74EACAB21C6E28180041C842 /* AFHTTPRequestOperation.m in Sources */,
 				74EACAD01C6E29CC0041C842 /* Base64.m in Sources */,
 				74EACAD51C6E29DF0041C842 /* StringEncryption.m in Sources */,
+				74ADDCC51C6E42B50061736D /* EmojiStickerImage.m in Sources */,
+				74ADDCD01C6E42B50061736D /* PrivateGroupObject+CoreDataProperties.m in Sources */,
+				74ADDCCA1C6E42B50061736D /* MerchantAccount+CoreDataProperties.m in Sources */,
 				74EACA521C6E16300041C842 /* UserAuth.m in Sources */,
 				74EACAD11C6E29CC0041C842 /* NSData+Base64.m in Sources */,
+				74ADDCD11C6E42B50061736D /* PrivateGroupObject.m in Sources */,
 				A97126331C6DE5E7000B62E8 /* ChatAreaViewController.m in Sources */,
 				7439B5B71C6DE0E0004A724D /* SignUpViewController.m in Sources */,
 				74EACAC01C6E28180041C842 /* UIButton+AFNetworking.m in Sources */,
 				A97126301C6DE5BA000B62E8 /* ContactsViewController.m in Sources */,
+				74ADDCC21C6E42B50061736D /* ChatMessageObject+CoreDataProperties.m in Sources */,
 				74EACAC91C6E28810041C842 /* AlertDialogProgressView.m in Sources */,
 				7439B5B41C6DE0E0004A724D /* AppDelegate.m in Sources */,
 				74EACA621C6E200F0041C842 /* ActivityIndicator+UIView.m in Sources */,
 				74EACAB41C6E28180041C842 /* AFHTTPSessionManager.m in Sources */,
 				74EACA5E1C6E1AD30041C842 /* Media.m in Sources */,
+				74ADDCC01C6E42B50061736D /* MediaObject+CoreDataProperties.m in Sources */,
+				74ADDCD71C6E43C90061736D /* SyncUser.m in Sources */,
 				74EACABD1C6E28180041C842 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				74ADDCC81C6E42B50061736D /* PhoneObject+CoreDataProperties.m in Sources */,
+				74ADDCC11C6E42B50061736D /* MediaObject.m in Sources */,
 				74EACA791C6E24CE0041C842 /* ChitChatFactoryContorller.m in Sources */,
 				74ADDC541C6E3C970061736D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				74ADDCCB1C6E42B50061736D /* MerchantAccount.m in Sources */,
+				74ADDCC71C6E42B50061736D /* EmojiStickerSet.m in Sources */,
 				74EACA4F1C6E16220041C842 /* SrvReq.m in Sources */,
+				74ADDCD21C6E42B50061736D /* GeoLocationObject+CoreDataProperties.m in Sources */,
 				74EACAB31C6E28180041C842 /* AFHTTPRequestOperationManager.m in Sources */,
 				74EACABC1C6E28180041C842 /* WebserviceHandler.m in Sources */,
+				74ADDCCD1C6E42B50061736D /* VcardObject.m in Sources */,
 				74EACABF1C6E28180041C842 /* UIAlertView+AFNetworking.m in Sources */,
+				74ADDCDA1C6E44710061736D /* SocketStream.m in Sources */,
 				74EACA5B1C6E1A360041C842 /* Utility.m in Sources */,
 				74EACAC31C6E28180041C842 /* UIRefreshControl+AFNetworking.m in Sources */,
+				74ADDCD31C6E42B50061736D /* GeoLocationObject.m in Sources */,
 				74EACAC21C6E28180041C842 /* UIProgressView+AFNetworking.m in Sources */,
+				74ADDCCF1C6E42B50061736D /* AlertObject.m in Sources */,
 				74EACA0C1C6E08750041C842 /* ChatListViewController.m in Sources */,
 				74EACA4C1C6E14690041C842 /* RequestHelper.m in Sources */,
 				7439B5B11C6DE0E0004A724D /* main.m in Sources */,
+				74ADDCC91C6E42B50061736D /* PhoneObject.m in Sources */,
 				74EACAB51C6E28180041C842 /* AFNetworkReachabilityManager.m in Sources */,
 				74EACAB91C6E28180041C842 /* AFURLResponseSerialization.m in Sources */,
+				74ADDCF71C6E4C950061736D /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				74EACA831C6E264E0041C842 /* JSONParser.m in Sources */,
 				74ADDC531C6E3C970061736D /* TPKeyboardAvoidingTableView.m in Sources */,
 			);
@@ -722,6 +926,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		74ADDC591C6E41E10061736D /* DBModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				74ADDC5A1C6E41E10061736D /* DBModel.xcdatamodel */,
+			);
+			currentVersion = 74ADDC5A1C6E41E10061736D /* DBModel.xcdatamodel */;
+			path = DBModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7439B5A41C6DE0E0004A724D /* Project object */;
 }
