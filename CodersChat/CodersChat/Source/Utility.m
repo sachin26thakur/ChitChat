@@ -470,9 +470,6 @@
         case rq_GET_USERS_BY_PHONE:
             result = @"rq_GET_USERS_BY_PHONE";
             break;
-        case rq_RADAR:
-            result = @"rq_RADAR";
-            break;
         case rq_ENTER:
             result = @"rq_ENTER";
             break;
@@ -602,8 +599,6 @@
         result = rq_ADD_PRIVATE_FRIEND;
     else if([typeString isEqualToString:@"rq_GET_USERS_BY_PHONE"])
         result = rq_GET_USERS_BY_PHONE;
-    else if([typeString isEqualToString:@"rq_RADAR"])
-        result = rq_RADAR;
     else if([typeString isEqualToString:@"rq_ENTER"])
         result = rq_ENTER;
     else if([typeString isEqualToString:@"rq_EXIT"])

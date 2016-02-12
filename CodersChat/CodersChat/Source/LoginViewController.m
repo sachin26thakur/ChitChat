@@ -52,9 +52,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if ([ChitchatUserDefault isUserLogginIn]) {
-        [self gotoHomeScreen];
-    }
+//    if ([ChitchatUserDefault isUserLogginIn]) {
+//        [self gotoHomeScreen];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -155,12 +155,9 @@
 // call web services
 -(void)callServiceForDashboard
 {
-
-
         WebserviceHandler *objWebServiceHandler = [[WebserviceHandler alloc]init];
         objWebServiceHandler.delegate = self;
-
-        
+    
         //for ActivityIndicator start
         [appDelegate startActivityIndicator:self.view withText:Progressing];
         

@@ -606,13 +606,9 @@ static SocketStream *socketStream;
         if([Utility NotifyTypeFromString:recievedMessage.notifyType] == ny_STATUS_UPDATE && [recievedMessage getTransmitterIDs] && [[self.chatMessagesData valueForKeyPath:@"id_"] containsObject:[recievedMessage getTransmitterIDs]]){
             //Update vcard
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"CardUpdated" object:@[[recievedMessage getTransmitterIDs]] userInfo:nil];
         }
         else if (([recievedMessage getReceiverGroupIDs] && [[recievedMessage getReceiverGroupIDs] count] && [[self.chatMessagesData valueForKeyPath:@"id_"] containsObject:[recievedMessage getReceiverGroupIDs][0]])){
             
-            //Update vcard
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"CardUpdated" object:@[[recievedMessage getReceiverGroupIDs][0]] userInfo:nil];
             
         }
         else{
@@ -651,41 +647,6 @@ static SocketStream *socketStream;
     [DatabaseHelper deleteModelObject:recievedMessage];
     
 }
-
-
--(void)addToTimer:(NSDictionary *)timerDict{
-    
-    if(!self.peakTimer){
-        NSLog(@"%ld %f %f",[timerDict[@"time"] longValue],[NSDate timeIntervalSinceReferenceDate], ([timerDict[@"time"] longValue] - [NSDate timeIntervalSinceReferenceDate]));
-        self.peakTimer = [NSTimer scheduledTimerWithTimeInterval:([timerDict[@"time"] longValue] - [NSDate timeIntervalSinceReferenceDate]) target:self selector:@selector(peakTimerBuzzed:) userInfo:timerDict repeats:NO];
-    }
-    
-    [self.peakTimeArray addObject:timerDict];
-}
-
-- (void)peakTimerBuzzed:(NSTimer *)timer {
-    
-    NSDictionary *timerDct = timer.userInfo;
-    NSPredicate *peakPredicate = [NSPredicate predicateWithFormat:@"SELF.clientMsgID IN %@ OR SELF.org_id IN %@", timerDct[@"msgID"],timerDct[@"msgID"]];
-    NSArray *filteredPeakArray = [DatabaseHelper getDBObjectsForModel:ChatMessage_OBJ filterbyPredicate:peakPredicate withSortDescriptors:nil];
-    if(filteredPeakArray && [filteredPeakArray count])
-        [DatabaseHelper deleteModelObjects:filteredPeakArray];
-    
-    [self refreshHistoryChatData];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"PeakTimerBuzzed" object:timerDct];
-    
-    [self.peakTimeArray removeObjectAtIndex:0];
-    if([self.peakTimeArray count]){
-        self.peakTimer = [NSTimer scheduledTimerWithTimeInterval:([timerDct[@"time"] longValue] - [NSDate timeIntervalSinceReferenceDate]) target:self selector:@selector(peakTimerBuzzed:) userInfo:self.peakTimeArray[0] repeats:NO];
-    }
-    else{
-        [self.peakTimer invalidate];
-        self.peakTimer = nil;
-    }
-    
-}
-
 
 - (void)peakBuzzed:(NSDictionary *)timerDct {
     
@@ -797,7 +758,7 @@ static SocketStream *socketStream;
     NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF.id_ != %@ AND SELF.friendRequestPending = %@ AND SELF.friendRequestSeen = %@",self.userID,@true,@false];
     NSMutableArray *chatData2 = [[self.chatMessagesData filteredArrayUsingPredicate:predicate2] mutableCopy];
     self.activeNotificationNumber = @([chatData2 count]);
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshNotificationNumber" object:nil];
+    
     
     
 }

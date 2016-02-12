@@ -10,4 +10,6 @@
 
 @interface SelectLanguageViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary *allDataDict;
+
 @end

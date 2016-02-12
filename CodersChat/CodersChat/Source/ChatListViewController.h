@@ -19,8 +19,6 @@
 
 -(void)newChatMessageInitiated:(BOOL)isSentMessage withText:(NSString *)text;
 -(void)avatarAdded;
--(void)cardUpdatedForGroup:(NSArray *)grpIds andReceiverID:(NSArray *)rxIDS withNotify:(eNotifyType)notif_type msgDetails:(NSString *)msgDetails_ msgText:(NSString *)msgText_ clientIdRequired:(BOOL)clientIdRequired_ onAction:(NSString *)action;
 -(void)followersAdded;
 -(void)newGroupCreated:(NSArray*)grpIDs sendNotification:(BOOL)notificationNeeded;
--(void)cardUpdated:(NSArray*)grpIDs sendNotification:(BOOL)notificationNeeded;
 @end

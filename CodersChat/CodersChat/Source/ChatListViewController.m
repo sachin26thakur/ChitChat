@@ -29,16 +29,11 @@
 #import "MediaObject.h"
 #import "Utility.h"
 
-#define RADAR_SECONDS 3600
-
 @interface ChatListViewController ()<WebServiceHandlerDelegate,AlertDialogProgressViewDelegate,UserSyncDelegate>{
     int friendCardsToBeFetched;
     BOOL currentMessagePeaked;
-    BOOL isRadarON;
     BOOL isTimerON;
     
-    NSMutableSet *radarCardIDs;
-    NSMutableArray *radarCardIDArray;
     NSMutableSet *friendRequestCardIDArray;
     NSMutableSet *friendAceeptCardIDArray;
     NSMutableSet *friendAddedCardIDArray;
@@ -82,13 +77,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *timerBtn;
 @property (weak, nonatomic) IBOutlet UIButton *exitBtn;
 @property (weak, nonatomic) IBOutlet UIButton *chatBtn;
-@property (weak, nonatomic) IBOutlet UIButton *radarBtn;
 @property (weak, nonatomic) IBOutlet UILabel *notif_number;
 @property (weak, nonatomic) IBOutlet UIImageView *notif_circle_image;
 @property (weak, nonatomic) IBOutlet UILabel *timer_label;
-@property (weak, nonatomic) IBOutlet UIButton *start_radar_btn;
 @property (strong, nonatomic) AlertDialogProgressView *alertDialogProgressView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *radarActivityIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *errorMessageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *errorMsgLbl2;
 @property (weak, nonatomic) IBOutlet UILabel *errorMsgLbl3;
@@ -96,7 +88,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *moreTimeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *findFriendBtn;
 
-@property (strong,nonatomic) IBOutlet UIView *viewRadarAlertBG;
 @property (weak, nonatomic) IBOutlet UIButton *btnKeepItOff;
 @property (weak, nonatomic) IBOutlet UIButton *btnTurnON;
 @property (weak, nonatomic) IBOutlet UIButton *btnCheckBoxOnOff;
@@ -125,42 +116,9 @@
                                              selector:@selector(newGroupCreated:)
                                                  name:@"GroupCreated"
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(cardUpdated:)
-                                                 name:@"CardUpdated"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(startRadarRequest:)
-                                                 name:@"StartRadar"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(refreshNotificationNumber:)
-                                                 name:@"RefreshNotificationNumber"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(peakTimerBuzzed:)
-                                                 name:@"PeakTimerBuzzed"
-                                               object:nil];
     
     self.timer_label.text = @"";
-    //    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
-    //
-    //    if(![userdefaults boolForKey:@"contactSynced"]){
-    //        [appDelegate startActivityIndicator:self.view withText:@"Syncing Contacts"];
-    //        SyncUserModel *syncUser = [[SyncUserModel alloc] init];
-    //        syncUser.delegate = self;
-    //        [syncUser startUserSyncing:YES];
-    //
-    //    }
-    //    else{
-    //        SyncUserModel *syncUser = [[SyncUserModel alloc] init];
-    //        syncUser.delegate = self;
-    //        [syncUser startUserSyncing:NO];
-    //
-    //    }
     
-    radarCardIDs = [NSMutableSet set];
     friendRequestCardIDArray = [NSMutableSet set];
     friendAceeptCardIDArray = [NSMutableSet set];
     friendAddedCardIDArray = [NSMutableSet new];
@@ -168,8 +126,6 @@
     [[SocketStream sharedSocketObject] refreshNotifications];
     [self.notif_number setHidden:YES];
     //self.notif_number.text = [[SocketStream sharedSocketObject].activeNotificationNumber stringValue];
-    
-    self.radarActivityIndicator.hidden = YES;
     
     [self reloadChatListView];
     
@@ -186,7 +142,6 @@
         [[SocketStream sharedSocketObject] restartSocket];
     
     [[SocketStream sharedSocketObject] refreshHistoryChatData];
-    [self refreshNotificationNumber:nil];
     
     //Hide startup naigation bar
     //  appDelegate.objNavigationController.navigationBar.hidden=YES;
@@ -219,12 +174,7 @@
         if(fetchedIndex > -1){
             fetchedIndex++;
             
-            if(fetchedIndex == [radarCardIDArray count])
-            {
-                [self showRadarFriends];
-                
-            }
-            else if (lastFetchedIndex + 5 == fetchedIndex){
+            if (lastFetchedIndex + 5 == fetchedIndex){
                 [self callServiceToGetVcards];
             }
         }
@@ -242,13 +192,8 @@
             NSMutableArray *cardIds = [dicResponce[@"respDetails"] mutableCopy];
             NSArray *cardTobeRetrived = [cardIds filteredArrayUsingPredicate:predicate];
             [cardIds removeObjectsInArray:cardTobeRetrived];
-            [self updateCardsAsRadarFriends:cardIds];
             fetchedIndex =0;
-            [radarCardIDs addObjectsFromArray:cardTobeRetrived];
             [self callServiceToGetVcards];
-            
-            if(!(isRadarON && isTimerON))
-                [self startRadarTimer];
             
         }
         
@@ -280,7 +225,6 @@
                 dict[@"friendRequestPending"] = @true;
                 dict[@"friendRequestSeen"] = @false;
                 dict[@"isFriend"] = @false;
-                dict[@"isRadarFriend"] = @false;
                 
             }
             if([friendAceeptCardIDArray containsObject:dict[@"_id"]]){
@@ -288,17 +232,11 @@
                 dict[@"friendRequestPending"] = @false;
                 dict[@"friendRequestSeen"] = @true;
                 dict[@"isFriend"] = @true;
-                dict[@"isRadarFriend"] = @false;
                 
             }
             if([friendAddedCardIDArray containsObject:dict[@"_id"]]){
                 
                 dict[@"isFriend"] = @true;
-                
-            }
-            if([radarCardIDs containsObject:dict[@"_id"]]){
-                dict[@"isRadarFriend"] = @true;
-                dict[@"isFriend"] = @false;
                 
             }
             
@@ -340,10 +278,6 @@
                 [friendAddedCardIDArray removeObject:dict[@"_id"]];
                 
             }
-            else if(fetchedIndex == [radarCardIDArray count])
-            {
-                [self showRadarFriends];
-            }
             else if (lastFetchedIndex + 5 == fetchedIndex){
                 [self callServiceToGetVcards];
             }
@@ -384,17 +318,6 @@
 
 -(void)callServiceToGetVcards {
     
-    if(fetchedIndex == 0){
-        
-        radarCardIDArray = [[radarCardIDs allObjects] mutableCopy];
-        
-        if([radarCardIDArray count] == 0)
-        {
-            [self showRadarFriends];
-            return;
-        }
-    }
-    
     if(fetchedIndex == -10){
         NSString *cardID ;
         if([friendRequestCardIDArray count])
@@ -408,21 +331,6 @@
         //for AFNetworking request
         [objWebServiceHandler AFNcallThePassedURLASynchronouslyWithRequest:[RequestHelper getVcardBy:rq_ID andValue:cardID andHighRes:false] withMethod:@"" withUrl:@"" forKey:@""];
         
-    }
-    if(radarCardIDArray &&[radarCardIDArray count]>fetchedIndex){
-        
-        lastFetchedIndex = fetchedIndex;
-        for (int i = fetchedIndex; i<fetchedIndex +5; i++) {
-            
-            if(i == [radarCardIDArray count])
-                break;
-            
-            WebserviceHandler *objWebServiceHandler=[[WebserviceHandler alloc]init];
-            objWebServiceHandler.delegate = self;
-            
-            //for AFNetworking request
-            [objWebServiceHandler AFNcallThePassedURLASynchronouslyWithRequest:[RequestHelper getVcardBy:rq_ID andValue:radarCardIDArray[i] andHighRes:false] withMethod:@"" withUrl:@"" forKey:@""];
-        }
     }
 }
 
@@ -442,30 +350,6 @@
     
     if([Utility NotifyTypeFromString:aNotification.userInfo[@"type"]] == ny_PRIVATE_FRIEND_ADDED)
         [friendAddedCardIDArray addObject:aNotification.object];
-    
-    
-    if([radarCardIDArray containsObject:aNotification.object] || [[[SocketStream sharedSocketObject].chatMessagesData valueForKeyPath:@"id_"]  containsObject:aNotification.object]){
-        
-        [self updateCardForFriendRequest:aNotification.object andType:aNotification.userInfo[@"type"]];
-        
-    }
-    else{
-        if(fetchedIndex == 0)
-        {
-            
-            WebserviceHandler *objWebServiceHandler=[[WebserviceHandler alloc]init];
-            objWebServiceHandler.delegate = self;
-            
-            //for AFNetworking request
-            [objWebServiceHandler AFNcallThePassedURLASynchronouslyWithRequest:[RequestHelper getVcardBy:rq_ID andValue:aNotification.object andHighRes:false] withMethod:@"" withUrl:@"" forKey:@""];
-            
-            fetchedIndex = -10;
-        } else if(fetchedIndex == -10) {
-            
-        } else {
-            [radarCardIDArray addObject:aNotification.object];
-        }
-    }
 }
 
 
@@ -601,13 +485,6 @@
     
 }
 
-
-- (IBAction)showRadarAction:(UIButton *)sender{
-    
-}
-
-
-
 - (IBAction)editProfileClicked:(UIButton *)sender {
     
    
@@ -615,53 +492,6 @@
 
 - (IBAction)myChannelButtonClicked:(UIButton *)sender {
     
-}
-
-- (IBAction)startRadarAction:(UIButton *)sender {
-
-}
-
-- (IBAction)btnCheckBoxRadarAlertAction:(id)sender {
-    UIButton *btnSender = (UIButton *) sender;
-    self.btnCheckBoxOnOff.selected = !btnSender.selected;
-    
-    if (self.btnCheckBoxOnOff.isSelected) {
-        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-        [userDefault setObject:@"Off" forKey:@"RadarAlertOptions"];
-        [userDefault synchronize];
-    } else {
-        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-        [userDefault setObject:@"On" forKey:@"RadarAlertOptions"];
-        [userDefault synchronize];
-    }
-}
-
-- (IBAction)btnRadarAlertAction:(id)sender {
-    UIButton *btnSender = (UIButton *) sender;
-    switch (btnSender.tag) {
-        case 101: {
-            [UIView animateWithDuration:0.5 animations:^{
-                [self.viewRadarAlertBG setFrame:CGRectMake(self.viewRadarAlertBG.frame.origin.x, -self.viewRadarAlertBG.frame.size.height, self.viewRadarAlertBG.frame.size.width, self.viewRadarAlertBG.frame.size.height)];
-            }completion:^(BOOL finished) {
-                
-            }];
-        }
-            break;
-        case 102: {
-            [UIView animateWithDuration:0.5 animations:^{
-                [self.viewRadarAlertBG setFrame:CGRectMake(self.viewRadarAlertBG.frame.origin.x, -self.viewRadarAlertBG.frame.size.height, self.viewRadarAlertBG.frame.size.width, self.viewRadarAlertBG.frame.size.height)];
-            } completion:^(BOOL finished) {
-                isRadarON = YES;
-                [[SocketStream sharedSocketObject] startStandardUpdates];
-                self.start_radar_btn.hidden = YES;
-                self.radarActivityIndicator.hidden = NO;
-                [self.radarActivityIndicator startAnimating];
-            }];
-        }
-            break;
-        default:
-            break;
-    }
 }
 
 
@@ -688,7 +518,6 @@
         self.timerBtn.hidden = YES;
         self.exitBtn.hidden = YES;
         self.timer_label.hidden = YES;
-        self.start_radar_btn.hidden = YES;
         self.errorMessageLabel.hidden = YES;
         self.errorMsgLbl2.hidden = YES;
         self.errorMsgLbl3.hidden = YES;
@@ -697,10 +526,8 @@
         self.addChatBtn.hidden = NO;
         self.notifBtn.hidden = NO;
         self.searchBtn.hidden = NO;
-        [self refreshNotificationNumber:nil];
-        
+    
         [self.chatBtn setBackgroundImage:[UIImage imageNamed:@"chat-filled_btnbg"] forState:UIControlStateNormal];
-        [self.radarBtn setBackgroundImage:[UIImage imageNamed:@"radar-empty_btnbg"] forState:UIControlStateNormal];
         
         if([[self getVcardsForActiveMode] count])
             self.findFriendBtn.hidden = YES;
@@ -716,9 +543,6 @@
 
 
 -(void)newGroupCreated:(NSArray*)grpIDs sendNotification:(BOOL)notificationNeeded{
-    
-   // [appDelegate startPopUpMessage:self.view withText:NSLocalizedString(@"Group Created", nil)];
-    
     
     [self reloadChatListView];
     
@@ -739,12 +563,6 @@
     
 }
 
--(void)cardUpdated:(NSNotification *)notificationNeeded{
-    NSArray *getIds = notificationNeeded.object;
-    fetchedIndex = -10;
-    [self callServiceToGetGroupVCARD:getIds[0]];
-    
-}
 
 -(void)newFriendTexted:(NSNotification *)notificationNeeded{
     NSArray *friendId = notificationNeeded.object;
@@ -753,11 +571,6 @@
 }
 
 -(void)getMessage:(NSNotification *)aNotification{
-    
-    [self reloadChatListView];
-}
-
--(void)peakTimerBuzzed:(NSNotification *)aNotification{
     
     [self reloadChatListView];
 }
@@ -814,93 +627,10 @@
     [[SocketStream sharedSocketObject] refreshNotifications];
 }
 
--(void)updateCardsAsRadarFriends:(NSArray *)cardIds{
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id_ IN %@",cardIds];
-    NSArray *existingIdArray =  [[SocketStream sharedSocketObject].chatMessagesData filteredArrayUsingPredicate:predicate];
-    
-    for(VcardObject *card in existingIdArray){
-        card.isRadarFriend = @true;
-    }
-    [DatabaseHelper saveManagedContext];
-    
-}
-
--(void)startRadarRequest:(NSNotification *) notif{
-    
-    
-}
-
--(void)refreshNotificationNumber:(NSNotification *) notif{
-    
-    if (![[SocketStream sharedSocketObject].activeNotificationNumber integerValue] == 0) {
-        self.notif_number.text = [[SocketStream sharedSocketObject].activeNotificationNumber stringValue];
-        [self.notif_number setHidden:NO];
-        self.notif_circle_image.hidden = NO;
-    } else {
-        [self.notif_number setHidden:YES];
-        self.notif_circle_image.hidden = YES;
-    }
-}
-
--(void)showRadarFriends{
-    fetchedIndex = 0;
-    [self stopActivityIndicator];
-    [[SocketStream sharedSocketObject] refreshRadarChatData];
-    [self reloadChatListView];
-}
-
--(void)stopRadarTimer{
-    secondsLeft = 0;
-    isTimerON = NO;
-    if(timer!= nil)
-    {
-        [timer invalidate];
-        timer = nil;
-    }
-    self.timer_label.text = @"";
-    
-    
-}
-
--(void)startRadarTimer{
-    
-    secondsLeft = RADAR_SECONDS;
-    [self countdownTimer];
-}
 -(void)stopActivityIndicator{
     
-    [self.radarActivityIndicator stopAnimating];
-    self.radarActivityIndicator.hidden = YES;
     [self reloadChatListView];
     
-}
-
-- (void)updateCounter:(NSTimer *)theTimer {
-    if(secondsLeft > 0 ){
-        secondsLeft -- ;
-        hours = secondsLeft / RADAR_SECONDS;
-        minutes = (secondsLeft % RADAR_SECONDS) / 60;
-        seconds = (secondsLeft % RADAR_SECONDS) % 60;
-        self.timer_label.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
-    }
-    else{
-        [self exitAction:nil];
-    }
-}
-
--(void)countdownTimer{
-    
-    hours = minutes = seconds = 0;
-    if(timer!= nil)
-    {
-        [timer invalidate];
-        timer = nil;
-    }
-    isTimerON = YES;
-    @autoreleasepool {
-        timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
-    }
 }
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
