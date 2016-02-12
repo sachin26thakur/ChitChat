@@ -201,6 +201,33 @@
     return [req getRequestDict];
 }
 
++(NSDictionary *)getPrivateGroupCreationRequest:(NSArray *)members grpName:(NSString *)name grpImage:(NSData *)imageData{
+    
+    RequestHelper *req= [[RequestHelper alloc] init];
+    
+    req->reqType1 = rq_NEW_OBJECT;
+    req->reqType2 = rq_PRIVATE_GROUP;
+    
+    //Set AUth
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    
+    //Set Request Detail
+    NSMutableDictionary *requestDetail = [NSMutableDictionary dictionary];
+    
+    //Set Email
+    requestDetail[@"members"] = members;
+    
+    //Set Vcard
+    requestDetail[@"vCard"] = [[[VCard alloc] initCard:cd_PRIVATE_GROUP cardName:name Uname:name andStuff:@"Other Stuff goes here" picture:imageData video:nil] getCardDict];
+    
+    req->reqDetails = requestDetail;
+    
+    return [req getRequestDict];
+    
+}
+
+
 
 +(NSDictionary *)getMessageForID:(NSString*)cardID{
     

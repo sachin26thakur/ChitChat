@@ -562,6 +562,13 @@
 
     
 }
+- (IBAction)createNewGroup:(UIButton *)sender {
+    self.collectionView.userInteractionEnabled = YES;
+    self.settingPopUpView.hidden = YES;
+    
+    AddGroupController *addGroupController = (AddGroupController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeNewGroup];
+    [self.navigationController pushViewController:addGroupController animated:YES];
+}
 
 
 - (IBAction)statusCkicked:(UIButton *)sender {

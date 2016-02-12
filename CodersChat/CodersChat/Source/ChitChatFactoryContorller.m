@@ -16,6 +16,7 @@ NSString * const SelectLangugeControllerID = @"selectLangugeControllerID";
 NSString * const SignUPControllerID = @"signUPControllerID";
 
 NSString * const ChatAreaControllerID = @"ChatAreaControllerID";
+NSString * const NewGroupControllerID = @"NewGroupControllerID";
 
 
 
@@ -87,6 +88,14 @@ NSString * const ChatAreaControllerID = @"ChatAreaControllerID";
             UIStoryboard *chitChatStoryBoard = [UIStoryboard storyboardWithName:@"ChitChat" bundle:nil];
             vc = [chitChatStoryBoard instantiateViewControllerWithIdentifier:ChatAreaControllerID];
 
+        }
+            break;
+            
+        case ViewControllerTypeNewGroup:
+        {
+            UIStoryboard *chitChatStoryBoard = [UIStoryboard storyboardWithName:@"ChitChat" bundle:nil];
+            vc = [chitChatStoryBoard instantiateViewControllerWithIdentifier:NewGroupControllerID];
+            
         }
             break;
         default:
