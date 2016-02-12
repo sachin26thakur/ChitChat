@@ -37,7 +37,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if ([ChitchatUserDefault isUserLogginIn]) {
+        [self gotoHomeScreen];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,11 +56,7 @@
 
 - (IBAction)signInButtonClicked:(id)sender
 {
-
-
     [self callServiceForDashboard];
-
-
 }
 
 // call web services
@@ -82,6 +86,12 @@
     
     //check service responce
     if([responce[@"oprSuccess"] integerValue]){
+        [ChitchatUserDefault setIsUserLoggin:YES];
+        [ChitchatUserDefault setContactSynced:false];
+        [ChitchatUserDefault setUserID:responce[@"respDetails"]];
+        [ChitchatUserDefault setUserName:_userName.text];
+        [ChitchatUserDefault setPassword:_password.text];
+        [self gotoHomeScreen];
         
         [appDelegate startActivityIndicator:self.view withText:NSLocalizedString(@"Synchronizing Contacts", nil)];
         SyncUser *syncUser = [[SyncUser alloc] init];
@@ -114,11 +124,8 @@
 //        [alert show];
         
     } else {
-       // ShowAlert(AppName,NSLocalizedString(@"Invalid login credentials \n Please try again!", nil));
         [appDelegate stopActivityIndicator];
-        
-        SelectLanguageViewController *selectLngVc = (SelectLanguageViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeSelectLanguage];
-        [self.navigationController pushViewController:selectLngVc animated:YES];
+    
     }
 }
 
@@ -146,5 +153,22 @@
     
     [self.navigationController pushViewController:chatListVc animated:YES];
 }
+
+
+#pragma mark - 
+
+- (void)gotoHomeScreen{
+    if ([ChitchatUserDefault selectedUserLanguage]) {
+        // go to home screen
+        
+        ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
+        [self.navigationController pushViewController:chatListVc animated:YES];
+    }else{
+        //go for select languge screen
+        SelectLanguageViewController *selectLngVc = (SelectLanguageViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeSelectLanguage];
+        [self.navigationController pushViewController:selectLngVc animated:YES];
+    }
+}
+
 
 @end

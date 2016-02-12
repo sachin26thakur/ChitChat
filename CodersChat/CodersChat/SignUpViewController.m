@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UIPickerView *languagePickerVIew;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
+@property (strong, nonatomic) IBOutlet UIButton *previousBtn;
 
 @end
 
@@ -38,7 +39,12 @@
     
 
 }
-
+- (IBAction)previousButtonClicked:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:LOGIN_VIEW_CONTROLLER_SEGUE])

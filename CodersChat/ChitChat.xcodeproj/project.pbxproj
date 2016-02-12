@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7436EF651C70EAC800A00B66 /* weChat.png in Resources */ = {isa = PBXBuildFile; fileRef = 7436EF611C70EAC800A00B66 /* weChat.png */; };
+		7436EF661C70EAC800A00B66 /* wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7436EF621C70EAC800A00B66 /* wechat@2x.png */; };
+		7436EF671C70EAC800A00B66 /* weChat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7436EF631C70EAC800A00B66 /* weChat@3x.png */; };
+		7436EF681C70EAC800A00B66 /* zargow_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7436EF641C70EAC800A00B66 /* zargow_logo.png */; };
 		7439B5B11C6DE0E0004A724D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439B5B01C6DE0E0004A724D /* main.m */; };
 		7439B5B41C6DE0E0004A724D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439B5B31C6DE0E0004A724D /* AppDelegate.m */; };
 		7439B5B71C6DE0E0004A724D /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439B5B61C6DE0E0004A724D /* SignUpViewController.m */; };
@@ -95,6 +99,10 @@
 
 /* Begin PBXFileReference section */
 		7436EF5A1C70E19A00A00B66 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7436EF611C70EAC800A00B66 /* weChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weChat.png; sourceTree = "<group>"; };
+		7436EF621C70EAC800A00B66 /* wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat@2x.png"; sourceTree = "<group>"; };
+		7436EF631C70EAC800A00B66 /* weChat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weChat@3x.png"; sourceTree = "<group>"; };
+		7436EF641C70EAC800A00B66 /* zargow_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zargow_logo.png; sourceTree = "<group>"; };
 		7439B5AC1C6DE0E0004A724D /* ChitChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChitChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7439B5B01C6DE0E0004A724D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7439B5B21C6DE0E0004A724D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -279,6 +287,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7436EF601C70EAC800A00B66 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7436EF611C70EAC800A00B66 /* weChat.png */,
+				7436EF621C70EAC800A00B66 /* wechat@2x.png */,
+				7436EF631C70EAC800A00B66 /* weChat@3x.png */,
+				7436EF641C70EAC800A00B66 /* zargow_logo.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		7439B5A31C6DE0E0004A724D = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +309,7 @@
 				74ADDCE91C6E4C300061736D /* SystemConfiguration.framework */,
 				74ADDCE71C6E4C250061736D /* MessageUI.framework */,
 				74ADDCE51C6E4C1D0061736D /* AVFoundation.framework */,
+				7436EF601C70EAC800A00B66 /* Resources */,
 				7436EF5A1C70E19A00A00B66 /* .gitignore */,
 				7439B5AE1C6DE0E0004A724D /* CodersChat */,
 				7439B5C81C6DE0E0004A724D /* CodersChatTests */,
@@ -698,10 +718,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7436EF661C70EAC800A00B66 /* wechat@2x.png in Resources */,
+				7436EF651C70EAC800A00B66 /* weChat.png in Resources */,
 				7439B5BC1C6DE0E0004A724D /* Assets.xcassets in Resources */,
 				7439B5BA1C6DE0E0004A724D /* Main.storyboard in Resources */,
+				7436EF681C70EAC800A00B66 /* zargow_logo.png in Resources */,
 				74EACAD71C6E2E100041C842 /* ChitChat.storyboard in Resources */,
 				74EACACA1C6E28810041C842 /* loader_rotate_arrow.png in Resources */,
+				7436EF671C70EAC800A00B66 /* weChat@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

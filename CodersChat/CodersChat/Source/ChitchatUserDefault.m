@@ -9,6 +9,13 @@
 #import "ChitchatUserDefault.h"
 
 #define SELECTED_LANGUAGE @"selectedLanguage"
+#define Username @"Username"
+#define Password @"Password"
+#define UserID @"userID"
+
+#define contactSynced @"contactSynced"
+#define userLoggedIn @"userLoggedIn"
+
 
 @implementation ChitchatUserDefault
 
@@ -90,6 +97,70 @@
     }];
     
     return arr;
+}
+
+
++ (void)setUserName:(NSString*)username{
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    [userdefaults setObject:username forKey:Username];
+    [userdefaults synchronize];
+}
+
+
++ (NSString *)username{
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    return [userdefaults objectForKey:Username];
+}
+
+
++ (void)setPassword:(NSString*)password{
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    [userdefaults setObject:password forKey:Password];
+    [userdefaults synchronize];
+}
+
+
++ (NSString *)password{
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    return [userdefaults objectForKey:Password];
+}
+
+
++ (void)setUserID:(NSString*)userID{
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    [userdefaults setObject:userID forKey:UserID];
+    [userdefaults synchronize];
+}
+
++ (NSString *)userId{
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    return [userdefaults objectForKey:UserID];
+}
+
+
++ (void)setContactSynced:(BOOL)iscontactSynced{
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    [userdefaults setBool:iscontactSynced forKey:contactSynced];
+    [userdefaults synchronize];
+}
+
+
++ (BOOL)isContactSynced{
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    return [userdefaults boolForKey:contactSynced];
+}
+
+
++ (void)setIsUserLoggin:(BOOL)isLoggedIn{
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    [userdefaults setBool:isLoggedIn forKey:userLoggedIn];
+    [userdefaults synchronize];
+}
+
+
++ (BOOL)isUserLogginIn{
+    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+    return [userdefaults boolForKey:userLoggedIn];
 }
 
 
