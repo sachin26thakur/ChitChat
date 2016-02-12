@@ -46,8 +46,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _userName.text = @"@himanshi";
-    _password.text = @"user123";
 }
 
 
@@ -99,17 +97,13 @@
         {
             self.passwordValue = textField.text;
         }
-        else
-        {
-            //[self showAlertView];
-        }
         
     }
 }
 
 - (void)showAlertVieWithTitle:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)cTitle
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please enter user name" delegate:self cancelButtonTitle:@"" otherButtonTitles:@"", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:aTitle message:aMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alertView show];
 }
 
@@ -134,6 +128,15 @@
 
 - (IBAction)signInButtonClicked:(id)sender
 {
+    if ([self.userName isFirstResponder])
+    {
+        [self.userName resignFirstResponder];
+    }
+    else if ([self.password isFirstResponder])
+    {
+        [self.password resignFirstResponder];
+    }
+    
     if (![self.userNameValue length])
     {
         [self showAlertVieWithTitle:@"Alert" message:@"Please enter user name" cancelButtonTitle:@""];
@@ -162,7 +165,7 @@
         [appDelegate startActivityIndicator:self.view withText:Progressing];
         
         //for AFNetworking request
-        [objWebServiceHandler AFNcallThePassedURLASynchronouslyWithRequest:[RequestHelper getLoginRequestWithUsername:_userName.text andPassword:_password.text]  withMethod:@"" withUrl:@"" forKey:@""];
+        [objWebServiceHandler AFNcallThePassedURLASynchronouslyWithRequest:[RequestHelper getLoginRequestWithUsername:self.userNameValue andPassword:self.passwordValue]  withMethod:@"" withUrl:@"" forKey:@""];
 
 //else  {
 //        ShowAlert(AlertTitle, NSLocalizedString(@"Please check internet connection", nil));
