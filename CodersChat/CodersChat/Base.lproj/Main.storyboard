@@ -164,7 +164,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="7oY-xh-dvV"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e6V-hs-fxY">
+                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e6V-hs-fxY">
                                 <rect key="frame" x="34" y="383" width="252" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="252" id="gdd-U9-OlI"/>
@@ -526,63 +526,15 @@
                                     <constraint firstAttribute="bottom" secondItem="V2z-CU-rnN" secondAttribute="bottom" id="mWE-A6-FGN"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wq-cS-6eB">
-                                <rect key="frame" x="0.0" y="-568" width="320" height="568"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ru4-44-XTL">
-                                        <rect key="frame" x="15" y="150" width="290" height="292"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvj-WP-fnN">
-                                                <rect key="frame" x="22" y="5" width="244" height="161"/>
-                                                <string key="text">We need your location to find other Zargow users nearby (150 meters.) Your location will not be shown on a map, only your public profile will be visible. You will not be visible after your exit the Radar.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXG-XO-ela">
-                                                <rect key="frame" x="22" y="182" width="110" height="40"/>
-                                                <state key="normal" title="Keep it OFF">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
-                                            <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wub-NH-jg1">
-                                                <rect key="frame" x="154" y="182" width="110" height="40"/>
-                                                <color key="backgroundColor" red="0.44705882349999998" green="0.82745098039999998" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Turn ON">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2u-zG-Flj">
-                                                <rect key="frame" x="19" y="242" width="47" height="39"/>
-                                                <state key="normal" image="checkbox_empty">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="selected" image="check-box_filled"/>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Got it. Don't show this message again" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpd-5o-zAB">
-                                                <rect key="frame" x="80" y="239" width="186" height="45"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMP-KJ-uDC">
                                 <rect key="frame" x="225" y="32" width="87" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="w3O-wk-U7W"/>
                                 </constraints>
                                 <state key="normal" title="New Group"/>
+                                <connections>
+                                    <action selector="createNewGroup:" destination="ymK-9v-ovI" eventType="touchUpInside" id="u2h-vV-Hhd"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nt8-O3-SsF">
                                 <rect key="frame" x="11" y="20" width="42" height="21"/>
@@ -600,12 +552,8 @@
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="XMP-KJ-uDC" secondAttribute="trailing" constant="2" id="6pI-LO-ujs"/>
-                            <constraint firstItem="Lyg-Vl-gQn" firstAttribute="trailing" secondItem="0wq-cS-6eB" secondAttribute="trailing" id="DG9-gD-8Qm"/>
-                            <constraint firstItem="Lyg-Vl-gQn" firstAttribute="leading" secondItem="0wq-cS-6eB" secondAttribute="leading" id="FFG-L2-JBe"/>
                             <constraint firstItem="Lyg-Vl-gQn" firstAttribute="leading" secondItem="nub-fk-yxD" secondAttribute="leading" id="LcM-gs-Yzd"/>
-                            <constraint firstItem="0wq-cS-6eB" firstAttribute="top" secondItem="nub-fk-yxD" secondAttribute="top" constant="-568" id="N4D-oj-Exm"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Lyg-Vl-gQn" secondAttribute="bottom" constant="-1" id="PN2-12-UK3"/>
-                            <constraint firstItem="qRV-ae-QLc" firstAttribute="top" secondItem="0wq-cS-6eB" secondAttribute="bottom" constant="20" id="Tu8-TS-2Go"/>
                             <constraint firstItem="Lyg-Vl-gQn" firstAttribute="top" secondItem="XMP-KJ-uDC" secondAttribute="bottom" constant="8" symbolic="YES" id="g7A-zl-H5a"/>
                             <constraint firstAttribute="trailing" secondItem="Lyg-Vl-gQn" secondAttribute="trailing" id="iVS-9w-ASg"/>
                             <constraint firstItem="Lyg-Vl-gQn" firstAttribute="top" secondItem="nub-fk-yxD" secondAttribute="top" constant="70" id="prS-Bw-xZq"/>
@@ -635,7 +583,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6LB-Ct-pAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="781" y="-422"/>
+            <point key="canvasLocation" x="959" y="-423"/>
         </scene>
     </scenes>
     <resources>
@@ -643,8 +591,6 @@
         <image name="arrow-next" width="16" height="18"/>
         <image name="arrow-previous" width="16" height="18"/>
         <image name="bg-login-fields" width="266" height="98"/>
-        <image name="check-box_filled" width="25" height="25"/>
-        <image name="checkbox_empty" width="25" height="25"/>
         <image name="grey-bg-text-field" width="265" height="48"/>
         <image name="login-arrow" width="15" height="12"/>
         <image name="text_field_bg" width="265" height="53"/>
