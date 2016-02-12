@@ -11,6 +11,7 @@
 #import "ChitchatUserDefault.h"
 #import "ChatListViewController.h"
 #import "ChitChatFactoryContorller.h"
+#import "ChatAreaViewController.h"
 
 
 
@@ -75,6 +76,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [ChitchatUserDefault setSelectedUserLanguage:[self.langugeData objectAtIndex:indexPath.row]];
+
+    
+    __block BOOL goBack = NO;
+    
+    NSArray *viewControllers = [self.navigationController viewControllers];
+
+    [viewControllers enumerateObjectsUsingBlock:^(id  obj, NSUInteger idx, BOOL * stop) {
+        if ([obj isKindOfClass:[ChatAreaViewController class] ]) {
+            goBack = YES;
+        }
+    }];
+    
+    if (goBack) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
+    
     
     ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
     

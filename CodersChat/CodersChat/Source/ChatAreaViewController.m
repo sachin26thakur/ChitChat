@@ -25,6 +25,10 @@
 #import <objc/runtime.h>
 #import "IndividualChatHeaderView.h"
 #import "RequestHelper.h"
+#import "SelectLanguageViewController.h"
+#import "ChitChatFactoryContorller.h"
+
+#import "ChitchatUserDefault.h"
 
 
 @interface ChatAreaViewController ()<WebServiceHandlerDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,MPMediaPickerControllerDelegate,AVAudioRecorderDelegate,AVAudioPlayerDelegate, IndividualCellDelegate,UINavigationControllerDelegate>
@@ -77,6 +81,10 @@
     NSAttributedString *tempMessageText;
     NSMutableArray *chatListArray;
 }
+
+
+@property (weak, nonatomic) IBOutlet UIButton *languageButton;
+
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *cameraBtn;
@@ -273,6 +281,10 @@ const char stickerCreatorKey;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillTerminate:) name:UIApplicationWillTerminateNotification object:nil];
     
     [self sendReadAcknowledgments];
+
+    NSString *codeStr = [ChitchatUserDefault lanuageCodeForSelectedLanaguge];
+    [self.languageButton setTitle:codeStr forState:UIControlStateNormal];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -1604,23 +1616,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 }
 
 
-- (IBAction)imageFilterBtnClicked:(UIButton *)sender {
-    
-    imageFilterActive = !imageFilterActive;
-    [self.collectionView reloadData];
-    
-    if((imageFilterActive && [[self getMediaMessages] count]) || (!imageFilterActive && [individualChatData count]))
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:(imageFilterActive) ? [[self getMediaMessages] count] -1 : [individualChatData count]-1 inSection:0]
-                                    atScrollPosition:UICollectionViewScrollPositionBottom
-                                            animated:YES];
-    
-    if(imageFilterActive)
-        [self.imgFilterBtn setImage:[UIImage imageNamed:@"icons-show-photos-active.png"] forState:UIControlStateNormal];
-    else
-        [self.imgFilterBtn setImage:[UIImage imageNamed:@"icons-show-photos-inactive.png"] forState:UIControlStateNormal];
-    
-    
+- (IBAction)selectLangugeButton:(id)sender {
+    SelectLanguageViewController *selectLngVc = (SelectLanguageViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeSelectLanguage];
+    [self.navigationController pushViewController:selectLngVc animated:YES];
 }
+
+
+
+
 
 
 
