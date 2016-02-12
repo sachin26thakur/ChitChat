@@ -44,6 +44,7 @@
 #define ES_MIN_DOWNLOADS @"minDownloadsToSetPrice"
 
 
+#define IS_VERSION_EQUAL_OR_GREATER_THAN_IOS_8_0 ( [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0f )
 
 #define screenWidth [[UIScreen mainScreen] bounds].size.width
 #define screenHeight [[UIScreen mainScreen] bounds].size.height

@@ -39,6 +39,7 @@
 
 @property (strong, nonatomic) NSString *userNameValue;
 @property (strong, nonatomic) NSString *passwordValue;
+@property (nonatomic) BOOL signInPressed;
 
 @end
 
@@ -99,6 +100,22 @@
         }
         
     }
+    if(_signInPressed){
+    
+    if (![self.userNameValue length])
+    {
+        [self showAlertVieWithTitle:@"Alert" message:@"Please enter user name" cancelButtonTitle:@""];
+    }
+    else if (![self.passwordValue length])
+    {
+        [self showAlertVieWithTitle:@"Alert" message:@"Please enter password" cancelButtonTitle:@""];
+    }
+    else
+        NSLog(@"");
+    {
+        [self callServiceForDashboard];
+    }
+    }
 }
 
 - (void)showAlertVieWithTitle:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)cTitle
@@ -128,6 +145,7 @@
 
 - (IBAction)signInButtonClicked:(id)sender
 {
+    _signInPressed = true;
     if ([self.userName isFirstResponder])
     {
         [self.userName resignFirstResponder];
@@ -137,18 +155,7 @@
         [self.password resignFirstResponder];
     }
     
-    if (![self.userNameValue length])
-    {
-        [self showAlertVieWithTitle:@"Alert" message:@"Please enter user name" cancelButtonTitle:@""];
-    }
-    else if (![self.passwordValue length])
-    {
-        [self showAlertVieWithTitle:@"Alert" message:@"Please enter password" cancelButtonTitle:@""];
-    }
-    else
-    {
-        [self callServiceForDashboard];
-    }
+    
     
 }
 
@@ -175,6 +182,8 @@
 {
     //  //NSLog(@"dicResponce:-%@",responce);
     
+    _signInPressed = false;
+
     //check service responce
     if([responce[@"oprSuccess"] integerValue]){
         [ChitchatUserDefault setIsUserLoggin:YES];
@@ -211,6 +220,8 @@
 -(void) webServiceHandler:(WebserviceHandler *)webHandler requestFailedWithError:(NSError *)error
 {
     
+    _signInPressed = false;
+
     //NSLog(@"dicResponce:-%@",[error description]);
     [appDelegate stopActivityIndicator];
     //remove it after WS call

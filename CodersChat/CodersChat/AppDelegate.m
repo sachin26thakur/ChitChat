@@ -12,7 +12,13 @@
 
 AppDelegate *appDelegate;
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+    //use for all type of Reachability
+    Reachability* hostReach;
+    Reachability* internetReach;
+    Reachability* wifiReach;
+    //use for all type of Reachability
+}
 
 @property (strong, nonatomic, readwrite) NSString *latestDeviceToken;
 
@@ -24,7 +30,23 @@ AppDelegate *appDelegate;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self callNetwork];
+    
+    if (IS_VERSION_EQUAL_OR_GREATER_THAN_IOS_8_0) {
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert |UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else{
+        
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
+    }
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
     return YES;
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -264,5 +286,33 @@ AppDelegate *appDelegate;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NetworkChanged" object:nil];
 }
 
+//Called by Reachability whenever status changes.
+- (void) reachabilityChanged: (NSNotification* )note
+{
+    Reachability* curReach = [note object];
+    NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+    [self updateInterfaceWithReachability: curReach];
+}
+-(void)callNetwork
+{
+    //use for all type of Reachability
+    // Observe the kNetworkReachabilityChangedNotification. When that notification is posted, the
+    // method "reachabilityChanged" will be called.
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+    
+    //Change the host name here to change the server your monitoring
+    hostReach = [Reachability reachabilityWithHostName: @"www.apple.com"];
+    [hostReach startNotifier];
+    [self updateInterfaceWithReachability: hostReach];
+    
+    internetReach = [Reachability reachabilityForInternetConnection];
+    [internetReach startNotifier];
+    [self updateInterfaceWithReachability: internetReach];
+    
+    wifiReach = [Reachability reachabilityForLocalWiFi];
+    [wifiReach startNotifier];
+    [self updateInterfaceWithReachability: wifiReach];
+    //use for all type of Reachability
+}
 
 @end
