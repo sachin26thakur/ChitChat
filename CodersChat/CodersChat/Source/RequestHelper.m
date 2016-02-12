@@ -11,6 +11,7 @@
 #import "Phone.h"
 #import "VCard.h"
 #import "Utility.h"
+#import "ChitchatUserDefault.h"
 
 @interface RequestHelper ()
 {
@@ -97,8 +98,7 @@
     req->reqDetails = @{@"phones":numbers};
     
     //Set AUth
-    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
-    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    req->auth = [[UserAuth alloc] initWithUsername:[ChitchatUserDefault username] Password:[ChitchatUserDefault password]];
     
     return [req getRequestDict];
 }
@@ -109,8 +109,7 @@
     RequestHelper *req= [[RequestHelper alloc] init];
     req->reqType1 = rq_GET_PRIVATE_FRIENDS;
     //Set AUth
-    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
-    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    req->auth = [[UserAuth alloc] initWithUsername:[ChitchatUserDefault username] Password:[ChitchatUserDefault password]];
     
     return [req getRequestDict];
 }
@@ -135,8 +134,7 @@
     req->reqDetails = @{@"vcard_ids":cardIDS,@"resolution":resolution};
     
     //Set AUth
-    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
-    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    req->auth = [[UserAuth alloc] initWithUsername:[ChitchatUserDefault username] Password:[ChitchatUserDefault password]];
     
     return [req getRequestDict];
 }
@@ -153,8 +151,7 @@
     
     
     //Set AUth
-    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
-    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    req->auth = [[UserAuth alloc] initWithUsername:[ChitchatUserDefault username] Password:[ChitchatUserDefault password]];
     
     return [req getRequestDict];
 }
@@ -167,8 +164,7 @@
     req->reqType2 = rq_MUTE;
     
     //Set AUth
-    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
-    req->auth = [[UserAuth alloc] initWithUsername:[userdefaults objectForKey:UserName] Password:[userdefaults objectForKey:UserPass]];
+    req->auth = [[UserAuth alloc] initWithUsername:[ChitchatUserDefault username] Password:[ChitchatUserDefault password]];
     
     return [req getRequestDict];
 }

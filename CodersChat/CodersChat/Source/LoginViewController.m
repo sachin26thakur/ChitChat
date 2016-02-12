@@ -10,6 +10,7 @@
 
 #import "RequestHelper.h"
 #import "Constants.h"
+#import "Utility.h"
 
 #import "ChitchatUserDefault.h"
 #import "ChitChatFactoryContorller.h"
@@ -45,6 +46,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _userName.text = @"@himanshi";
+    _password.text = @"user123";
 }
 
 
@@ -137,6 +140,7 @@
 -(void)callServiceForDashboard
 {
 
+
         WebserviceHandler *objWebServiceHandler = [[WebserviceHandler alloc]init];
         objWebServiceHandler.delegate = self;
 
@@ -145,7 +149,7 @@
         [appDelegate startActivityIndicator:self.view withText:Progressing];
         
         //for AFNetworking request
-        [objWebServiceHandler AFNcallThePassedURLASynchronouslyWithRequest:[RequestHelper getLoginRequestWithUsername:@"himanshi" andPassword:@"user123"]  withMethod:@"" withUrl:@"" forKey:@""];
+        [objWebServiceHandler AFNcallThePassedURLASynchronouslyWithRequest:[RequestHelper getLoginRequestWithUsername:_userName.text andPassword:_password.text]  withMethod:@"" withUrl:@"" forKey:@""];
 
 //else  {
 //        ShowAlert(AlertTitle, NSLocalizedString(@"Please check internet connection", nil));
@@ -172,17 +176,6 @@
         syncUser.delegate =self;
         [syncUser startUserSyncing:YES];
         
-            if (YES || [ChitchatUserDefault selectedUserLanguage]) {
-                // go to home screen
-        
-                ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
-        
-                [self.navigationController pushViewController:chatListVc animated:YES];
- 
-            }else{
-                //go for select languge screen
-            }
-
         
 //        NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
 //        [userdefaults setObject:_txtUsername.text.lowercaseString forKey:UserName];
@@ -228,10 +221,18 @@
     [self.navigationController pushViewController:chatListVc animated:YES];
 }
 
+- (void)userSyncFinished:(BOOL)ifSuccess{
+    
+    [appDelegate stopActivityIndicator];
+    [self gotoHomeScreen];
 
-#pragma mark - 
+}
+
+
+#pragma mark -
 
 - (void)gotoHomeScreen{
+    
     if ([ChitchatUserDefault selectedUserLanguage]) {
         // go to home screen
         
