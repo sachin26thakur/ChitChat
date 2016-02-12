@@ -7,12 +7,22 @@
 //
 
 #import "ChatListViewController.h"
+#import "ChitChatFactoryContorller.h"
+#import "ChatAreaViewController.h"
+
 
 @interface ChatListViewController ()
 
 @end
 
 @implementation ChatListViewController
+
+
+
+- (void)navigateToChatAreaController{
+    ChatAreaViewController *charAreadVc = (ChatAreaViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChatArea];
+    [self.navigationController pushViewController:charAreadVc animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

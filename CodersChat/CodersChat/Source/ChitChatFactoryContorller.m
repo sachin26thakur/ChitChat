@@ -84,7 +84,7 @@ NSString * const ChatAreaControllerID = @"ChatAreaControllerID";
        
         case ViewControllerTypeChatArea:
         {
-            UIStoryboard *chitChatStoryBoard = [UIStoryboard storyboardWithName:@"chitChat" bundle:nil];
+            UIStoryboard *chitChatStoryBoard = [UIStoryboard storyboardWithName:@"ChitChat" bundle:nil];
             vc = [chitChatStoryBoard instantiateViewControllerWithIdentifier:ChatAreaControllerID];
 
         }
