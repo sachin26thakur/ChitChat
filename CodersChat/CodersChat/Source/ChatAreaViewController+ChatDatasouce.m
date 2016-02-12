@@ -10,7 +10,7 @@
 #import "ChatAreaViewController+ChatDatasouce.h"
 #import "ChatAreaViewController.h"
 #import "FGTranslator.h"
-
+#import "ChitchatUserDefault.h"
 
 @implementation ChatAreaViewController(ChatDatasouce)
 
@@ -35,7 +35,11 @@
 }
 
 - (void)translateMyText:(NSArray*)array atIndex:(NSUInteger)actualIndex{
-    [self.translator translateText:((ChatMessageObject *)[individualChatData objectAtIndex:actualIndex]).msgText withSource:nil target:@"hi"
+    NSString *selectedLanguage =   [ChitchatUserDefault lanuageCodeForSelectedLanaguge];
+    if (!selectedLanguage) {
+        selectedLanguage = @"en";
+    }
+    [self.translator translateText:((ChatMessageObject *)[individualChatData objectAtIndex:actualIndex]).msgText withSource:nil target:selectedLanguage
                         completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
      {
          dispatch_async(dispatch_get_main_queue(), ^{
@@ -72,10 +76,13 @@
 }
 
 - (void)translateText:(NSArray*)array atIndex:(NSUInteger)index{
-    
+ NSString *selectedLanguage =   [ChitchatUserDefault lanuageCodeForSelectedLanaguge];
+    if (!selectedLanguage) {
+        selectedLanguage = @"en";
+    }
     __block NSUInteger indexi = index;
     NSMutableArray *chatArray =[NSMutableArray new];
-    [self.translator translateText:((ChatMessageObject *)[individualChatData objectAtIndex:indexi]).msgText withSource:nil target:@"hi"
+    [self.translator translateText:((ChatMessageObject *)[individualChatData objectAtIndex:indexi]).msgText withSource:nil target:selectedLanguage
                         completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
      {
          dispatch_async(dispatch_get_main_queue(), ^{
