@@ -111,7 +111,6 @@
         [self showAlertVieWithTitle:@"Alert" message:@"Please enter password" cancelButtonTitle:@""];
     }
     else
-        NSLog(@"");
     {
         [self callServiceForDashboard];
     }
@@ -153,6 +152,22 @@
     else if ([self.password isFirstResponder])
     {
         [self.password resignFirstResponder];
+    }
+    else{
+        
+        if (![self.userNameValue length])
+        {
+            [self showAlertVieWithTitle:@"Alert" message:@"Please enter user name" cancelButtonTitle:@""];
+        }
+        else if (![self.passwordValue length])
+        {
+            [self showAlertVieWithTitle:@"Alert" message:@"Please enter password" cancelButtonTitle:@""];
+        }
+        else
+            NSLog(@"");
+        {
+            [self callServiceForDashboard];
+        }
     }
     
     

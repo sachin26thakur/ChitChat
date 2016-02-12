@@ -15,6 +15,7 @@
 #import "WebserviceHandler.h"
 #import "RequestHelper.h"
 #import "SyncUser.h"
+#import "SignUpViewController.h"
 
 
 
@@ -166,7 +167,22 @@
     }
     
     
-    [self callServiceForSignUp];
+    __block BOOL isFromSignUp = NO;
+    
+    
+    [viewControllers enumerateObjectsUsingBlock:^(id  obj, NSUInteger idx, BOOL * stop) {
+        if ([obj isKindOfClass:[SignUpViewController class] ]) {
+            isFromSignUp = YES;
+        }
+    }];
+    
+    if (isFromSignUp) {
+        [self callServiceForSignUp];
+
+    }
+    else
+        [self gotoHomeScreen];
+    
 //    ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
 //    
 //    [self.navigationController pushViewController:chatListVc animated:YES];
