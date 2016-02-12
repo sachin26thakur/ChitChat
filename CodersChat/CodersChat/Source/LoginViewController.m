@@ -36,7 +36,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if ([ChitchatUserDefault isUserLogginIn]) {
+        [self gotoHomeScreen];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,11 +55,7 @@
 
 - (IBAction)signInButtonClicked:(id)sender
 {
-
-
     [self callServiceForDashboard];
-
-
 }
 
 // call web services
@@ -81,52 +85,15 @@
     
     //check service responce
     if([responce[@"oprSuccess"] integerValue]){
-        
-            if ([ChitchatUserDefault selectedUserLanguage]) {
-                // go to home screen
-        
-                ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
-        
-                [self.navigationController pushViewController:chatListVc animated:YES];
- 
-            }else{
-                
-        
-                
-                
-                //go for select languge screen
-                SelectLanguageViewController *selectLngVc = (SelectLanguageViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeSelectLanguage];
-                [self.navigationController pushViewController:selectLngVc animated:YES];
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            }
-
-        
-//        NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
-//        [userdefaults setObject:_txtUsername.text.lowercaseString forKey:UserName];
-//        [userdefaults setObject:_txtPassword.text forKey:UserPass];
-//        [userdefaults setObject:responce[@"respDetails"] forKey:UserID];
-//        [userdefaults setBool:false forKey:@"contactSynced"];
-//        [userdefaults setBool:true forKey:@"userLoggedIn"];
-//        
-//        [userdefaults synchronize];
-//        
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:AlertTitle message:NSLocalizedString(@"We need to upload phone numbers only (no names) from your address book to our servers to connect you with friends already using Zargow. We will not share or use that information without your approval.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Decline", nil) otherButtonTitles:NSLocalizedString(@"Accept", nil), nil];
-//        alert.delegate =self;
-//        [alert show];
+        [ChitchatUserDefault setIsUserLoggin:YES];
+        [ChitchatUserDefault setContactSynced:false];
+        [ChitchatUserDefault setUserID:responce[@"respDetails"]];
+        [ChitchatUserDefault setUserName:_userName.text];
+        [ChitchatUserDefault setPassword:_password.text];
         
     } else {
-       // ShowAlert(AppName,NSLocalizedString(@"Invalid login credentials \n Please try again!", nil));
         [appDelegate stopActivityIndicator];
-        
-        
+    
     }
 }
 
@@ -154,5 +121,22 @@
     
     [self.navigationController pushViewController:chatListVc animated:YES];
 }
+
+
+#pragma mark - 
+
+- (void)gotoHomeScreen{
+    if ([ChitchatUserDefault selectedUserLanguage]) {
+        // go to home screen
+        
+        ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
+        [self.navigationController pushViewController:chatListVc animated:YES];
+    }else{
+        //go for select languge screen
+        SelectLanguageViewController *selectLngVc = (SelectLanguageViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeSelectLanguage];
+        [self.navigationController pushViewController:selectLngVc animated:YES];
+    }
+}
+
 
 @end

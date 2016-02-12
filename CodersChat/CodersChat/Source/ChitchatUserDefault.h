@@ -15,4 +15,17 @@
 + (NSArray*)languageList;
 
 
+
++ (void)setUserName:(NSString*)username;
++ (NSString *)username;
++ (void)setPassword:(NSString*)password;
++ (NSString *)password;
++ (void)setUserID:(NSString*)userID;
++ (NSString *)userId;
++ (void)setContactSynced:(BOOL)iscontactSynced;
++ (BOOL)isContactSynced;
++ (void)setIsUserLoggin:(BOOL)isLoggedIn;
++ (BOOL)isUserLogginIn;
+
+
 @end
