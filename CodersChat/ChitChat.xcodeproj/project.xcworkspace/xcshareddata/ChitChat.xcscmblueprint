@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8aba5eb0-0729-4622-929e-a741cb6db1a5++747",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "8aba5eb0-0729-4622-929e-a741cb6db1a5++747" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8aba5eb0-0729-4622-929e-a741cb6db1a5++747" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "194E745F-D326-4A18-B359-7972FC8C2104",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8aba5eb0-0729-4622-929e-a741cb6db1a5++747" : "CodersChat\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ChitChat",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ChitChat.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/svn-bom4.globallogic.com\/SVN\/NagpurHackathon2016",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8aba5eb0-0729-4622-929e-a741cb6db1a5++747"
+    }
+  ]
+}
