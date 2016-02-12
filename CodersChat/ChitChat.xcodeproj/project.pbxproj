@@ -61,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7436EF5A1C70E19A00A00B66 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7439B5AC1C6DE0E0004A724D /* ChitChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChitChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7439B5B01C6DE0E0004A724D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7439B5B21C6DE0E0004A724D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -183,6 +184,7 @@
 		7439B5A31C6DE0E0004A724D = {
 			isa = PBXGroup;
 			children = (
+				7436EF5A1C70E19A00A00B66 /* .gitignore */,
 				7439B5AE1C6DE0E0004A724D /* CodersChat */,
 				7439B5C81C6DE0E0004A724D /* CodersChatTests */,
 				7439B5D31C6DE0E0004A724D /* CodersChatUITests */,
