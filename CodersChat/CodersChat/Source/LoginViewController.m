@@ -96,7 +96,7 @@
     {
         if ([textField.text length])
         {
-            self.passwordValue = textField.text;
+            self.passwordValue = [textField.text lowercaseString];
         }
         
     }
