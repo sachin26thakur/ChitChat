@@ -90,7 +90,7 @@
         [ChitchatUserDefault setUserID:responce[@"respDetails"]];
         [ChitchatUserDefault setUserName:_userName.text];
         [ChitchatUserDefault setPassword:_password.text];
-        
+        [self gotoHomeScreen];
     } else {
         [appDelegate stopActivityIndicator];
     
