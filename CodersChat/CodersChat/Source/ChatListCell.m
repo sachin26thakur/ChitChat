@@ -111,9 +111,9 @@ static const float animationTime = 0.25f;
     else{
         
         if(cd_PRIVATE_GROUP == [Utility CardTypeFromString:cardObj.cardType]) {
-            self.userImage.image = [UIImage imageNamed:@"DefaultGroup"];
+            self.userImage.image = [UIImage imageNamed:@"profile_placeholder"];
         } else
-            self.userImage.image = [UIImage imageNamed:@"DefaultUser"];
+            self.userImage.image = [UIImage imageNamed:@"profile_placeholder"];
         
         self.userImage.clipsToBounds = NO;
         self.userImage.layer.cornerRadius = 0;
