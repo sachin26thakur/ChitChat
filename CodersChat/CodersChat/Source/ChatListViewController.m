@@ -154,6 +154,12 @@
         self.exitBtn.translatesAutoresizingMaskIntoConstraints = YES;
         self.exitBtn.frame = CGRectMake(self.timerBtn.frame.origin.x+self.timerBtn.frame.size.width, self.exitBtn.frame.origin.y, self.exitBtn.frame.size.width, self.exitBtn.frame.size.height);
     }
+    
+    
+    SyncUser *syncUser = [[SyncUser alloc] init];
+    syncUser.delegate =self;
+    [syncUser startUserSyncing:YES];
+    [appDelegate startActivityIndicator:self.view withText:NSLocalizedString(@"Synchronizing Contacts", nil)];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -169,12 +175,12 @@
 
 
 - (void)userSyncFinished:(BOOL)ifSuccess{
-    
     [appDelegate stopActivityIndicator];
-    
+    [self.collectionView reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+    
 }
 
 - (void)didReceiveMemoryWarning {

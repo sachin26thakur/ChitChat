@@ -19,7 +19,7 @@
 
 
 
-@interface SelectLanguageViewController ()<WebServiceHandlerDelegate,UserSyncDelegate>
+@interface SelectLanguageViewController ()<WebServiceHandlerDelegate,UserSyncDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) NSArray *langugeData;
 @end
 
@@ -83,10 +83,15 @@
         
     } else {
         [appDelegate stopActivityIndicator];
-       // ShowAlert(AppName,dicResponce[@"respDetails"]);
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:dicResponce[@"respDetails"] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alertView show];
     }
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [alertView dismissWithClickedButtonIndex:buttonIndex animated:YES];
+}
 
 - (void)userSyncFinished:(BOOL)ifSuccess{
     
