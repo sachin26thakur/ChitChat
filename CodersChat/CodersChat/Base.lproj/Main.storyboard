@@ -268,7 +268,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="sFY-Hn-fo0">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -286,10 +286,21 @@
                                     <outlet property="delegate" destination="0Kw-67-sQQ" id="6HL-lp-UC0"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ON-9e-aMd">
+                                <rect key="frame" x="16" y="20" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonClicked:" destination="0Kw-67-sQQ" eventType="touchUpInside" id="gSo-5I-cSh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901960784313" green="0.77254901960784317" blue="0.65098039215686276" alpha="0.70000000000000007" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="sFY-Hn-fo0" firstAttribute="top" secondItem="DhN-a5-tqm" secondAttribute="top" id="5IT-lp-DSP"/>
+                            <constraint firstItem="sFY-Hn-fo0" firstAttribute="top" secondItem="DhN-a5-tqm" secondAttribute="top" constant="64" id="5IT-lp-DSP"/>
                             <constraint firstItem="sFY-Hn-fo0" firstAttribute="leading" secondItem="DhN-a5-tqm" secondAttribute="leading" id="HJ5-Yu-YEE"/>
                             <constraint firstAttribute="bottom" secondItem="sFY-Hn-fo0" secondAttribute="bottom" id="Uih-ZW-0dQ"/>
                             <constraint firstAttribute="trailing" secondItem="sFY-Hn-fo0" secondAttribute="trailing" id="hOt-gF-XV7"/>
@@ -449,8 +460,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="DefaultUser" translatesAutoresizingMaskIntoConstraints="NO" id="3yt-Bd-bKx">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="3yt-Bd-bKx">
                                                             <rect key="frame" x="16" y="7" width="54" height="54"/>
+                                                            <color key="backgroundColor" red="0.17254901959999999" green="0.77135587989999999" blue="0.65098039220000004" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="54" id="d69-Qb-zak"/>
                                                                 <constraint firstAttribute="width" constant="54" id="wel-Q7-s5Y"/>
@@ -524,8 +536,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="w3O-wk-U7W"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="New Group">
-                                    <color key="titleColor" red="0.0" green="0.3411764705882353" blue="0.0" alpha="0.70000000000000007" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="createNewGroup:" destination="ymK-9v-ovI" eventType="touchUpInside" id="u2h-vV-Hhd"/>
@@ -540,11 +553,11 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chit Chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GK-Nm-eUu">
                                 <rect key="frame" x="11" y="36" width="191" height="25"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <color key="textColor" red="0.0" green="0.3411764705882353" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.17254901960784313" green="0.77254901960784317" blue="0.65098039215686276" alpha="0.70000000000000007" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.17254901960784313" green="0.77254901960784317" blue="0.65098039215686276" alpha="0.95999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="XMP-KJ-uDC" secondAttribute="trailing" constant="2" id="6pI-LO-ujs"/>
                             <constraint firstItem="Lyg-Vl-gQn" firstAttribute="leading" secondItem="nub-fk-yxD" secondAttribute="leading" id="LcM-gs-Yzd"/>
@@ -582,7 +595,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="DefaultUser" width="54" height="54"/>
         <image name="arrow-next" width="16" height="18"/>
         <image name="arrow-previous" width="16" height="18"/>
         <image name="bg-login-fields" width="266" height="98"/>
