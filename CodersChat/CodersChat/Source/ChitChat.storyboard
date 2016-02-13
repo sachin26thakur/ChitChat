@@ -57,7 +57,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SinkinSans-500Medium" family="Sinkin Sans" pointSize="9"/>
                                 <state key="normal" title="Done" backgroundImage="select_btnbg">
-                                    <color key="titleColor" red="0.30980392159999998" green="0.35686274509999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -65,9 +65,9 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="ZxB-vA-qAA">
-                                <rect key="frame" x="0.0" y="138" width="320" height="466"/>
+                                <rect key="frame" x="0.0" y="138" width="320" height="430"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="6Zx-XK-Rz1">
                                     <size key="itemSize" width="320" height="75"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -907,20 +907,20 @@
         <image name="ghost_icon" width="23" height="24"/>
         <image name="icon-sepretor-image" width="1" height="22"/>
         <image name="icon-unchecked" width="21" height="21"/>
-        <image name="icon_009" width="95" height="90"/>
-        <image name="icon_015" width="95" height="90"/>
-        <image name="icon_016" width="95" height="90"/>
+        <image name="icon_009" width="13" height="18"/>
+        <image name="icon_015" width="22" height="18"/>
+        <image name="icon_016" width="17" height="4"/>
         <image name="image-gallery" width="27" height="27"/>
         <image name="keyboard_icon" width="34" height="15"/>
-        <image name="message_icone" width="95" height="90"/>
+        <image name="message_icone" width="24" height="24"/>
         <image name="music-gallery" width="27" height="27"/>
         <image name="select_btnbg" width="59" height="21"/>
-        <image name="sepretat" width="95" height="90"/>
+        <image name="sepretat" width="1" height="13"/>
         <image name="slider-blue" width="3" height="15"/>
         <image name="text_field_bg" width="265" height="53"/>
         <image name="video-gallery" width="27" height="27"/>
         <image name="view_icon" width="13" height="13"/>
-        <image name="white_chat_box" width="95" height="90"/>
+        <image name="white_chat_box" width="95" height="26"/>
         <image name="white_chat_box_tri" width="29" height="30"/>
         <image name="wrong-icon" width="38" height="35"/>
     </resources>
