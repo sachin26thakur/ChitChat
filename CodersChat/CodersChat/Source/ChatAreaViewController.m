@@ -197,10 +197,6 @@ const char stickerCreatorKey;
     
     self.msgTextView.attributedText  = defaultMessageText;
     
-    longTapGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(cellLongTapped:)];
-    [self.collectionView addGestureRecognizer:longTapGesture];
-    
-    [self.cardView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cardTapped:)]];
     
     // Set the audio file
     NSArray *pathComponents = [NSArray arrayWithObjects:
@@ -446,7 +442,7 @@ const char stickerCreatorKey;
         ChatMessageObject *message = [aNotification object];
         
         
-//        if((([self.cardObject.cardType isEqualToString:[Utility CardTypeToString:cd_PRIVATE_GROUP]] && [[message getReceiverGroupIDs] containsObject:self.cardObject.id_]) || ([self.cardObject.cardType isEqualToString:[Utility CardTypeToString:cd_USER]] && [self.cardObject.id_ isEqualToString:message.tx_id]))  && ![[individualChatData valueForKeyPath:@"id_"] containsObject:message.id_]){
+       if((([self.cardObject.cardType isEqualToString:[Utility CardTypeToString:cd_PRIVATE_GROUP]] && [[message getReceiverGroupIDs] containsObject:self.cardObject.id_]) || ([self.cardObject.cardType isEqualToString:[Utility CardTypeToString:cd_USER]] && [self.cardObject.id_ isEqualToString:message.tx_id]))  && ![[individualChatData valueForKeyPath:@"id_"] containsObject:message.id_]){
             
             [individualChatData addObject:message];
         [self getMessageConverted:message forIndex:individualChatData.count];
@@ -460,7 +456,7 @@ const char stickerCreatorKey;
             
             [self sendReadAcknowledgments];
         }
-    
+    }
     
     
 }

@@ -93,7 +93,7 @@ static const float animationTime = 0.25f;
     @{ NSFontAttributeName: [UIFont fontWithName:@"SinkinSans-500Medium" size:12.0],
        NSParagraphStyleAttributeName: paragraphStyle};
     
-    self.descriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:(cardObj.lastMessage)? : ((cardObj.status) ? :NSLocalizedString(@"No Status", nil)) attributes:attrsDictionary];
+    self.descriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:(cardObj.lastMessage)? :@"" attributes:attrsDictionary];
     
     NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
     if ([language rangeOfString:@"ar"].location != NSNotFound) {
