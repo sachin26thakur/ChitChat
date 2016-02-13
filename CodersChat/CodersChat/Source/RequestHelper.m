@@ -44,7 +44,7 @@
     NSMutableDictionary *requestDetail = [NSMutableDictionary dictionary];
     
 
-    Phone *phone = [Phone initWithCountry:@"+91" andNumber:phone];
+    Phone *phone = [Phone initWithCountry:@"in" andNumber:number];
     requestDetail[@"phone"] = [phone getPhoneDict];    
     
     //Set Vcard

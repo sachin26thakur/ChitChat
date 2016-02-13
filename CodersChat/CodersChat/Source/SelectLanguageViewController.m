@@ -50,7 +50,12 @@
     //for ActivityIndicator start
     [appDelegate startActivityIndicator:self.view withText:Progressing];
 
-    NSString *userName = [NSString stringWithFormat:@"/@%@",self.allDataDict[@"userName"]];
+    NSMutableString *userName = [self.allDataDict[@"userName"] mutableCopy];
+    if (![self.allDataDict[@"userName"] hasPrefix:@"@"])
+    {
+        userName = [NSMutableString stringWithFormat:@"\\@%@",self.allDataDict[@"userName"]];
+        [userName replaceCharactersInRange:NSMakeRange(0, 1) withString:@""];
+    }
     
     [objWebServiceHandler AFNcallThePassedURLASynchronouslyWithRequest:[RequestHelper getSignUpRequestWithName:self.allDataDict[@"fullName"] number:self.allDataDict[@"phoneNumber"] uname:userName pass:self.allDataDict[@"password"]] withMethod:@"" withUrl:@"" forKey:@""];
     
