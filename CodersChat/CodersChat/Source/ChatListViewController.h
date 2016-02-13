@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "ChatMessageObject.h"
+
 
 @interface ChatListViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -21,4 +23,6 @@
 -(void)avatarAdded;
 -(void)followersAdded;
 -(void)newGroupCreated:(NSArray*)grpIDs sendNotification:(BOOL)notificationNeeded;
+-(void)newGroupCreated:(NSArray*)grpIDs withChatMessage:(ChatMessageObject *)msgObj sendNotification:(BOOL)notificationNeeded;
+
 @end

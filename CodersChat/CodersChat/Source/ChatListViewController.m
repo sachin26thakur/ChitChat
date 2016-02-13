@@ -18,7 +18,6 @@
 #import <AddressBook/AddressBook.h>
 #import "ChatListCell.h"
 #import "ChatAreaViewController.h"
-#import "ChatMessageObject.h"
 #import "SocketStream.h"
 #import "RequestHelper.h"
 #import "VcardObject.h"
@@ -674,6 +673,15 @@
     self.settingPopUpView.hidden = YES;
 }
 
+-(void)newGroupCreated:(NSArray*)grpIDs withChatMessage:(ChatMessageObject *)msgObj sendNotification:(BOOL)notificationNeeded{
+    
+    if(notificationNeeded){
+        
+        [[SocketStream sharedSocketObject] sendGroupNotification:grpIDs];
+    }
+    //[[SocketStream sharedSocketObject] sendMessage:msgObj];
+    
+}
 
 
 @end

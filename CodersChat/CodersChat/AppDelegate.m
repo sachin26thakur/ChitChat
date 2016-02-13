@@ -40,8 +40,11 @@ AppDelegate *appDelegate;
         if(storyboard == nil) {
             storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ChatListViewController *chatVC = [storyboard instantiateViewControllerWithIdentifier:@"chitChatListViewControllerID"];
-            UINavigationController *navigVC = (UINavigationController *)self.window.rootViewController;
-            [navigVC pushViewController:chatVC animated:YES];
+
+            UINavigationController *navigVC = [[UINavigationController alloc] initWithRootViewController:chatVC];
+            [navigVC setNavigationBarHidden:true];
+            self.window.rootViewController =navigVC;
+
         }
 
     }

@@ -13,6 +13,7 @@
 #import "SocketStream.h"
 #import "ChatListCell.h"
 #import "RequestHelper.h"
+#import "ChatListViewController.h"
 
 @interface AddGroupController ()<WebServiceHandlerDelegate>{
     BOOL isAllChecked;
@@ -151,6 +152,15 @@
             
             [DatabaseHelper saveModel:@"VcardObject" FromResponseDict:dicResponce[@"respDetails"]];
             [DatabaseHelper saveModel:@"PrivateGroupObject" FromResponseDict:privateGroupDictResponse];
+            
+            NSArray *viewControllers = [self.navigationController viewControllers];
+            
+            [viewControllers enumerateObjectsUsingBlock:^(id  obj, NSUInteger idx, BOOL * stop) {
+                if ([obj isKindOfClass:[ChatListViewController class] ]) {
+                    [((ChatListViewController*)obj) newGroupCreated:@[dicResponce[@"respDetails"][@"_id"]] withChatMessage:nil sendNotification:YES];                }
+            }];
+           
+
             
             [appDelegate stopActivityIndicator];
             [self.navigationController popViewControllerAnimated:YES];

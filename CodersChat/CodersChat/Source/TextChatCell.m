@@ -157,6 +157,7 @@
         self.triangle.image = [UIImage imageNamed:@""];//blue_chat_box_tri
         [self.triangle setBackgroundColor:[UIColor clearColor]];
     }
+    self.timeLabel.hidden = true;
 }
 
 -(void)setCellProperties:(ChatMessageObject *)messageObj setSelected:(BOOL)isSelected{
