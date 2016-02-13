@@ -129,6 +129,10 @@
                                                  name:@"reloadList"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadAfterTranslationEvent)
+                                                 name:@"REFERESH_CHAT_FOR_LANGUAGE_SELECTION"
+                                               object:nil];
     
     
     
