@@ -96,6 +96,13 @@
 
 @implementation ChatListViewController
 
+
+- (void)reloadAfterTranslationEvent{
+    [self.collectionView reloadData];
+}
+
+
+
 @synthesize alertDialogProgressView = _alertDialogProgressView;
 
 - (void)viewDidLoad {
@@ -116,6 +123,15 @@
                                              selector:@selector(newGroupCreated:)
                                                  name:@"GroupCreated"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadAfterTranslationEvent)
+                                                 name:@"reloadList"
+                                               object:nil];
+    
+    
+    
+    
     
     self.timer_label.text = @"";
     
@@ -365,8 +381,15 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     ChatListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ChatListCellIdentifier" forIndexPath:indexPath];
-    [cell setCellProperties:[self getVcardsForActiveMode][indexPath.row]];
     
+    
+    VcardObject *vCardObject = [self getVcardsForActiveMode][indexPath.row];
+    
+    
+    
+    [cell setCellProperties:vCardObject];
+    
+
     return cell;
 }
 
@@ -513,7 +536,6 @@
 
 -(void)reloadChatListView{
     
-    
         self.refreshBtn.hidden = YES;
         self.timerBtn.hidden = YES;
         self.exitBtn.hidden = YES;
@@ -552,6 +574,11 @@
 }
 
 -(NSArray *)getVcardsForActiveMode{
+    
+    
+    
+    
+    
     return [[[SocketStream sharedSocketObject] getVCardsToAdd:false withGroupID:nil] mutableCopy];
 }
 

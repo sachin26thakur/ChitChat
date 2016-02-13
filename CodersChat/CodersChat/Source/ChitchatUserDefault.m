@@ -100,6 +100,67 @@
 }
 
 
+
++ (NSString*)lanuageCodeForSelectedLanaguge1{
+    
+    
+    NSMutableDictionary *languageDictionary = [NSMutableDictionary new];
+    [languageDictionary setObject:@"mr" forKey:@"Marathi"];
+    [languageDictionary setObject:@"ar" forKey:@"Arabic"];
+    [languageDictionary setObject:@"bs_Latn" forKey:@"Bosnian(Latin)"];
+    [languageDictionary setObject:@"bg" forKey:@"Bulgarian"];
+    [languageDictionary setObject:@"ca" forKey:@"Catalan"];
+    [languageDictionary setObject:@"zh_CHS" forKey:@"Chinese Simplified"];
+    [languageDictionary setObject:@"zh_CHT" forKey:@"Chinese Traditional"];
+    [languageDictionary setObject:@"hr" forKey:@"Croatian"];
+    [languageDictionary setObject:@"cs" forKey:@"Czech"];
+    [languageDictionary setObject:@"da" forKey:@"Danish"];
+    [languageDictionary setObject:@"nl" forKey:@"Dutch"];
+    [languageDictionary setObject:@"en" forKey:@"English"];
+    [languageDictionary setObject:@"et" forKey:@"Estonian"];
+    [languageDictionary setObject:@"fi" forKey:@"Finnish"];
+    [languageDictionary setObject:@"fr" forKey:@"French"];
+    [languageDictionary setObject:@"de" forKey:@"German"];
+    [languageDictionary setObject:@"el" forKey:@"Greek"];
+    [languageDictionary setObject:@"ht" forKey:@"Haitian Creole"];
+    [languageDictionary setObject:@"he" forKey:@"Hebrew"];
+    [languageDictionary setObject:@"hi" forKey:@"Hindi"];
+    [languageDictionary setObject:@"hu" forKey:@"Hungarian"];
+    [languageDictionary setObject:@"id" forKey:@"Indonesian"];
+    [languageDictionary setObject:@"it" forKey:@"Italian"];
+    [languageDictionary setObject:@"ja" forKey:@"Japanese"];
+    [languageDictionary setObject:@"sw" forKey:@"Swahili"];
+    [languageDictionary setObject:@"ko" forKey:@"Korean"];
+    [languageDictionary setObject:@"lv" forKey:@"Latvian"];
+    [languageDictionary setObject:@"it" forKey:@"Lithuanian"];
+    [languageDictionary setObject:@"ms" forKey:@"malay"];
+    [languageDictionary setObject:@"mt" forKey:@"Maltese"];
+    [languageDictionary setObject:@"fa" forKey:@"Persian"];
+    [languageDictionary setObject:@"pl" forKey:@"Polish"];
+    [languageDictionary setObject:@"pt" forKey:@"Portuguese"];
+    [languageDictionary setObject:@"ro" forKey:@"Romanian"];
+    [languageDictionary setObject:@"ru" forKey:@"Russian"];
+    [languageDictionary setObject:@"sr_Cyrl" forKey:@"Serbian (Cyrillic)"];
+    [languageDictionary setObject:@"sr_Latn" forKey:@"Serbian (Latin)"];
+    [languageDictionary setObject:@"sk" forKey:@"Slovak"];
+    [languageDictionary setObject:@"sl" forKey:@"Slovenian"];
+    [languageDictionary setObject:@"es" forKey:@"Spanish"];
+    [languageDictionary setObject:@"sv" forKey:@"Swedish"];
+    [languageDictionary setObject:@"th" forKey:@"Thai"];
+    [languageDictionary setObject:@"tr" forKey:@"Turkish"];
+    [languageDictionary setObject:@"uk" forKey:@"Ukrainian)"];
+    [languageDictionary setObject:@"ur" forKey:@"urdu"];
+    [languageDictionary setObject:@"vi" forKey:@"Vietnamese"];
+    [languageDictionary setObject:@"cy" forKey:@"Welsh"];
+    
+    NSString *selectedLanguge = [self selectedUserLanguage];
+    
+    return [languageDictionary objectForKey:selectedLanguge];
+}
+
+
+
+
 + (NSString*)lanuageCodeForSelectedLanaguge{
     
     

@@ -11,6 +11,7 @@
 @interface ChitchatUserDefault : NSObject
 
 + (NSString*)selectedUserLanguage;
++ (NSString*)lanuageCodeForSelectedLanaguge1;
 + (NSString*)lanuageCodeForSelectedLanaguge;
 + (void)setSelectedUserLanguage:(NSString*)languge;
 + (NSArray*)languageList;

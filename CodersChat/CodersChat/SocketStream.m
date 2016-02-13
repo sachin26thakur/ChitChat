@@ -11,6 +11,11 @@
 #import "DatabaseHelper.h"
 #import "Utility.h"
 #import "Constants.h"
+#import "FGTranslator.h"
+#import "ChitchatUserDefault.h"
+
+
+
 #import <CoreLocation/CoreLocation.h>
 
 @interface SocketStream ()<JFRWebSocketDelegate,CLLocationManagerDelegate>
@@ -71,7 +76,7 @@ static SocketStream *socketStream;
         
         [socketStream.socket connect];
         socketStream.chatMessagesData = [DatabaseHelper initializedChatData];
-        
+        [socketStream translateText:socketStream.chatMessagesData atIndex:0];
         
         socketStream.userData = [socketStream getUserData];
         
@@ -121,12 +126,153 @@ static SocketStream *socketStream;
 
 
 
+- (FGTranslator *)translator {
+    /*
+     * using Bing Translate
+     *
+     * Note: The client id and secret here is very limited and is included for demo purposes only.
+     * You must use your own credentials for production apps.
+     */
+    FGTranslator *translator = [[FGTranslator alloc] initWithBingAzureClientId:@"fgtranslator-demo" secret:@"GrsgBiUCKACMB+j2TVOJtRboyRT8Q9WQHBKJuMKIxsU="];
+    
+    // or use Google Translate
+    
+    // using Google Translate
+    // translator = [[FGTranslator alloc] initWithGoogleAPIKey:@"your_google_key"];
+    
+    return translator;
+}
+
+
++ (NSString*)lanuageCodeForSelectedLanaguge1{
+    
+    
+    NSMutableDictionary *languageDictionary = [NSMutableDictionary new];
+    [languageDictionary setObject:@"mr" forKey:@"Marathi"];
+    [languageDictionary setObject:@"ar" forKey:@"Arabic"];
+    [languageDictionary setObject:@"bs_Latn" forKey:@"Bosnian(Latin)"];
+    [languageDictionary setObject:@"bg" forKey:@"Bulgarian"];
+    [languageDictionary setObject:@"ca" forKey:@"Catalan"];
+    [languageDictionary setObject:@"zh_CHS" forKey:@"Chinese Simplified"];
+    [languageDictionary setObject:@"zh_CHT" forKey:@"Chinese Traditional"];
+    [languageDictionary setObject:@"hr" forKey:@"Croatian"];
+    [languageDictionary setObject:@"cs" forKey:@"Czech"];
+    [languageDictionary setObject:@"da" forKey:@"Danish"];
+    [languageDictionary setObject:@"nl" forKey:@"Dutch"];
+    [languageDictionary setObject:@"en" forKey:@"English"];
+    [languageDictionary setObject:@"et" forKey:@"Estonian"];
+    [languageDictionary setObject:@"fi" forKey:@"Finnish"];
+    [languageDictionary setObject:@"fr" forKey:@"French"];
+    [languageDictionary setObject:@"de" forKey:@"German"];
+    [languageDictionary setObject:@"el" forKey:@"Greek"];
+    [languageDictionary setObject:@"ht" forKey:@"Haitian Creole"];
+    [languageDictionary setObject:@"he" forKey:@"Hebrew"];
+    [languageDictionary setObject:@"hi" forKey:@"Hindi"];
+    [languageDictionary setObject:@"hu" forKey:@"Hungarian"];
+    [languageDictionary setObject:@"id" forKey:@"Indonesian"];
+    [languageDictionary setObject:@"it" forKey:@"Italian"];
+    [languageDictionary setObject:@"ja" forKey:@"Japanese"];
+    [languageDictionary setObject:@"sw" forKey:@"Swahili"];
+    [languageDictionary setObject:@"ko" forKey:@"Korean"];
+    [languageDictionary setObject:@"lv" forKey:@"Latvian"];
+    [languageDictionary setObject:@"it" forKey:@"Lithuanian"];
+    [languageDictionary setObject:@"ms" forKey:@"malay"];
+    [languageDictionary setObject:@"mt" forKey:@"Maltese"];
+    [languageDictionary setObject:@"fa" forKey:@"Persian"];
+    [languageDictionary setObject:@"pl" forKey:@"Polish"];
+    [languageDictionary setObject:@"pt" forKey:@"Portuguese"];
+    [languageDictionary setObject:@"ro" forKey:@"Romanian"];
+    [languageDictionary setObject:@"ru" forKey:@"Russian"];
+    [languageDictionary setObject:@"sr_Cyrl" forKey:@"Serbian (Cyrillic)"];
+    [languageDictionary setObject:@"sr_Latn" forKey:@"Serbian (Latin)"];
+    [languageDictionary setObject:@"sk" forKey:@"Slovak"];
+    [languageDictionary setObject:@"sl" forKey:@"Slovenian"];
+    [languageDictionary setObject:@"es" forKey:@"Spanish"];
+    [languageDictionary setObject:@"sv" forKey:@"Swedish"];
+    [languageDictionary setObject:@"th" forKey:@"Thai"];
+    [languageDictionary setObject:@"tr" forKey:@"Turkish"];
+    [languageDictionary setObject:@"uk" forKey:@"Ukrainian)"];
+    [languageDictionary setObject:@"ur" forKey:@"urdu"];
+    [languageDictionary setObject:@"vi" forKey:@"Vietnamese"];
+    [languageDictionary setObject:@"cy" forKey:@"Welsh"];
+    
+    NSString *selectedLanguge = [ChitchatUserDefault selectedUserLanguage];
+    
+    return [languageDictionary objectForKey:selectedLanguge];
+}
+
+
+
+- (void)translateText:(NSArray*)array atIndex:(NSUInteger)index{
+    
+    
+    if (index >= [array count]) {
+        return;
+    }
+    
+    
+    NSString *selectedLanguage =   [[self class] lanuageCodeForSelectedLanaguge1];
+    if (!selectedLanguage) {
+        selectedLanguage = @"en";
+    }
+    
+    __block NSUInteger indexi = index;
+    
+    
+    VcardObject *obj = [array objectAtIndex:indexi];
+    
+    NSString *translateText = obj.lastMessage;
+    
+    
+    if (translateText == nil || translateText.length == 0) {
+        indexi = indexi + 1;
+        [self translateText:array atIndex:indexi];
+    }
+    
+    
+    
+    
+    [self.translator translateText:translateText withSource:nil target:selectedLanguage
+                        completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
+     {
+         dispatch_async(dispatch_get_main_queue(), ^{
+             
+             
+             VcardObject *obj = [array objectAtIndex:indexi];
+             obj.lastMessage = translated;
+            
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadList" object:nil];
+             indexi = indexi +1;
+
+             if ([array count] == indexi) {
+                 return ;
+             }
+             
+
+             
+             
+             [self translateText:array atIndex:indexi];
+         });
+         
+         
+     }];
+    
+}
+
+
+
+
 -(void)refreshCardsData{
     
     self.chatMessagesData = [DatabaseHelper initializedChatData];
     self.userData = [socketStream getUserData];
     self.historyChatData = [socketStream getHistoryChatData];
     self.radarChatData = [socketStream getRadarChatData];
+    
+    
+    [self translateText:self.chatMessagesData atIndex:0];
+    
+    
     
 }
 

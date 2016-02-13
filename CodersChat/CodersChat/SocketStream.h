@@ -39,7 +39,7 @@
 
 @property (assign, nonatomic) NSInteger unreadMessageCount;
 
-
+- (void)translateText:(NSArray*)array atIndex:(NSUInteger)index;
 + (instancetype)sharedSocketObject;
 - (void)refreshHistoryChatData;
 - (void)refreshRadarChatData;
