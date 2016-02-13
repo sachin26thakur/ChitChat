@@ -10,6 +10,7 @@
 #import "Utility.h"
 #import "Reachability.h"
 #import "ChatListViewController.h"
+
 #import "ChitchatUserDefault.h"
 
 
@@ -58,6 +59,7 @@ AppDelegate *appDelegate;
     }
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+
     
     return YES;
 

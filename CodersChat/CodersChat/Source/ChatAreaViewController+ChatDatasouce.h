@@ -24,8 +24,7 @@ typedef  NS_ENUM(NSInteger, TYPE_OF_MEDIA_MESSAGE){
 
 -(void)getAllMessagesConverted;
 -(void)getMessageConverted:(ChatMessageObject *)messageObj forIndex:(NSInteger)index;
--(TYPE_OF_MESSAGE)getType:(ChatMessageObject *)messageObj;
--(TYPE_OF_MEDIA_MESSAGE)getMediaType:(ChatMessageObject *)messageObj;
+
 -(BOOL)isNormalMessage:(ChatMessageObject *)messageObj;
 -(BOOL)isMessageSent:(ChatMessageObject *)messageObj byCardId:(NSString *)cardID;
 @end

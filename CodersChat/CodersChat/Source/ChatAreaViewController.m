@@ -314,7 +314,6 @@ const char stickerCreatorKey;
                                                   object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
-    [self stopMusic];
 }
 
 -(void)viewDidLayoutSubviews{
@@ -398,35 +397,14 @@ const char stickerCreatorKey;
         self.add_FriendBtn.hidden = YES;
     }
     
-    if((imageFilterActive && [[self getMediaMessages] count]) || (!imageFilterActive && [individualChatData count]))
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:(imageFilterActive) ? [[self getMediaMessages] count] -1 : [individualChatData count]-1 inSection:0]
+    if([individualChatData count])
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:[individualChatData count]-1 inSection:0]
                                     atScrollPosition:UICollectionViewScrollPositionNone
                                             animated:YES];
 }
 
 
 #pragma mark Socket Acknowledgments
-- (void)updateCurrentTime
-{
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id_ = %@ || SELF.clientMsgID.stringValue = %@",currentMessageAudioPlaying,currentMessageAudioPlaying];
-    
-    NSArray *msgArray =[individualChatData filteredArrayUsingPredicate:predicate];
-    if(msgArray && [msgArray count])
-    {
-        ChatMessageObject *chatObj = msgArray[0];
-        
-        NSInteger index = (imageFilterActive) ? [[self getMediaMessages] indexOfObject:chatObj] : [individualChatData indexOfObject:chatObj];
-        IndividualChatCell *cell = (IndividualChatCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
-        
-        if(isAudioPlaying)
-            [cell updateAudioSliderIsPlaying:true withMaxTime:player.duration currentTime:player.currentTime];
-        else
-            [cell updateAudioSliderIsPlaying:false withMaxTime:0 currentTime:0];
-        
-        //  [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-    }
-}
 
 -(void)newGroupCreated:(NSArray*)grpIDs withChatMessage:(ChatMessageObject *)msgObj sendNotification:(BOOL)notificationNeeded{
     
@@ -478,8 +456,8 @@ const char stickerCreatorKey;
         
         [self.collectionView reloadData];
         
-        if((imageFilterActive && [[self getMediaMessages] count]) || (!imageFilterActive && [individualChatData count]))
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:(imageFilterActive) ? [[self getMediaMessages] count] -1 : [individualChatData count]-1 inSection:0]
+        if([individualChatData count])
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:[individualChatData count]-1 inSection:0]
                                         atScrollPosition:UICollectionViewScrollPositionBottom
                                                 animated:YES];
         [[SocketStream sharedSocketObject] sendMessage:chatMessage];
@@ -521,8 +499,8 @@ const char stickerCreatorKey;
 
             [self.collectionView reloadData];
             
-            if((imageFilterActive && [[self getMediaMessages] count]) || (!imageFilterActive && [individualChatData count]))
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:(imageFilterActive) ? [[self getMediaMessages] count] -1 : [individualChatData count]-1 inSection:0]
+            if([individualChatData count])
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:[individualChatData count]-1 inSection:0]
                                             atScrollPosition:UICollectionViewScrollPositionBottom
                                                     animated:YES];
             
@@ -609,10 +587,7 @@ const char stickerCreatorKey;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)sectio
 {
-    if(imageFilterActive)
-        return [[self getMediaMessages] count];
-    else
-        return [individualChatData count];
+    return [individualChatData count];
 }
 
 
@@ -623,12 +598,7 @@ const char stickerCreatorKey;
         
     }
     IndividualChatCell *cell;
-    ChatMessageObject *messageObj;
-    
-    if(imageFilterActive)
-        messageObj = [self getMediaMessages][indexPath.item];
-    else
-        messageObj = individualChatData[indexPath.item];
+    ChatMessageObject *messageObj = individualChatData[indexPath.item];
     
     if(messageObj.media_relationship && ma_AUDIO == [Utility MediaTypeFromString:messageObj.media_relationship.mediaType])
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AudioChatCellIdentifier" forIndexPath:indexPath];
@@ -664,172 +634,21 @@ const char stickerCreatorKey;
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!self.moreOptionsView.hidden)
-        self.moreOptionsView.hidden = true;
-    else{
-        
-        ChatMessageObject *msgObj = (imageFilterActive) ? ((ChatMessageObject *)[self getMediaMessages][indexPath.item]) : ((ChatMessageObject *)individualChatData[indexPath.item]);
-        
-        if(inSelecionMode){
-            if([self isNormalMessage:msgObj] || [self isMessageSent:msgObj byCardId:self.cardObject.id_]){
-                if([selectedChatIDs containsObject:(msgObj.id_)? :msgObj.clientMsgID])
-                {
-                    [selectedChatIDs removeObject:(msgObj.id_)? :msgObj.clientMsgID];
-                    
-                } else {
-                    [selectedChatIDs addObject:(msgObj.id_)? :msgObj.clientMsgID];
-                }
-                
-                [collectionView reloadItemsAtIndexPaths:@[indexPath]];
-                if([selectedChatIDs count] == 0)
-                    [self removeSelectionMode];
-            }
-        }
-        
-        else{
-            if(msgObj.media_relationship) {
-                if(msgObj.media_relationship.highRes)
-                {
-                    
-                }
-                else{
-                    if(msgObj.id_)
-                    {
-                        
-                        NSString *highResURL = msgObj.media_relationship.url_highRes;
-                        
-                        if([msgObj.media_relationship.mediaType isEqualToString:[Utility MediaTypeToString:ma_IMAGE]])
-                        {
-                            [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:highResURL]
-                                                                            options:SDWebImageRetryFailed
-                                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                                                               // progression tracking code
-                                                                           }
-                                                                          completed:^(UIImage *imageDownloaded, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                                              if (imageDownloaded && finished) {
-                                                                                  // do something with image
-                                                                                  [mediaDownloadInProgress removeObject:msgObj.id_];
-                                                                                  
-                                                                                  msgObj.media_relationship.highRes = UIImagePNGRepresentation(imageDownloaded);
-                                                                                  [DatabaseHelper saveDBManagedContext];
-                                                                                  [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-                                                                              }
-                                                                              else
-                                                                                  [appDelegate stopActivityIndicator];
-                                                                          }];
-                            
-                        }
-                        
-                        else{
-                            
-                            //download the file in a seperate thread.
-                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                NSLog(@"Downloading Started");
-                                NSURL  *url = [NSURL URLWithString:highResURL];
-                                NSData *urlData = [NSData dataWithContentsOfURL:url];
-                                if ( urlData )
-                                {
-                                    NSString *moviePath;
-                                    if([msgObj.media_relationship.mediaType isEqualToString:[Utility MediaTypeToString:ma_VIDEO]])
-                                        moviePath = [[Utility getDocumentPath] stringByAppendingPathComponent:@"Video.MP4"];
-                                    else
-                                        moviePath = [[Utility getDocumentPath] stringByAppendingPathComponent:@"audio.m4a"];
-                                    
-                                    //saving is done on main thread
-                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                        [urlData writeToFile:moviePath atomically:YES];
-                                        [mediaDownloadInProgress removeObject:msgObj.id_];
-                                        
-                                        msgObj.media_relationship.highRes = urlData;
-                                        [DatabaseHelper saveDBManagedContext];
-                                        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-                                        NSLog(@"File Saved !");
-                                    });
-                                }
-                                else{
-                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                        
-                                      //  ShowAlert(AlertTitle, NSLocalizedString(@"Video download failed.", nil));
-                                        [appDelegate stopActivityIndicator];
-                                    });
-                                }
-                                
-                            });
-                            
-                        }
-                        [mediaDownloadInProgress addObject:msgObj.id_];
-                        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-                    }
-                    else if([msgObj.msgType isEqualToString:[Utility MessageTypeToString:mg_SEND_BROADCAST]])
-                    {
-                        
-                        
-                    }
-                    
-                    
-                }
-            }
-            else if ([msgObj.msgType isEqualToString:[Utility MessageTypeToString:mg_SHARE_EMOJI_STICKER]]){
-            } else if ([msgObj.msgDetails isEqualToString:StickerMessageIdentifier]) {
-                
-            }
-        }
-    }
-    
-}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    ChatMessageObject *messageObj = (imageFilterActive)? (ChatMessageObject *)[self getMediaMessages][indexPath.row] : (ChatMessageObject *)individualChatData[indexPath.row];
+    ChatMessageObject *messageObj = (ChatMessageObject *)individualChatData[indexPath.row];
     
-    if(imageFilterActive || messageObj.media_relationship || [messageObj.msgType isEqualToString:[Utility MessageTypeToString:mg_SHARE_EMOJI_STICKER]]){
+    
+    if (ma_AUDIO == [Utility MediaTypeFromString:((ChatMessageObject *)individualChatData[indexPath.row]).media_relationship.mediaType]){
         
-        if(!messageObj.media_relationship && [messageObj.msgDetails isEqualToString:StickerMessageIdentifier]){
-            
-            if([((NSAttributedString *)messageObj.msgAttributedText).string isEqualToString:@"Sticker"])
-                return CGSizeMake(screenWidth, 200);
-            
-            CGRect rect =[messageObj.msgAttributedText boundingRectWithSize:CGSizeMake(screenWidth-80, FLT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-            
-            if([messageObj.msgType isEqualToString:[Utility MessageTypeToString:mg_SEND_BROADCAST]])
-                rect.size.height +=17;
-            
-            if(cd_PRIVATE_GROUP == [Utility CardTypeFromString:self.cardObject.cardType])
-                return  CGSizeMake(screenWidth, rect.size.height+65);
-            else
-                return  CGSizeMake(screenWidth, rect.size.height+55);
-            
-            
-            
-        }
-        else if ((!imageFilterActive && ma_AUDIO == [Utility MediaTypeFromString:((ChatMessageObject *)individualChatData[indexPath.row]).media_relationship.mediaType]) || (imageFilterActive && ma_AUDIO == [Utility MediaTypeFromString:((ChatMessageObject *)([self getMediaMessages][indexPath.row])).media_relationship.mediaType])){
-            
-            if([messageObj.msgType isEqualToString:[Utility MessageTypeToString:mg_SEND_BROADCAST]])
-                return  CGSizeMake(screenWidth,110);
-            else
-                return  CGSizeMake(screenWidth,90);
-            
-        }
-        else if(cd_PRIVATE_GROUP == [Utility CardTypeFromString:self.cardObject.cardType]){
-            
-            ChatMessageObject *messageObj;
-            if(imageFilterActive)
-                messageObj = [self getMediaMessages][indexPath.item];
-            else
-                messageObj = individualChatData[indexPath.item];
-            
-            if([messageObj.tx_id isEqualToString:[SocketStream sharedSocketObject].userID])
-                return  CGSizeMake(screenWidth,250);
-            else
-                return  CGSizeMake(screenWidth,260);
-            
-        }
+        if([messageObj.msgType isEqualToString:[Utility MessageTypeToString:mg_SEND_BROADCAST]])
+            return  CGSizeMake(screenWidth,110);
         else
-            return  CGSizeMake(screenWidth,250);
+            return  CGSizeMake(screenWidth,90);
         
     }
+    
     else{
         
         
@@ -908,8 +727,6 @@ const char stickerCreatorKey;
 #pragma mark Keyboard Notification
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if(self.viewSetsBtn.isSelected)
-        [self btnKeyboard_ButtonAction:nil];
     [[self KeyboardAvoiding_findFirstResponderBeneathView:self.view] resignFirstResponder];
     [super touchesEnded:touches withEvent:event];
     self.collectionView.userInteractionEnabled = YES;
@@ -1169,166 +986,13 @@ const char stickerCreatorKey;
 
 #pragma mark IBAction
 - (IBAction)backAction:(id)sender {
-    
-    if(inSelecionMode)
-        [self removeSelectionMode];
-    else{
+  
         self.backBtn.enabled = false;
         self.msgTextView.delegate = nil;
         [self.navigationController popViewControllerAnimated:YES];
-//        for (UIViewController *controller in appDelegate.objNavigationController.viewControllers) {
-//            if([controller isKindOfClass:[ChatListViewController class]]){
-//                
-//                [appDelegate.objNavigationController popToViewController:controller animated:NO];
-//                [(ChatListViewController *)controller newChatMessageInitiated:NO withText:nil];
-//                
-//            }
-//        }
-    }
 }
 
-- (IBAction)addFriendAction:(id)sender {
-    
-    ChatMessageObject *chatMessage = [ChatMessageObject getEntityFor:oj_NOTIFY ackType:NOACK chatType:PRIVATE notifyType:ny_PRIVATE_FRIEND_REQUEST msgReqType:NOMSGREQ clientMsgID:-1 id:nil org_id:nil msgLife:0 msgDetails:nil status:nil nTimesSent:0 timeFirstSent:0 timeLastSent:0 tx_id:self.cardObject.id_ tx_name:nil tx_uname:nil tx_avatar_id:nil tx_avatar_uname:nil msgText:nil rx_id:@[[SocketStream sharedSocketObject].userID] rxg_id:nil mediaObject:nil];
-    
-    [[SocketStream sharedSocketObject] sendMessage:chatMessage];
-    //[appDelegate startPopUpMessage:self.view withText:NSLocalizedString(@"Friend Request Sent!", nil)];
-    
-    
-}
-- (IBAction)forwardAction:(id)sender {
-    
-    if(![selectedChatIDs count]){
-        //ShowAlert(AppName,NSLocalizedString(@"Please select any chat message to copy.", nil));
-    }
-    else{
-        [self copyAndSendAllSelectedMessages];
-        [self removeSelectionMode];
-    }
-    
-}
 
-- (IBAction)deleteAction:(UIButton *)sender {
-    if(![selectedChatIDs count]){
-        //ShowAlert(AppName,NSLocalizedString(@"Please select any chat message to copy.", nil));
-    } else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"ChitChat" message:NSLocalizedString(@"Are you sure you want to delete message(s)?", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
-        alertView.tag = 20;
-        [alertView show];
-    }
-}
-
-- (IBAction)moreOptionAction:(UIButton *)sender {
-    
-    if(self.morePopUpView.hidden){
-        self.collectionView.userInteractionEnabled = NO;
-        self.morePopUpView.hidden = NO;
-    }
-    else{
-        self.collectionView.userInteractionEnabled = YES;
-        self.morePopUpView.hidden = YES;
-    }
-    
-    [self.reportUserBtn setTitle:NSLocalizedString (@"Report Offensive User",nil) forState:UIControlStateNormal];
-    [self.contentReportBtn setTitle:NSLocalizedString (@"Report Objectionable Content",nil) forState:UIControlStateNormal];
-    [self.reportGrpContent setTitle:NSLocalizedString (@"Report Group Objectionable Content",nil) forState:UIControlStateNormal];
-    
-    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    if ([language rangeOfString:@"ar"].location != NSNotFound) {
-        [self.contentReportBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-        [self.reportUserBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-        [self.reportGrpContent setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-        
-        [self.contentReportBtn setTitleEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 15)];
-        [self.reportUserBtn setTitleEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 15)];
-        [self.reportGrpContent setTitleEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 15)];
-    }
-}
-
--(void)removeSelectionMode{
-    
-    inSelecionMode = NO;
-    NSMutableArray *indexPaths = [NSMutableArray array];
-    
-    [selectedChatIDs enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        if(imageFilterActive){
-            [indexPaths addObject:[NSIndexPath indexPathForItem:[[self getMediaMessages] indexOfObject:obj] inSection:0]];
-        }
-        else{
-            [indexPaths addObject:[NSIndexPath indexPathForItem:[individualChatData indexOfObject:obj] inSection:0]];
-            
-        }
-        
-    }];
-    
-    [self.collectionView reloadItemsAtIndexPaths:indexPaths];
-    [self.backBtn setImage:[UIImage imageNamed:@"back-arrow.png"] forState:UIControlStateNormal];
-    self.deleteBtn.hidden = true;
-    self.forwardBtn.hidden = true;
-    self.soundSpacingHConstraint.constant = BUTTON_SPACING_ON_NORMAL_MODE;
-    [selectedChatIDs removeAllObjects];
-    self.collectionView.userInteractionEnabled = YES;
-    self.morePopUpView.hidden = YES;
-}
-
--(void)deleteAllSelectedMessages
-{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id_ IN %@ OR SELF.clientMsgID IN %@",selectedChatIDs,selectedChatIDs];
-    NSArray *chatMessages = [individualChatData filteredArrayUsingPredicate:predicate];
-    
-    @synchronized(individualChatData)
-    {
-        [individualChatData removeObjectsInArray:chatMessages];
-        [self.collectionView reloadData];
-        [[SocketStream sharedSocketObject] deleteMessages:chatMessages];
-    }
-}
-
--(void)copyAndSendAllSelectedMessages
-{
-  }
-
-- (IBAction)soundAction:(id)sender {
-  
-}
-
-- (IBAction)settingsAction:(id)sender {
-}
-
-- (IBAction)cameraAction:(id)sender {
-    
-    BOOL hasCamera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-    
-    UIImagePickerController* picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.sourceType = hasCamera ? UIImagePickerControllerSourceTypeCamera : UIImagePickerControllerSourceTypePhotoLibrary;
-    picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-    picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-    
-    [self.navigationController presentViewController:picker animated:YES completion:nil];
-    
-}
-
-- (IBAction)belowMikeAction:(id)sender {
-    
-    if (!self.moreOptionsView.hidden)
-        self.moreOptionsView.hidden = true;
-    
-    self.cancelAudioBtn.hidden = true;
-    self.sendAudioMsg.hidden = true;
-    self.audioPlayBtn.hidden = true;
-    self.audioScrubber.hidden = true;
-    self.audioRightTimerlabel.hidden = true;
-    
-    self.audioRecordingIcon.hidden = false;
-    self.audioTimerLabel.hidden = false;
-    
-    self.audioTimerLabel.text = [self getTimeStringFromAudio:true];
-    
-}
-
-- (IBAction)smilyAction:(id)sender {
-}
 
 - (IBAction)sendAction:(id)sender {
     NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
@@ -1339,56 +1003,9 @@ const char stickerCreatorKey;
         if([self.msgTextView isFirstResponder])
             [self.msgTextView resignFirstResponder];
         else{
-            [self closeEmojiKeyboard];
             [self textViewDidEndEditing:self.msgTextView];
         }
     
-}
-
-- (IBAction)moreAction:(id)sender {
-    self.moreOptionsView.hidden = !self.moreOptionsView.hidden;
-}
-
-- (IBAction)peakBtnClicked:(UIButton *)sender {
-    isSendButtonActive = true;
-    if([self.msgTextView isFirstResponder])
-        [self.msgTextView resignFirstResponder];
-    else{
-        [self closeEmojiKeyboard];
-        [self textViewDidEndEditing:self.msgTextView];
-    }
-}
-
-
-
--(void)postDeleted{
-    [self reloadView];
-}
-
-- (IBAction)reportOffensiveUser:(UIButton *)sender {
-    
- 
-}
-
-- (IBAction)reportOffensiveContent:(UIButton *)sender {
-   }
-
-
-#pragma mark Emoji/Sticker Keyboard Action
-- (IBAction)btnKeyboard_ButtonAction:(id)sender {
-    
-}
-
--(void)closeEmojiKeyboard{
-    keyboardAreaShown = false;
-    [self.keyboardBtn setSelected:false];
-    [self setViewMovedUp:NO withKeyBoardSize:CGSizeZero];
-    [[self.viewChatBox viewWithTag:90] removeFromSuperview];
-    [self.view removeGestureRecognizer:disMissKeyboard];
-    if([self.msgTextView.attributedText.string isEqualToString:emptyMessageText.string])
-        self.msgTextView.attributedText = defaultMessageText;
-    [self.msgTextView setTranslatesAutoresizingMaskIntoConstraints:YES];
-    [self.msgTextView setFrame:CGRectMake(self.msgTextView.frame.origin.x, self.msgTextView.frame.origin.y, self.cameraBtn.frame.origin.x-40, self.msgTextView.frame.size.height)];
 }
 
 
@@ -1397,10 +1014,7 @@ const char stickerCreatorKey;
     self.moreOptionsView.hidden = true;
     sendEnabled = false;
     isSendButtonActive = false;
-    if(!keyboardAreaShown)
-        [self.msgTextView resignFirstResponder];
-    else
-        [self closeEmojiKeyboard];
+    [self.msgTextView resignFirstResponder];
     [self.view removeGestureRecognizer:disMissKeyboard];
     
 }
@@ -1493,141 +1107,8 @@ const char stickerCreatorKey;
     }
 }
 
-- (NSUInteger)characterCount:(NSString *) string {
-    NSUInteger cnt = 0;
-    NSUInteger index = 0;
-    while (index < string.length) {
-        
-        NSRange range = [string rangeOfComposedCharacterSequenceAtIndex:index];
-        cnt++;
-        index += range.length;
-    }
-    
-    return cnt;
-}
-
-
--(void)downlaodEmojiImageForIndex:(NSInteger)rowIndex withID:(NSArray *)imageIDs{
-    
-    if([imageIDs count]){
-        NSMutableSet *idSet = [NSMutableSet setWithArray:imageIDs];
-        [idSet minusSet:imageIDCache];
-        [imageIDCache unionSet:idSet];
-        if(idSet.count)
-            [self callSeviceToDownloadIndividualSetImage:[idSet allObjects] forIndex:rowIndex forEmoji:([imageIDs count]>1)];
-    }
-}
-
--(void)scrollTextViewToBottom:(UITextView *)textView {
-    if(textView.text.length > 0 ) {
-        NSRange bottom = NSMakeRange(textView.text.length -1, 1);
-        [textView scrollRangeToVisible:bottom];
-    }
-    
-}
-
-#pragma mark ImagePicker Controller Delegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    
-    
-//    if ([type isEqualToString:(NSString *)kUTTypeVideo] ||
-//        [type isEqualToString:(NSString *)kUTTypeMovie])
-//    {
-//        NSURL *urlvideo = [info objectForKey:UIImagePickerControllerMediaURL];
-//        
-//        EditImageViewController *editController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:@"EditImageViewScene"];
-//        editController.videoURL = urlvideo;
-//        editController.delegate = self;
-//        editController.forMessage = true;
-//        [appDelegate.objNavigationController pushViewController:editController animated:YES];
-//        
-//    } else if ([type isEqualToString:(NSString *)kUTTypeImage]){
-//        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-//        
-//        EditImageViewController *editController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:@"EditImageViewScene"];
-//        editController.image = image;
-//        editController.delegate = self;
-//        editController.forMessage = true;
-//        [appDelegate.objNavigationController pushViewController:editController animated:YES];
-//        
-//    } else {
-//        
-//    }
-}
-
-- (void)convertVideoToLowQuailtyWithInputURL:(NSURL*)inputURL
-                                   outputURL:(NSURL*)outputURL
-                                     handler:(void (^)(AVAssetExportSession*))handler
-{
-    [[NSFileManager defaultManager] removeItemAtURL:outputURL error:nil];
-    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:inputURL options:nil];
-    AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:asset presetName:AVAssetExportPresetMediumQuality];
-    exportSession.outputURL = outputURL;
-    exportSession.outputFileType = AVFileTypeQuickTimeMovie;
-    [exportSession exportAsynchronouslyWithCompletionHandler:^(void)
-     {
-         handler(exportSession);
-     }];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController*)picker
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)MPMoviePlayerThumbnailImageRequestDidFinishNotification:(NSNotification *)notif{
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
-                                                  object:moviePlayer];
-    
-    UIImage *image = [notif.userInfo objectForKey:MPMoviePlayerThumbnailImageKey];
-    MediaObject *mediaObj = [MediaObject getEntityFor:tempVideoData lowRes:[Utility compressImage:image ImageData:nil forThumbnail:YES] mediaFormat:mt_MP4 mediaType:ma_VIDEO mediaPath:nil];
-    tempVideoData = nil;
-    
-    [self sendMessageWithText:nil media:mediaObj];
-}
-
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self stopMusic];
-    
-}
-
-
-#pragma mark Cell Gesture
--(void)cellLongTapped:(UILongPressGestureRecognizer *)sender{
-    if (sender.state != UIGestureRecognizerStateEnded) {
-        return;
-    }
-    if(!inSelecionMode){
-        
-        
-        CGPoint p = [sender locationInView:self.collectionView];
-        
-        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
-        if(indexPath){
-            ChatMessageObject *msgObj = (ChatMessageObject *)((imageFilterActive) ? [self getMediaMessages] :individualChatData[indexPath.item]);
-            
-            if([self isNormalMessage:msgObj] || [self isMessageSent:msgObj byCardId:self.cardObject.id_]){
-                
-                inSelecionMode = YES;
-                self.deleteBtn.hidden = false;
-                self.forwardBtn.hidden = false;
-                self.soundSpacingHConstraint.constant = BUTTON_SPACING_ON_SELECTION_MODE;
-                [self.backBtn setImage:[UIImage imageNamed:@"icon-close.png"] forState:UIControlStateNormal];
-                //  [selectedChatMessages addIndex:indexPath.item];
-                [selectedChatIDs addObject:msgObj.id_ ? : msgObj.clientMsgID];
-                [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-            }
-        }
-        
-    }
 }
 
 - (IBAction)selectLangugeButton:(id)sender {
@@ -1635,630 +1116,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [self.navigationController pushViewController:selectLngVc animated:YES];
 }
 
--(NSArray *)getMediaMessages{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.media_relationship !=nil OR SELF.msgDetails = %@",StickerMessageIdentifier];
-    return [individualChatData filteredArrayUsingPredicate:predicate];
-}
 
 
 
 
-- (IBAction)galleryActionTapped:(UIButton *)sender {
-    
-    
-    self.moreOptionsView.hidden = true;
-    
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.delegate = self;
-    imagePicker.allowsEditing = NO;
-    
-    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    NSArray *sourceTypes = [UIImagePickerController availableMediaTypesForSourceType:imagePicker.sourceType];
-    if (![sourceTypes containsObject:(NSString *)kUTTypeMovie ])
-    {
-        //NSLog(@"no video");
-    }
-    
-    
-    if(sender.tag == 1){
-        //video
-        imagePicker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeMovie];
-        [self presentViewController:imagePicker animated:YES completion:nil];
-        
-        
-    }
-    else if (sender.tag == 2){
-        //Audio
-        
-        MPMediaPickerController *picker=[[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
-        picker.showsCloudItems = NO;
-        
-        [picker setDelegate:self];
-        [self presentViewController:picker animated:YES completion:nil];
-        
-        
-    }
-    else if (sender.tag == 3){
-        //Image
-        imagePicker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
-        [self presentViewController:imagePicker animated:YES completion:nil];
-        
-        
-    }
-    
-    
-    
-}
-
-#pragma mark Video Media Delegate
-- (void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
-{
-    
-    if(mediaItemCollection.items && [mediaItemCollection.items count]){
-        
-        MPMediaItem *anItem = (MPMediaItem *)[mediaItemCollection.items objectAtIndex:0];
-        [mediaPicker dismissViewControllerAnimated:false completion:nil];
-        [mediaPicker dismissMoviePlayerViewControllerAnimated];
-        [appDelegate startActivityIndicator:self.view withText:Progressing];
-        
-        // Implement in your project the media item picker
-        [self mediaItemToData:anItem];
-        
-    }
-    else{
-        [mediaPicker dismissViewControllerAnimated:false completion:nil];
-        [mediaPicker dismissMoviePlayerViewControllerAnimated];
-        
-    }
-    
-}
-
--(void)mediaItemToData : (MPMediaItem * ) curItem
-{
-    NSURL *url = [curItem valueForProperty: MPMediaItemPropertyAssetURL];
-    
-    AVURLAsset *songAsset = [AVURLAsset URLAssetWithURL: url options:nil];
-    
-    AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset: songAsset
-                                                                      presetName:AVAssetExportPresetAppleM4A];
-    
-    exporter.outputFileType =   @"com.apple.m4a-audio";
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * myDocumentsDirectory = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    
-    [[NSDate date] timeIntervalSince1970];
-    NSTimeInterval seconds = [[NSDate date] timeIntervalSince1970];
-    NSString *intervalSeconds = [NSString stringWithFormat:@"%0.0f",seconds];
-    
-    NSString * fileName = [NSString stringWithFormat:@"%@.m4a",intervalSeconds];
-    
-    NSString *exportFile = [myDocumentsDirectory stringByAppendingPathComponent:fileName];
-    
-    NSURL *exportURL = [NSURL fileURLWithPath:exportFile];
-    exporter.outputURL = exportURL;
-    
-    // do the export
-    // (completion handler block omitted)
-    __weak typeof(self) weakSelf = self;
-    
-    [exporter exportAsynchronouslyWithCompletionHandler:
-     ^{
-         int exportStatus = exporter.status;
-         
-         switch (exportStatus)
-         {
-             case AVAssetExportSessionStatusCompleted:
-             {
-                 NSLog (@"AVAssetExportSessionStatusCompleted");
-                 
-                 NSData *data = [NSData dataWithContentsOfFile: [myDocumentsDirectory
-                                                                 stringByAppendingPathComponent:fileName]];
-                 MediaObject *mediaObj = [MediaObject getEntityFor:data lowRes:nil mediaFormat:mt_M4A mediaType:ma_AUDIO mediaPath:nil];
-                 
-                 [weakSelf sendMessageWithText:nil media:mediaObj];
-                 
-                 
-                 break;
-             }
-             case AVAssetExportSessionStatusFailed:
-             {
-                 NSError *exportError = exporter.error;
-                 NSLog (@"AVAssetExportSessionStatusFailed: %@", exportError);
-                 break;
-             }
-                 
-             case AVAssetExportSessionStatusUnknown:
-             {
-                 NSLog (@"AVAssetExportSessionStatusUnknown"); break;
-             }
-             case AVAssetExportSessionStatusExporting:
-             {
-                 NSLog (@"AVAssetExportSessionStatusExporting"); break;
-             }
-             case AVAssetExportSessionStatusCancelled:
-             {
-                 NSLog (@"AVAssetExportSessionStatusCancelled"); break;
-             }
-             case AVAssetExportSessionStatusWaiting:
-             {
-                 NSLog (@"AVAssetExportSessionStatusWaiting"); break;
-             }
-             default:
-             {
-                 NSLog (@"didn't get export status");
-                 break;
-             }
-         }
-     }];
-}
-
-- (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker{
-    
-    [mediaPicker dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
-// Audio Record Steps:
-// If tapped then show slide to cancel view by sliding and also help view
-// If long presses then show slide to cancel view by sliding
-// start timer for audio
-// On tap on help view hide it
-// On slide cancel and delete audio
-// On touch up..send the recorded audio
 
 
-- (void) startRecording{
-    
-    if (!recorder.recording) {
-        AVAudioSession *session = [AVAudioSession sharedInstance];
-        [session setActive:YES error:nil];
-        
-        // Start recording
-        [recorder recordForDuration:MAX_RECORD_DURATION*60];
-    }
-    else{
-        
-        // Start recording
-        [recorder recordForDuration:MAX_RECORD_DURATION*60];
-    }
-    
-}
-
-- (void) stopRecording{
-    
-    [recorder stop];
-    [self.mikeBtn setImage:[UIImage imageNamed:@"icon_009.png"] forState:UIControlStateNormal];
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setActive:NO error:nil];
-    
-    
-}
-
-- (void)audioRecorderDidFinishRecording:(AVAudioRecorder *) aRecorder successfully:(BOOL)flag
-{
-    
-    NSLog (@"audioRecorderDidFinishRecording:successfully:");
-    // your actions here
-    
-    
-    NSError *err = nil;
-    currentRecordedData = [NSData dataWithContentsOfFile:[recorder.url path] options: 0 error:&err];
-    if(isRecording)
-        [self mikeRecorderAction:nil];
-    
-}
-
--(void)playAudioForIndex:(NSInteger)rowIndex{
-    
-    ChatMessageObject *messageObj;
-    
-    if(imageFilterActive)
-        messageObj = [self getMediaMessages][rowIndex];
-    else
-        messageObj = individualChatData[rowIndex];
-    
-    if(!messageObj.media_relationship.highRes) {
-        
-        NSString *highResURL = messageObj.media_relationship.url_highRes;
-        
-        
-        //download the file in a seperate thread.
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSLog(@"Downloading Started");
-            NSURL  *url = [NSURL URLWithString:highResURL];
-            NSData *urlData = [NSData dataWithContentsOfURL:url];
-            if ( urlData )
-            {
-                NSString *moviePath = [[Utility getDocumentPath] stringByAppendingPathComponent:@"audio.m4a"];
-                
-                //saving is done on main thread
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [urlData writeToFile:moviePath atomically:YES];
-                    [mediaDownloadInProgress removeObject:messageObj.id_];
-                    
-                    messageObj.media_relationship.highRes = urlData;
-                    [DatabaseHelper saveDBManagedContext];
-                    [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:rowIndex inSection:0]]];
-                    NSLog(@"File Saved !");
-                });
-            }
-            else{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    //ShowAlert(AlertTitle, NSLocalizedString(@"Video download failed.", nil));
-                    [appDelegate stopActivityIndicator];
-                });
-            }
-            
-        });
-        
-        
-        [mediaDownloadInProgress addObject:messageObj.id_];
-        [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:rowIndex inSection:0]]];
-    }
-    
-    else{
-        
-        if (updateTimer)
-            [updateTimer invalidate];
-        
-        if (isAudioPlaying) {
-            [player stop];
-            isAudioPlaying = false;
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id_ = %@ || SELF.clientMsgID.stringValue = %@",currentMessageAudioPlaying,currentMessageAudioPlaying];
-            currentMessageAudioPlaying = (messageObj.id_) ? : [messageObj.clientMsgID stringValue];
-            
-            NSArray *msgArray =[individualChatData filteredArrayUsingPredicate:predicate];
-            if(msgArray && [msgArray count])
-            {
-                ChatMessageObject *chatObj = msgArray[0];
-                NSInteger index = (imageFilterActive) ? [[self getMediaMessages] indexOfObject:chatObj] : [individualChatData indexOfObject:chatObj];
-                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-            }
-            
-            currentMessageAudioPlaying = @"";
-        }
-        else{
-            isAudioPlaying = true;
-            
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id_ = %@ || SELF.clientMsgID.stringValue = %@",currentMessageAudioPlaying,currentMessageAudioPlaying];
-            currentMessageAudioPlaying = (messageObj.id_) ? : [messageObj.clientMsgID stringValue];
-            
-            NSArray *msgArray =[individualChatData filteredArrayUsingPredicate:predicate];
-            if(msgArray && [msgArray count])
-            {
-                ChatMessageObject *chatObj = msgArray[0];
-                NSInteger index = (imageFilterActive) ? [[self getMediaMessages] indexOfObject:chatObj] : [individualChatData indexOfObject:chatObj];
-                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-            }
-            
-            
-            NSData *msgAudioData = (messageObj.media_relationship.highRes) ? : (messageObj.media_relationship.lowRes);
-            NSError *error;
-            
-            player = [[AVAudioPlayer alloc] initWithData:msgAudioData error:&error];
-            [player setDelegate:self];
-            player.volume = 1;
-            [player play];
-            
-            
-            updateTimer = [NSTimer scheduledTimerWithTimeInterval:.05 target:self selector:@selector(updateCurrentTime) userInfo:nil repeats:YES];
-            
-            
-        }
-    }
-}
-
-
-#pragma mark Audio Delegate
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    
-    if (isAudioPlaying) {
-        isAudioPlaying = false;
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id_ = %@ || SELF.clientMsgID.stringValue = %@",currentMessageAudioPlaying,currentMessageAudioPlaying];
-        NSArray *msgArray =[individualChatData filteredArrayUsingPredicate:predicate];
-        if(msgArray && [msgArray count])
-        {
-            ChatMessageObject *chatObj = msgArray[0];
-            NSInteger index = (imageFilterActive) ? [[self getMediaMessages] indexOfObject:chatObj] : [individualChatData indexOfObject:chatObj];
-            [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-        }
-        currentMessageAudioPlaying = @"";
-        
-    }
-    else if (isRecordedAudioPlaying)
-    {
-        [self playRecordedAudio:nil];
-    }
-    
-    
-    if (updateTimer)
-        [updateTimer invalidate];
-    
-}
-
-- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error{
-    isAudioPlaying = false;
-    
-}
-
-#pragma mark ImageEditViewControllerDelegate
-
-- (void)imageEditViewControllerDidCancel{
-    
-}
-
-- (void)imageEditViewControllerDidEditWithImage:(UIImage *)editedImage withAction:(BOOL)ifPeaked{
-    
-    
-    [[SocketStream sharedSocketObject].library saveImage:[Utility compressImage:editedImage forThumbnail:NO] toAlbum:@"Zargow" completion:^(NSURL *assetURL, NSError *error) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
-    
-    MediaObject *mediaObj = [MediaObject getEntityFor:[Utility compressImage:editedImage ImageData:nil forThumbnail:NO] lowRes:[Utility compressImage:editedImage ImageData:nil forThumbnail:YES] mediaFormat:mt_JPG mediaType:ma_IMAGE mediaPath:nil];
-    
-    [self sendMessageWithText:nil media:mediaObj];
-    
-}
-
-- (void)imageEditViewControllerDidSelectWithVideoURL:(NSURL *)urlvideo withAction:(BOOL)ifPeaked{
-    
-    moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:urlvideo];
-    moviePlayer.shouldAutoplay = NO;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMoviePlayerThumbnailImageRequestDidFinishNotification:)
-                                                 name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
-                                               object:moviePlayer];
-    
-    
-    [[SocketStream sharedSocketObject].library saveVideo:urlvideo toAlbum:@"Zargow" completion:^(NSURL *assetURL, NSError *error) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
-    
-    
-    NSString *moviePath = [[Utility getDocumentPath] stringByAppendingPathComponent:@"Video.MOV"];
-    NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
-    
-    [self convertVideoToLowQuailtyWithInputURL:urlvideo outputURL:movieURL handler:^(AVAssetExportSession *exportSession)
-     {
-         if (exportSession.status == AVAssetExportSessionStatusCompleted)
-         {
-             printf("completed\n");
-             tempVideoData =  [NSData dataWithContentsOfFile:moviePath];
-             
-             [moviePlayer requestThumbnailImagesAtTimes:@[@0.0f] timeOption:MPMovieTimeOptionNearestKeyFrame];
-         }
-         else
-         {
-             printf("error\n");
-             
-            // ShowAlert(AlertTitle, NSLocalizedString(@"Error occured", nil))
-         }
-     }];
-    
-}
-
-#pragma mark Audio Sending Methods
-
-- (IBAction)cancelSendingAudio:(UIButton *)sender {
-    if(isRecordedAudioPlaying){
-        [self playRecordedAudio:nil];
-    }
-    if(isRecording)
-        [self mikeRecorderAction:nil];
-    
-    if(recorder){
-        if ([[NSFileManager defaultManager] fileExistsAtPath:recorder.url.path]) {
-            if (![recorder deleteRecording])
-                NSLog(@"Failed to delete %@", recorder.url);
-        }
-    }
-    currentRecordedData = nil;
-    
-}
-
-- (IBAction)sendAudioMsg:(UIButton *)sender {
-    
-    [self sendRecordedData];
-    
-}
-
--(void)sendRecordedData{
-    
-    MediaObject *mediaObj = [MediaObject getEntityFor:currentRecordedData lowRes:nil mediaFormat:mt_M4A mediaType:ma_AUDIO mediaPath:nil];
-    [self sendMessageWithText:nil media:mediaObj];
-    currentRecordedData = nil;
-    if(recorder){
-        if ([[NSFileManager defaultManager] fileExistsAtPath:recorder.url.path]) {
-            if (![recorder deleteRecording])
-                NSLog(@"Failed to delete %@", recorder.url);
-        }
-    }
-}
-
-- (IBAction)playRecordedAudio:(UIButton *)sender {
-    
-    if(isRecordedAudioPlaying){
-        if (updateTimer)
-            [updateTimer invalidate];
-        [player stop];
-        isRecordedAudioPlaying = false;
-        [self.audioPlayBtn setImage:[UIImage imageNamed:@"btn-play.png"] forState:UIControlStateNormal];
-    }
-    else{
-        NSError *error;
-        
-        player = [[AVAudioPlayer alloc] initWithData:currentRecordedData error:&error];
-        [player setDelegate:self];
-        
-        player.volume = 1;
-        [player play];
-        isRecordedAudioPlaying = true;
-        [self.audioPlayBtn setImage:[UIImage imageNamed:@"stop-button.png"] forState:UIControlStateNormal];
-        
-        updateTimer = [NSTimer scheduledTimerWithTimeInterval:.01 target:self selector:@selector(updateRecordedMusicTime) userInfo:nil repeats:YES];
-        
-    }
-}
-
-- (IBAction)mikeRecorderAction:(UIButton *)sender {
-    
-    if(isRecording){
-        
-        isRecording = false;
-        [self stopRecording];
-        if (recorderTimer)
-            [recorderTimer invalidate];
-        
-        self.cancelAudioBtn.hidden = false;
-        self.sendAudioMsg.hidden = false;
-        self.audioPlayBtn.hidden = false;
-        self.audioScrubber.value = 0;
-        self.audioScrubber.hidden = false;
-        self.audioRightTimerlabel.hidden = false;
-        [self.audioRecordingIcon setImage:[UIImage imageNamed:@"icon_009.png"] forState:UIControlStateNormal];
-        
-        self.audioRightTimerlabel.text = [self getTimeStringFromAudio:true];
-        self.audioRecordingIcon.hidden = true;
-        self.audioTimerLabel.hidden = true;
-        
-        
-        
-    }
-    else{
-        isRecording = true;
-        [self startRecording];
-        recorderTimer = [NSTimer scheduledTimerWithTimeInterval:.01 target:self selector:@selector(updateRecordingMusicTime) userInfo:nil repeats:YES];
-        
-        [self.audioRecordingIcon setImage:[UIImage imageNamed:@"icon-mic.png"] forState:UIControlStateNormal];
-        self.audioTimerLabel.text = [self getTimeStringFromAudio:true];
-        
-    }
-    
-    
-}
-
-- (void)updateRecordedMusicTime
-{
-    
-    if(isRecordedAudioPlaying){
-        [self.audioPlayBtn setImage:[UIImage imageNamed:@"stop-button.png"] forState:UIControlStateNormal];
-        self.audioRightTimerlabel.text = [self getTimeStringFromAudio:false];
-        self.audioScrubber.maximumValue = player.duration;
-        self.audioScrubber.value = player.currentTime;
-    }
-    else{
-        [self.audioPlayBtn setImage:[UIImage imageNamed:@"btn-play.png"] forState:UIControlStateNormal];
-        self.audioRightTimerlabel.text = [self getTimeStringFromAudio:true];
-        self.audioScrubber.maximumValue = 0;
-        self.audioScrubber.value = 0;
-        
-    }
-}
-
-
-
-- (void)updateRecordingMusicTime
-{
-    self.audioTimerLabel.text = [self getTimeStringFromAudio:true];
-}
-
--(NSString *)getTimeStringFromAudio:(BOOL)fromRecorder{
-    
-    float initialMinutes;
-    float initialSeconds;
-    
-    float finalMinutes;
-    float finalSeconds;
-    
-    if (fromRecorder) {
-        initialMinutes = floor(recorder.currentTime/60);
-        initialSeconds = recorder.currentTime - (initialMinutes * 60);
-        
-        finalMinutes = 2;
-        finalSeconds = 0;
-        
-    }
-    else{
-        initialMinutes = floor(player.currentTime/60);
-        initialSeconds = player.currentTime - (initialMinutes * 60);
-        
-        finalMinutes = floor(player.duration/60);
-        finalSeconds = player.duration - (finalMinutes * 60);
-        
-    }
-    
-    
-    NSString *time = [[NSString alloc]
-                      initWithFormat:@"%0.f:%.f/%0.f:%.f",
-                      initialMinutes, initialSeconds,finalMinutes,finalSeconds];
-    
-    return time;
-}
-
-
-#pragma mark AlertView Delegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (alertView.tag == 20) {
-        if(buttonIndex == 1){
-            [self deleteAllSelectedMessages];
-            [self removeSelectionMode];
-        }
-    } else {
-        if (buttonIndex == 1) {
-            NSLog(@"Yes");
-            NSString *associatedString = objc_getAssociatedObject(alertView, &stickerCreatorKey);
-            [self creatorLabelTapped:associatedString];
-            
-            //            NSLog(@"associated string: %@", associatedString);
-            //
-            //            ChannelViewController *channelController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ChannelViewScene"];
-            //            channelController.cardID = associatedString;
-            //            channelController.isEmojiActive = YES;
-            //            [appDelegate.objNavigationController pushViewController:channelController animated:YES];
-        }
-    }
-}
-
-#pragma mark Notifications
-
--(void) appWillResignActive:(NSNotification*)note{
-    
-    NSLog(@"App is going to the background");
-    // This is where you stop the music
-    [self stopMusic];
-    
-}
-
--(void) appWillTerminate:(NSNotification*)note{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
-    
-    NSLog(@"App will terminate");
-}
-
--(void)stopMusic{
-    if(isAudioPlaying){
-        [player stop];
-        isAudioPlaying = false;
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id_ = %@ || SELF.clientMsgID.stringValue = %@",currentMessageAudioPlaying,currentMessageAudioPlaying];
-        NSArray *msgArray =[individualChatData filteredArrayUsingPredicate:predicate];
-        if(msgArray && [msgArray count])
-        {
-            ChatMessageObject *chatObj = msgArray[0];
-            NSInteger index = (imageFilterActive) ? [[self getMediaMessages] indexOfObject:chatObj] : [individualChatData indexOfObject:chatObj];
-            [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-        }
-        
-        currentMessageAudioPlaying = @"";
-    }
-}
 
 
 //-(void)translateChatString:(NSMutableArray *)chatListArray withSource:(NSString *)source andDestination:(NSString *)destination {

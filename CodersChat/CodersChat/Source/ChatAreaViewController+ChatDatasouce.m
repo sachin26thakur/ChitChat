@@ -224,26 +224,6 @@
     }
 }
 
--(TYPE_OF_MESSAGE)getType:(ChatMessageObject *)messageObj{
-    
-    if(messageObj.media_relationship)
-        return MediaMessage;
-    else if([messageObj.msgType isEqualToString:[Utility MessageTypeToString:mg_SHARE_EMOJI_STICKER]])
-        return EmojiStickerShareMessage;
-    else
-        return TextMessage;
-    
-    
-}
--(TYPE_OF_MEDIA_MESSAGE)getMediaType:(ChatMessageObject *)messageObj{
-    
-    if(ma_AUDIO == [Utility MediaTypeFromString:messageObj.media_relationship.mediaType])
-        return AudioMessage;
-    else if(ma_IMAGE == [Utility MediaTypeFromString:messageObj.media_relationship.mediaType])
-        return ImageMessage;
-    else
-        return VideoMessage;
-}
 
 -(BOOL)isNormalMessage:(ChatMessageObject *)messageObj{
     if([messageObj.msgLife isEqual:@(-1)])
