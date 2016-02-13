@@ -99,7 +99,7 @@
     else if ([segue.identifier isEqualToString:@"languageScreenSegue"])
     {
         NSMutableDictionary *allValuesDict = [[NSMutableDictionary alloc] init];
-        [allValuesDict setValue:self.userName.text forKey:@"fullName"];
+        [allValuesDict setValue:self.userFullName.text forKey:@"fullName"];
         [allValuesDict setValue:self.phoneNumber.text forKey:@"phoneNumber"];
         [allValuesDict setValue:self.userName.text forKey:@"userName"];
         [allValuesDict setValue:self.password.text forKey:@"password"];
