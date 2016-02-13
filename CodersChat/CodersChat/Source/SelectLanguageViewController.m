@@ -120,6 +120,11 @@
     //NSLog(@"dicResponce:-%@",[error description]);
     [appDelegate stopActivityIndicator];
     //remove it after WS call
+    
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:[error description] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alertView show];
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

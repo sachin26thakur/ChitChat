@@ -231,6 +231,25 @@
         
     } else {
         [appDelegate stopActivityIndicator];
+        
+        
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Alert"
+                                              message:responce[@"respDetails"]
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"OK action");
+                                   }];
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:^{
+            
+        }];
+
     
     }
 }
@@ -243,6 +262,25 @@
     //NSLog(@"dicResponce:-%@",[error description]);
     [appDelegate stopActivityIndicator];
     //remove it after WS call
+    
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Alert"
+                                          message:[error description]
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   NSLog(@"OK action");
+                               }];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:YES completion:^{
+        
+    }];
+    
 }
 
 
