@@ -11,7 +11,6 @@
 #import "MediaObject.h"
 #import "SocketStream.h"
 #import "Utility.h"
-#import "UIImageView+WebCache.h"
 
 
 @implementation AudioChatCell
@@ -96,26 +95,7 @@
             
             
         }
-        else if (cardObj.image_relationship.url_lowRes)
-        {
-            [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:cardObj.image_relationship.url_lowRes]
-                                                            options:SDWebImageRetryFailed
-                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                                               // progression tracking code
-                                                           }
-                                                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                              if (image && finished) {
-                                                                  // do something with image
-                                                                  self.userImageView.image = image;
-                                                                  self.userImageView.layer.masksToBounds = NO;
-                                                                  self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width/2;
-                                                                  self.userImageView.clipsToBounds = YES;
-                                                                  cardObj.image_relationship.lowRes = UIImagePNGRepresentation(image);
-                                                                  [DatabaseHelper saveDBManagedContext];
-                                                              }
-                                                          }];
-            
-        }
+        
         
     }
     else{

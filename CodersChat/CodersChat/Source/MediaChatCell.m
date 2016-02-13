@@ -11,7 +11,6 @@
 #import "MediaObject.h"
 #import "SocketStream.h"
 #import "Utility.h"
-#import "UIImageView+WebCache.h"
 #import "Constants.h"
 
 
@@ -115,39 +114,12 @@
             self.downloadBtn.hidden = NO;
             [self.downloadBtn setImage:[UIImage imageNamed:@"youtube_btn.png"] forState:UIControlStateNormal];
             
-            [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:youTubeLinkID]
-                                                            options:SDWebImageRetryFailed
-                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                                               // progression tracking code
-                                                           }
-                                                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                              if (image && finished) {
-                                                                  // do something with image
-                                                                  self.imageView.hidden = false;
-                                                                  self.imageView.image = image;
-                                                                  messageObj.media_relationship = [MediaObject setMediaFromDict:@{@"lowRes":UIImageJPEGRepresentation(image, 1.0),@"mediaType":@"ma_VIDEO"}];
-                                                                  [DatabaseHelper saveDBManagedContext];
-                                                              }
-                                                          }];
             
         }
         else{
             if(messageObj.media_relationship.url_lowRes){
                 
-                [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:messageObj.media_relationship.url_lowRes]
-                                                                options:SDWebImageRetryFailed
-                                                               progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                                                   // progression tracking code
-                                                               }
-                                                              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                                  if (image && finished) {
-                                                                      // do something with image
-                                                                      self.imageView.hidden = false;
-                                                                      self.imageView.image = image;
-                                                                      messageObj.media_relationship.lowRes = UIImageJPEGRepresentation(image, 1.0);
-                                                                      [DatabaseHelper saveDBManagedContext];
-                                                                  }
-                                                              }];
+                
             }
         }
     }

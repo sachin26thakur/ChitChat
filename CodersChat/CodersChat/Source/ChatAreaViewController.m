@@ -19,7 +19,6 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "RequestHelper.h"
-#import "UIImageView+WebCache.h"
 #import <AudioToolbox/AudioServices.h>
 #import "ChatAreaViewController+ChatDatasouce.h"
 #import <objc/runtime.h>
@@ -143,20 +142,6 @@ const char stickerCreatorKey;
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCollectionView) name:@"UpdateCollection" object:nil];
-    
-//    self = [NSMutableArray new];
-//    [chatListArr addObject:@"Hi"];
-//    [chatListArr addObject:@"How Are You"];
-//    [chatListArr addObject:@"Are you there"];
-//    [chatListArr addObject:@"I am here"];
-//    [chatListArr addObject:@"Where do you live"];
-//    [chatListArr addObject:@"I live in Nagpur"];
-//    [chatListArr addObject:@"that's it"];
-//    
-//    // Do any additional setup after loading the view.
-//    [self translateChatString:chatListArr withSource:nil andDestination:@"hi"];
-//    
-
     
     isPreviousMessagesAvailable = false;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -292,9 +277,6 @@ const char stickerCreatorKey;
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillTerminate:) name:UIApplicationWillTerminateNotification object:nil];
-    
     [self sendReadAcknowledgments];
 
     NSString *codeStr = [ChitchatUserDefault lanuageCodeForSelectedLanaguge];
@@ -304,6 +286,8 @@ const char stickerCreatorKey;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self.msgTextView resignFirstResponder];
+
     // unregister for keyboard notifications while not visible.
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillShowNotification
@@ -333,11 +317,11 @@ const char stickerCreatorKey;
     self.friendName.text = self.cardObject.name;
     
     if(cd_USER == [Utility CardTypeFromString:self.cardObject.cardType]){
-        self.friendActiveStatus.text = self.cardObject.status;
+        self.friendActiveStatus.text = @"";
         self.reportGrpContent.hidden = YES;
     }
     else{
-        self.friendActiveStatus.hidden = true;
+        self.friendActiveStatus.text = @"Group";
         self.contentReportBtn.hidden = true;
         self.reportUserBtn.hidden = YES;
     }
@@ -356,41 +340,11 @@ const char stickerCreatorKey;
         else if (isFirstTime && [individualChatData count]>=10)
             isPreviousMessagesAvailable = true;
     }
-    if(self.cardObject.image_relationship && (self.cardObject.image_relationship.highRes || self.cardObject.image_relationship.lowRes))
-    {
         self.friendImage.image = [UIImage imageWithData:self.cardObject.image_relationship.lowRes] ;
         self.friendImage.layer.masksToBounds = NO;
         self.friendImage.layer.cornerRadius = self.friendImage.frame.size.width/2;
         self.friendImage.clipsToBounds = YES;
-    }
-    else{
-        if(cd_PRIVATE_GROUP == [Utility CardTypeFromString:self.cardObject.cardType]) {
-            self.friendImage.image = [UIImage imageNamed:@"DefaultGroup"];
-        } else
-            self.friendImage.image = [UIImage imageNamed:@"DefaultUser"];
-        
-        if(self.cardObject.image_relationship.url_lowRes)
-        {
-            
-            [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:self.cardObject.image_relationship.url_lowRes]
-                                                            options:SDWebImageRetryFailed
-                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                                               // progression tracking code
-                                                           }
-                                                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                              if (image && finished) {
-                                                                  // do something with image
-                                                                  self.friendImage.image = image;
-                                                                  self.friendImage.layer.masksToBounds = NO;
-                                                                  self.friendImage.layer.cornerRadius = self.friendImage.frame.size.width/2;
-                                                                  self.friendImage.clipsToBounds = YES;
-                                                                  self.cardObject.image_relationship.lowRes = UIImagePNGRepresentation(image);
-                                                                  [DatabaseHelper saveDBManagedContext];
-                                                              }
-                                                          }];
-            
-        }
-    }
+  
     
     if([self.cardObject.isFriend isEqualToNumber:@true])
     {
