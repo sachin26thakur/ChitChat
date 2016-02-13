@@ -36,6 +36,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)backButtonClicked:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 // call web services
 -(void)callServiceForSignUp
