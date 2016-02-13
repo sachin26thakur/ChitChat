@@ -912,8 +912,8 @@ const char stickerCreatorKey;
     
     
     if (!keyboardAreaShown) {
-        [self.msgTextView setTranslatesAutoresizingMaskIntoConstraints:YES];
-        [self.msgTextView setFrame:CGRectMake(self.msgTextView.frame.origin.x, self.msgTextView.frame.origin.y, self.cameraBtn.frame.origin.x-40, self.msgTextView.frame.size.height)];
+//        [self.msgTextView setTranslatesAutoresizingMaskIntoConstraints:YES];
+//        [self.msgTextView setFrame:CGRectMake(self.msgTextView.frame.origin.x, self.msgTextView.frame.origin.y, self., self.msgTextView.frame.size.height)];
     } else {
         [self setViewMovedUp:YES withKeyBoardSize:CGSizeZero];
     }
@@ -930,8 +930,8 @@ const char stickerCreatorKey;
     [self.keyboardBtn setSelected:NO];
     [self.msgTextView becomeFirstResponder];
     
-    [self.msgTextView setTranslatesAutoresizingMaskIntoConstraints:YES];
-    [self.msgTextView setFrame:CGRectMake(self.msgTextView.frame.origin.x, self.msgTextView.frame.origin.y, self.sendBtn.frame.origin.x-40, self.msgTextView.frame.size.height)];
+    //[self.msgTextView setTranslatesAutoresizingMaskIntoConstraints:YES];
+   // [self.msgTextView setFrame:CGRectMake(self.msgTextView.frame.origin.x, self.msgTextView.frame.origin.y, self.sendBtn.frame.origin.x-40, self.msgTextView.frame.size.height)];
 }
 
 #pragma mark IBAction
