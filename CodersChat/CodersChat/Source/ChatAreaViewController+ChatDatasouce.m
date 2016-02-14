@@ -9,9 +9,106 @@
 #import <Foundation/Foundation.h>
 #import "ChatAreaViewController+ChatDatasouce.h"
 #import "ChatAreaViewController.h"
+#import "FGTranslator.h"
 
 
 @implementation ChatAreaViewController(ChatDatasouce)
+
+
+
+
+- (FGTranslator *)translator {
+    /*
+     * using Bing Translate
+     *
+     * Note: The client id and secret here is very limited and is included for demo purposes only.
+     * You must use your own credentials for production apps.
+     */
+    FGTranslator *translator = [[FGTranslator alloc] initWithBingAzureClientId:@"fgtranslator-demo" secret:@"GrsgBiUCKACMB+j2TVOJtRboyRT8Q9WQHBKJuMKIxsU="];
+    
+    // or use Google Translate
+    
+    // using Google Translate
+    // translator = [[FGTranslator alloc] initWithGoogleAPIKey:@"your_google_key"];
+    
+    return translator;
+}
+
+- (void)translateMyText:(NSArray*)array atIndex:(NSUInteger)actualIndex{
+    [self.translator translateText:((ChatMessageObject *)[individualChatData objectAtIndex:actualIndex]).msgText withSource:nil target:@"hi"
+                        completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
+     {
+         dispatch_async(dispatch_get_main_queue(), ^{
+             
+             ChatMessageObject *msg = [individualChatData objectAtIndex:actualIndex];
+             //msg.msgText = translated;
+             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+             paragraphStyle.lineSpacing = 7;
+             [paragraphStyle setAlignment:NSTextAlignmentNatural];
+             
+             
+             NSDictionary *attrsDictionary =
+             @{ NSFontAttributeName: TEXT_FONT,
+                NSParagraphStyleAttributeName: paragraphStyle,NSForegroundColorAttributeName:RGB(99, 99, 101)};
+             
+             msg.msgAttributedText = [[NSAttributedString alloc] initWithString:translated attributes:attrsDictionary];
+             msg.status = @"Converted";
+             
+             
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateCollection" object:nil];
+             
+         });
+         
+         
+     }];
+}
+
+- (void)translateText:(NSArray*)array atIndex:(NSUInteger)index{
+    
+    __block NSUInteger indexi = index;
+    NSMutableArray *chatArray =[NSMutableArray new];
+    [self.translator translateText:((ChatMessageObject *)[individualChatData objectAtIndex:indexi]).msgText withSource:nil target:@"hi"
+                        completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
+     {
+         dispatch_async(dispatch_get_main_queue(), ^{
+             
+             ChatMessageObject *msg = [individualChatData objectAtIndex:indexi];
+             //msg.msgText = translated;
+             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+             paragraphStyle.lineSpacing = 7;
+             [paragraphStyle setAlignment:NSTextAlignmentNatural];
+             
+             
+             NSDictionary *attrsDictionary =
+             @{ NSFontAttributeName: TEXT_FONT,
+                NSParagraphStyleAttributeName: paragraphStyle,NSForegroundColorAttributeName:RGB(99, 99, 101)};
+             
+             msg.msgAttributedText = [[NSAttributedString alloc] initWithString:translated attributes:attrsDictionary];
+             msg.status = @"Converted";
+             
+             
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateCollection" object:nil];
+             indexi = indexi +1;
+             
+             if ([array count] == indexi) {
+                 //individualChatData = chatArray;
+                 return ;
+             }
+             
+             [self translateText:array atIndex:indexi];
+         });
+        
+         
+     }];
+    
+}
+
+
+
+
+
+
+
 
 -(void)getAllMessagesConverted{
     
@@ -20,17 +117,72 @@
         for (int i =0 ;i<[individualChatData count] ;i++) {
             
             ChatMessageObject *messageObj = individualChatData[i];
-            [self getMessageConverted:messageObj forIndex:i];
-            
+            [self getSingleMessageConverted:messageObj forIndex:i];
         }
     }
     
+    NSArray *arr = [individualChatData valueForKeyPath:@"msgText"];
+    [self translateText:arr atIndex:0];
+    
+    
 }
+
+
+- (void)translateSingleText:(NSArray*)array atIndex:(NSUInteger)index{
+    
+    __block NSUInteger indexi = index;
+    NSMutableArray *chatArray =[NSMutableArray new];
+    [self.translator translateText:((ChatMessageObject *)[individualChatData objectAtIndex:index]).msgText withSource:nil target:@"hi"
+                        completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
+     {
+         dispatch_async(dispatch_get_main_queue(), ^{
+             
+             ChatMessageObject *msg = [individualChatData objectAtIndex:indexi];
+             //msg.msgText = translated;
+             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+             paragraphStyle.lineSpacing = 7;
+             [paragraphStyle setAlignment:NSTextAlignmentNatural];
+             
+             
+             NSDictionary *attrsDictionary =
+             @{ NSFontAttributeName: TEXT_FONT,
+                NSParagraphStyleAttributeName: paragraphStyle,NSForegroundColorAttributeName:RGB(99, 99, 101)};
+             
+             msg.msgAttributedText = [[NSAttributedString alloc] initWithString:translated attributes:attrsDictionary];
+             msg.status = @"Converted";
+             
+             
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateCollection" object:nil];
+             indexi = indexi +1;
+             
+             if ([array count] == indexi) {
+                 //individualChatData = chatArray;
+                 return ;
+             }
+             
+             [self translateText:array atIndex:indexi];
+         });
+         
+         
+     }];
+    
+}
+
+
 
 -(void)getMessageConverted:(ChatMessageObject *)messageObj forIndex:(NSInteger)index{
     
+    [self getSingleMessageConverted:messageObj forIndex:index-1];
+    [self translateMyText:@[messageObj.msgText] atIndex:index-1];
+
+}
+
+-(void)getSingleMessageConverted:(ChatMessageObject *)messageObj forIndex:(NSInteger)index{
+
     if(!messageObj.media_relationship && ![messageObj.msgType isEqualToString:[Utility MessageTypeToString:mg_SHARE_EMOJI_STICKER]] && (messageObj.status == nil || [messageObj.status isEqualToString:@"Downloading"] || !messageObj.msgAttributedText))
     {
+        
+        
         
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.lineSpacing = 7;
@@ -40,75 +192,14 @@
         NSDictionary *attrsDictionary =
         @{ NSFontAttributeName: TEXT_FONT,
            NSParagraphStyleAttributeName: paragraphStyle,NSForegroundColorAttributeName:RGB(99, 99, 101)};
-        
-        if([messageObj.msgDetails isEqualToString:EmojiMessageIdentifier] || [messageObj.msgDetails isEqualToString:StickerMessageIdentifier]){
-            
-            
-            NSMutableArray *individualImageToBeDownloaded = [NSMutableArray new];
-            NSMutableArray *individualURLImageToBeLoaded = [NSMutableArray new];
-            
-            NSMutableAttributedString *attributedString =[[NSMutableAttributedString alloc] initWithString:messageObj.msgText  attributes:attrsDictionary];
-            
-            
-            NSMutableArray *substrings = [NSMutableArray new];
-            NSScanner *scanner = [NSScanner scannerWithString:messageObj.msgText];
-            [scanner scanUpToString:@"__" intoString:nil]; // Scan all characters before #
-            while(![scanner isAtEnd]) {
-                NSString *substring = nil;
-                [scanner scanString:@"__" intoString:nil]; // Scan the # character
-                if([scanner scanUpToString:@"__" intoString:&substring]) {
-                    // If the space immediately followed the #, this will be skipped
-                    if ([Utility isAlphaNumeric_24CharacterLengthID:substring]) {
-                        [substrings addObject:substring];
-                    }
-                }
-                [scanner scanUpToString:@"__" intoString:nil]; // Scan all characters before next #
-            }
-            NSLog(@"id is %@",substrings);
-            
-            for (NSString *strEmojiId in substrings) {
-                if ([Utility isAlphaNumeric_24CharacterLengthID:strEmojiId]) {
-                    NSString *IdValue = [[NSString alloc] initWithString:strEmojiId];
-                    IdValue = [IdValue stringByReplacingOccurrencesOfString:@"_" withString:@""];
-                    IdValue = [IdValue stringByReplacingOccurrencesOfString:@"__" withString:@""];
-                    
-                    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:IdValue options:0 error:nil];
-                    
-                    //  enumerate matches
-                    NSRange range = NSMakeRange(0,[attributedString length]);
-                    __block NSRange IdRange;
-                    [expression enumerateMatchesInString:[attributedString string] options:0 range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-                        IdRange = [result rangeAtIndex:0];
-                    }];
-                    
-                        [individualImageToBeDownloaded addObject:IdValue];
-                        NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"  "];
-                        [attributedString replaceCharactersInRange:NSMakeRange(IdRange.location-2, IdRange.length+4) withAttributedString:string];
-                    
-                }
-            }
-            
-            if([individualImageToBeDownloaded count] || [individualURLImageToBeLoaded count]){
-                if([individualImageToBeDownloaded count])
-                    [self downlaodEmojiImageForIndex:index withID:individualImageToBeDownloaded];
-                if([individualURLImageToBeLoaded count])
-                    [self loadEmojiImagesForIndex:index withID:individualURLImageToBeLoaded];
-                
+       
                 messageObj.status = @"Downloading";
-            }
-            else
-                messageObj.status = @"Converted";
-            
-            [attributedString addAttributes:attrsDictionary range:NSMakeRange(0, attributedString.length)];
-            messageObj.msgAttributedText = attributedString;
-            
-        }
-        else if(messageObj.msgText)
-        {
-            
-            messageObj.msgAttributedText = [[NSAttributedString alloc] initWithString:messageObj.msgText attributes:attrsDictionary];
-        }
+    
+    
+    messageObj.msgAttributedText = [[NSAttributedString alloc] initWithString:messageObj.msgText attributes:attrsDictionary];
         
+
+    
     }
 }
 

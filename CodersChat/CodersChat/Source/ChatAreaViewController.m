@@ -7,7 +7,7 @@
 //
 
 #import "ChatAreaViewController.h"
-#import "FGTranslator.h"
+
 #import <AddressBook/AddressBook.h>
 #import "WebserviceHandler.h"
 #import "TextChatCell.h"
@@ -141,6 +141,8 @@ const char stickerCreatorKey;
     
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCollectionView) name:@"UpdateCollection" object:nil];
+    
 //    self = [NSMutableArray new];
 //    [chatListArr addObject:@"Hi"];
 //    [chatListArr addObject:@"How Are You"];
@@ -264,6 +266,10 @@ const char stickerCreatorKey;
     
     
     
+}
+
+-(void)updateCollectionView{
+    [self.collectionView reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -536,10 +542,11 @@ const char stickerCreatorKey;
         ChatMessageObject *message = [aNotification object];
         
         
-        if((([self.cardObject.cardType isEqualToString:[Utility CardTypeToString:cd_PRIVATE_GROUP]] && [[message getReceiverGroupIDs] containsObject:self.cardObject.id_]) || ([self.cardObject.cardType isEqualToString:[Utility CardTypeToString:cd_USER]] && [self.cardObject.id_ isEqualToString:message.tx_id]))  && ![[individualChatData valueForKeyPath:@"id_"] containsObject:message.id_]){
+//        if((([self.cardObject.cardType isEqualToString:[Utility CardTypeToString:cd_PRIVATE_GROUP]] && [[message getReceiverGroupIDs] containsObject:self.cardObject.id_]) || ([self.cardObject.cardType isEqualToString:[Utility CardTypeToString:cd_USER]] && [self.cardObject.id_ isEqualToString:message.tx_id]))  && ![[individualChatData valueForKeyPath:@"id_"] containsObject:message.id_]){
             
-            [self getMessageConverted:message forIndex:individualChatData.count];
             [individualChatData addObject:message];
+        [self getMessageConverted:message forIndex:individualChatData.count];
+
             [self.collectionView reloadData];
             
             if((imageFilterActive && [[self getMediaMessages] count]) || (!imageFilterActive && [individualChatData count]))
@@ -549,7 +556,7 @@ const char stickerCreatorKey;
             
             [self sendReadAcknowledgments];
             [self startTimerForPeakMessage];
-        }
+        //}
     }
     
     
@@ -1028,7 +1035,7 @@ const char stickerCreatorKey;
             individualChatData[index] = [DatabaseHelper getExistingRecordModel:@"ChatMessageObject" byID:webHandler.str];
             [mediaDownloadInProgress removeObject:webHandler.str];
             
-            [self translateText:individualChatData atIndex:0];
+//            [self translateText:individualChatData atIndex:0];
             
         }
         else
@@ -2342,45 +2349,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         currentMessageAudioPlaying = @"";
     }
 }
-
-- (FGTranslator *)translator {
-    /*
-     * using Bing Translate
-     *
-     * Note: The client id and secret here is very limited and is included for demo purposes only.
-     * You must use your own credentials for production apps.
-     */
-    FGTranslator *translator = [[FGTranslator alloc] initWithBingAzureClientId:@"fgtranslator-demo" secret:@"GrsgBiUCKACMB+j2TVOJtRboyRT8Q9WQHBKJuMKIxsU="];
-    
-    // or use Google Translate
-    
-    // using Google Translate
-    // translator = [[FGTranslator alloc] initWithGoogleAPIKey:@"your_google_key"];
-    
-    return translator;
-}
-
-
-- (void)translateText:(NSArray*)array atIndex:(NSUInteger)index{
-    
-    __block NSUInteger indexi = index;
-    NSMutableArray *chatArray =[NSMutableArray new];
-    [self.translator translateText:[individualChatData objectAtIndex:index] withSource:nil target:nil
-                        completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
-     {
-         indexi = indexi +1;
-         
-         if ([array count] == indexi) {
-             individualChatData = chatArray;
-             [self.collectionView reloadData];
-             return ;
-         }
-         [chatArray addObject:translated];
-         [self translateText:array atIndex:indexi];
-     }];
-
-}
-
 
 
 //-(void)translateChatString:(NSMutableArray *)chatListArray withSource:(NSString *)source andDestination:(NSString *)destination {
