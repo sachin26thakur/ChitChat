@@ -51,7 +51,15 @@
              @{ NSFontAttributeName: TEXT_FONT,
                 NSParagraphStyleAttributeName: paragraphStyle,NSForegroundColorAttributeName:RGB(99, 99, 101)};
              
-             msg.msgAttributedText = [[NSAttributedString alloc] initWithString:translated attributes:attrsDictionary];
+             if (translated) {
+                 msg.msgAttributedText = [[NSAttributedString alloc] initWithString:translated attributes:attrsDictionary];
+             }
+             else {
+                 msg.msgAttributedText = [[NSAttributedString alloc] initWithString:((ChatMessageObject *)[individualChatData objectAtIndex:actualIndex]).msgText attributes:attrsDictionary];
+                 
+             }
+             
+//             msg.msgAttributedText = [[NSAttributedString alloc] initWithString:translated attributes:attrsDictionary];
              msg.status = @"Converted";
              
              
@@ -82,8 +90,13 @@
              NSDictionary *attrsDictionary =
              @{ NSFontAttributeName: TEXT_FONT,
                 NSParagraphStyleAttributeName: paragraphStyle,NSForegroundColorAttributeName:RGB(99, 99, 101)};
-             
-             msg.msgAttributedText = [[NSAttributedString alloc] initWithString:translated attributes:attrsDictionary];
+             if (translated) {
+                 msg.msgAttributedText = [[NSAttributedString alloc] initWithString:translated attributes:attrsDictionary];
+             }
+             else {
+                 msg.msgAttributedText = [[NSAttributedString alloc] initWithString:((ChatMessageObject *)[individualChatData objectAtIndex:indexi]).msgText attributes:attrsDictionary];
+
+             }
              msg.status = @"Converted";
              
              
