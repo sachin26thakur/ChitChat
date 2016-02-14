@@ -186,7 +186,10 @@
 -(void)getMessageConverted:(ChatMessageObject *)messageObj forIndex:(NSInteger)index{
     
     [self getSingleMessageConverted:messageObj forIndex:index-1];
-    [self translateMyText:@[messageObj.msgText] atIndex:index-1];
+    if (index>0) {
+        index = index -1;
+    }
+    [self translateMyText:@[messageObj.msgText] atIndex:index];
 
 }
 
