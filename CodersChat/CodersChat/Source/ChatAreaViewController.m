@@ -1012,6 +1012,7 @@ const char stickerCreatorKey;
                 [DatabaseHelper saveModel:@"EmojiStickerSet" FromResponseDict:emojiStickerDict];
             }
             [emojiStickerDownloadInProgress removeObject:webHandler.id_];
+
             [self.collectionView reloadData];
             
         }
@@ -1026,7 +1027,9 @@ const char stickerCreatorKey;
             NSInteger index = [individualChatData indexOfObject:chatObj];
             individualChatData[index] = [DatabaseHelper getExistingRecordModel:@"ChatMessageObject" byID:webHandler.str];
             [mediaDownloadInProgress removeObject:webHandler.str];
-            [self.collectionView reloadData];
+            
+            [self translateText:individualChatData atIndex:0];
+            
         }
         else
         {
@@ -1488,7 +1491,9 @@ const char stickerCreatorKey;
     {
         self.VSpaceKeyboardView.constant =  kbSize.height;
         self.verticalCollectionViewContraint.constant = 0;
-        self.viewChatBox.frame = CGRectMake(frame.origin.x, frame.origin.y-216, frame.size.width, frame.size.height);
+
+       CGRect frame = self.viewChatBox.frame;
+    self.viewChatBox.frame = CGRectMake(frame.origin.x, frame.origin.y-216, frame.size.width,frame.size.height);
     }
     else
     {
@@ -2359,24 +2364,27 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)translateText:(NSArray*)array atIndex:(NSUInteger)index{
     
     __block NSUInteger indexi = index;
-    
-//    [self.translator translateText:[chatListArr objectAtIndex:index] withSource:nil target:nil
-//                        completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
-//     {
-//         indexi = indexi +1;
-//         
-//         if ([array count] == indexi) {
-//             return ;
-//         }
-//         [self translateText:array atIndex:indexi];
-//     }];
+    NSMutableArray *chatArray =[NSMutableArray new];
+    [self.translator translateText:[individualChatData objectAtIndex:index] withSource:nil target:nil
+                        completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
+     {
+         indexi = indexi +1;
+         
+         if ([array count] == indexi) {
+             individualChatData = chatArray;
+             [self.collectionView reloadData];
+             return ;
+         }
+         [chatArray addObject:translated];
+         [self translateText:array atIndex:indexi];
+     }];
 
 }
 
 
 
--(void)translateChatString:(NSMutableArray *)chatListArray withSource:(NSString *)source andDestination:(NSString *)destination {
-    
+//-(void)translateChatString:(NSMutableArray *)chatListArray withSource:(NSString *)source andDestination:(NSString *)destination {
+//    
 //    if (chatListArr.count == 0) {
 //        return;
 //    }
@@ -2403,8 +2411,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 //
 //    }
 //    
-    
-}
+//    
+//}
 
 
 
