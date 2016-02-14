@@ -79,7 +79,7 @@
     NSAttributedString *defaultMessageText;
     NSAttributedString *emptyMessageText;
     NSAttributedString *tempMessageText;
-    
+    NSMutableArray *chatListArray;
 }
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -129,6 +129,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *reportGrpContent;
 
 
+
 @end
 
 const char stickerCreatorKey;
@@ -139,6 +140,21 @@ const char stickerCreatorKey;
     
     
     [super viewDidLoad];
+    
+//    self = [NSMutableArray new];
+//    [chatListArr addObject:@"Hi"];
+//    [chatListArr addObject:@"How Are You"];
+//    [chatListArr addObject:@"Are you there"];
+//    [chatListArr addObject:@"I am here"];
+//    [chatListArr addObject:@"Where do you live"];
+//    [chatListArr addObject:@"I live in Nagpur"];
+//    [chatListArr addObject:@"that's it"];
+//    
+//    // Do any additional setup after loading the view.
+//    [self translateChatString:chatListArr withSource:nil andDestination:@"hi"];
+//    
+
+    
     isPreviousMessagesAvailable = false;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -2225,9 +2241,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         self.audioScrubber.value = 0;
         
     }
-    
-    
 }
+
+
 
 - (void)updateRecordingMusicTime
 {
@@ -2341,23 +2357,68 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     
     return translator;
 }
--(void)translateChatString:(NSString *)chatString withSource:(NSString *)source andDestination:(NSString *)destination {
+
+
+- (void)translateText:(NSArray*)array atIndex:(NSUInteger)index{
     
-    [self.translator translateText:chatString withSource:source target:destination
-                        completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
-     {
-         if (error)
-         {
-             
-         }
-         else
-         {
-             
-         
-             
-         }
-     }];
+    __block NSUInteger indexi = index;
+    
+//    [self.translator translateText:[chatListArr objectAtIndex:index] withSource:nil target:nil
+//                        completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
+//     {
+//         indexi = indexi +1;
+//         
+//         if ([array count] == indexi) {
+//             return ;
+//         }
+//         [self translateText:array atIndex:indexi];
+//     }];
 
 }
+
+
+
+-(void)translateChatString:(NSMutableArray *)chatListArray withSource:(NSString *)source andDestination:(NSString *)destination {
+    
+//    if (chatListArr.count == 0) {
+//        return;
+//    }
+//   __block int index = 0;
+//    
+//    while ( index < chatListArr.count )
+//    {
+//        [self.translator translateText:[chatListArr objectAtIndex:index] withSource:source target:destination
+//                            completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
+//         {
+//             if (error)
+//             {
+//                 index++;
+//
+//             }
+//             else
+//             {
+//                 
+//                 
+//                 index++;
+//
+//             }
+//         }];
+//
+//    }
+//    
+    
+}
+
+
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
