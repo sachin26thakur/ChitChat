@@ -90,7 +90,6 @@
     
     if ([ChitchatUserDefault selectedUserLanguage]) {
         // go to home screen
-        
         ChatListViewController *chatListVc = (ChatListViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeChitChatList];
         [self.navigationController pushViewController:chatListVc animated:YES];
     }else{
@@ -160,6 +159,8 @@
     }];
     
     if (goBack) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"REFERESH_CHAT_FOR_LANGUAGE_SELECTION" object:nil];
+        
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }

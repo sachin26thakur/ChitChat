@@ -177,6 +177,7 @@ const char stickerCreatorKey;
                                              selector:@selector(getMessageAcknowledgement:)
                                                  name:@"AcknowledgementReceived"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refeshPreviousChat) name:@"REFERESH_CHAT_FOR_LANGUAGE_SELECTION" object:nil];
     
     
     
@@ -260,6 +261,20 @@ const char stickerCreatorKey;
     
 }
 
+-(void)refeshPreviousChat {
+    
+//    NSString *selectedLanguage =   [ChitchatUserDefault lanuageCodeForSelectedLanaguge];
+//    if (!selectedLanguage) {
+//        selectedLanguage = @"en";
+//    }
+//    [self.translator translateText:((ChatMessageObject *)[individualChatData objectAtIndex:actualIndex]).msgText withSource:nil target:selectedLanguage
+//                        completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
+//     {
+//         
+//         
+//     }];
+    [self getAllMessagesConverted];
+}
 -(void)updateCollectionView{
     [self.collectionView reloadData];
 }
@@ -1615,17 +1630,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     }
 }
 
-
 - (IBAction)selectLangugeButton:(id)sender {
     SelectLanguageViewController *selectLngVc = (SelectLanguageViewController*)[ChitChatFactoryContorller viewControllerForType:ViewControllerTypeSelectLanguage];
     [self.navigationController pushViewController:selectLngVc animated:YES];
 }
-
-
-
-
-
-
 
 -(NSArray *)getMediaMessages{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.media_relationship !=nil OR SELF.msgDetails = %@",StickerMessageIdentifier];
