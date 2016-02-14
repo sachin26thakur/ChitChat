@@ -457,9 +457,9 @@ const char stickerCreatorKey;
         
         ChatMessageObject *chatMessage = [ChatMessageObject getEntityFor:oj_MESSAGE ackType:NOACK chatType:PRIVATE notifyType:NONOTIFY msgReqType:NOMSGREQ clientMsgID:clientID id:nil org_id:nil msgLife:-1 msgDetails:(ifStickerIsSelected)?StickerMessageIdentifier:((ifEmojiIsSelected)?EmojiMessageIdentifier:nil) status:nil nTimesSent:1 timeFirstSent:clientID timeLastSent:clientID tx_id:[SocketStream sharedSocketObject].userID tx_name:nil  tx_uname:[SocketStream sharedSocketObject].userName tx_avatar_id:nil tx_avatar_uname:nil msgText:msgText rx_id:rxIDs rxg_id:rxgIDs mediaObject:mediaObj];
         
-        
-        [self getMessageConverted:chatMessage forIndex:individualChatData.count];
         [individualChatData addObject:chatMessage];
+
+        [self getMessageConverted:chatMessage forIndex:individualChatData.count];
         
         [self.collectionView reloadData];
         
