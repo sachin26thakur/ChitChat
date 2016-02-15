@@ -197,10 +197,10 @@ const char stickerCreatorKey;
     
     self.msgTextView.attributedText  = defaultMessageText;
     
-    longTapGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(cellLongTapped:)];
-    [self.collectionView addGestureRecognizer:longTapGesture];
-    
-    [self.cardView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cardTapped:)]];
+//    longTapGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(cellLongTapped:)];
+//    [self.collectionView addGestureRecognizer:longTapGesture];
+//    
+//    [self.cardView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cardTapped:)]];
     
     // Set the audio file
     NSArray *pathComponents = [NSArray arrayWithObjects:

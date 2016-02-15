@@ -540,8 +540,6 @@
 
 #pragma mark Socket Calling
 
-
-
 -(void)newGroupCreated:(NSArray*)grpIDs sendNotification:(BOOL)notificationNeeded{
     
     [self reloadChatListView];
