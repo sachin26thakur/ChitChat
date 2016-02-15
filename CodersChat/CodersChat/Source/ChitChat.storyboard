@@ -22,8 +22,6 @@
             <string>SinkinSans-400Regular</string>
             <string>SinkinSans-400Regular</string>
             <string>SinkinSans-400Regular</string>
-            <string>SinkinSans-400Regular</string>
-            <string>SinkinSans-400Regular</string>
         </mutableArray>
         <mutableArray key="SinkinSans-500Medium.otf">
             <string>SinkinSans-500Medium</string>
@@ -40,6 +38,10 @@
             <string>SinkinSans-600SemiBold</string>
             <string>SinkinSans-600SemiBold</string>
             <string>SinkinSans-600SemiBold</string>
+            <string>SinkinSans-600SemiBold</string>
+        </mutableArray>
+        <mutableArray key="SinkinSans-700Bold.otf">
+            <string>SinkinSans-700Bold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -177,8 +179,8 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hyG-RL-RP0">
                                                 <rect key="frame" x="43" y="23" width="135" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="SinkinSans-400Regular" family="Sinkin Sans" pointSize="16.5"/>
-                                                <color key="textColor" red="0.30980392159999998" green="0.35294117650000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="SinkinSans-600SemiBold" family="Sinkin Sans" pointSize="16.5"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MrU-JV-nGY" userLabel="Back">
@@ -192,14 +194,14 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jTK-jL-t6j" userLabel="selectionButton">
-                                                <rect key="frame" x="250" y="10" width="74" height="54"/>
+                                                <rect key="frame" x="232" y="22" width="75" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                                <inset key="titleEdgeInsets" minX="-32" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                <inset key="titleEdgeInsets" minX="-55" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="5" maxX="-70" maxY="0.0"/>
-                                                <state key="normal" title="en" image="dropdown">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="en" image="dropArrow.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -209,10 +211,14 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ihv-Tg-RM3">
                                                 <rect key="frame" x="44" y="43" width="148" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="SinkinSans-400Regular" family="Sinkin Sans" pointSize="10"/>
-                                                <color key="textColor" red="0.49803921569999998" green="0.53725490200000003" blue="0.59215686270000001" alpha="0.62" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="SinkinSans-700Bold" family="Sinkin Sans" pointSize="10"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smiley@3x.png" id="u6W-Dn-RCE">
+                                                <rect key="frame" x="155" y="20" width="37" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.17254901959999999" green="0.7725490196" blue="0.65098039220000004" alpha="0.70000000000000007" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
@@ -902,7 +908,7 @@
         <image name="btn-play" width="18" height="22"/>
         <image name="donkey_icon" width="19" height="18"/>
         <image name="download-icon" width="35" height="35"/>
-        <image name="dropdown" width="12" height="7"/>
+        <image name="dropArrow.png" width="35" height="35"/>
         <image name="ghost_icon" width="23" height="24"/>
         <image name="icon-sepretor-image" width="1" height="22"/>
         <image name="icon-unchecked" width="21" height="21"/>
@@ -916,6 +922,7 @@
         <image name="select_btnbg" width="59" height="21"/>
         <image name="sepretat" width="1" height="13"/>
         <image name="slider-blue" width="3" height="15"/>
+        <image name="smiley@3x.png" width="256" height="256"/>
         <image name="text_field_bg" width="265" height="53"/>
         <image name="video-gallery" width="27" height="27"/>
         <image name="view_icon" width="13" height="13"/>
