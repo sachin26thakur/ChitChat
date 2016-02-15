@@ -21,6 +21,8 @@
 		7436EF881C70FD6000A00B66 /* PINDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF821C70FD6000A00B66 /* PINDiskCache.m */; };
 		7436EF891C70FD6000A00B66 /* PINMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF841C70FD6000A00B66 /* PINMemoryCache.m */; };
 		7436EF8A1C70FD6000A00B66 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7436EF851C70FD6000A00B66 /* README.md */; };
+		7436EF8D1C716AD200A00B66 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7436EF8C1C716AD200A00B66 /* Launch Screen.xib */; };
+		7436EF911C716D1100A00B66 /* smiley@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7436EF901C716D1100A00B66 /* smiley@3x.png */; };
 		7439B5B11C6DE0E0004A724D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439B5B01C6DE0E0004A724D /* main.m */; };
 		7439B5B41C6DE0E0004A724D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439B5B31C6DE0E0004A724D /* AppDelegate.m */; };
 		7439B5B71C6DE0E0004A724D /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439B5B61C6DE0E0004A724D /* SignUpViewController.m */; };
@@ -154,6 +156,8 @@
 		7436EF831C70FD6000A00B66 /* PINMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PINMemoryCache.h; sourceTree = "<group>"; };
 		7436EF841C70FD6000A00B66 /* PINMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PINMemoryCache.m; sourceTree = "<group>"; };
 		7436EF851C70FD6000A00B66 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7436EF8C1C716AD200A00B66 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		7436EF901C716D1100A00B66 /* smiley@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smiley@3x.png"; sourceTree = "<group>"; };
 		7439B5AC1C6DE0E0004A724D /* ChitChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChitChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7439B5B01C6DE0E0004A724D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7439B5B21C6DE0E0004A724D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -433,6 +437,15 @@
 			path = PINCache;
 			sourceTree = "<group>";
 		};
+		7436EF8B1C716AD200A00B66 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7436EF901C716D1100A00B66 /* smiley@3x.png */,
+				7436EF8C1C716AD200A00B66 /* Launch Screen.xib */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		7439B5A31C6DE0E0004A724D = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +479,7 @@
 		7439B5AE1C6DE0E0004A724D /* CodersChat */ = {
 			isa = PBXGroup;
 			children = (
+				7436EF8B1C716AD200A00B66 /* LaunchScreen */,
 				74ADDCFE1C6E5FFC0061736D /* CustomFont */,
 				7436EF691C70FD3000A00B66 /* Translator */,
 				74ADDCDB1C6E44820061736D /* Socket */,
@@ -893,6 +907,7 @@
 				74ADDD221C6E5FFC0061736D /* SinkinSans-900XBlackItalic.otf in Resources */,
 				7436EF651C70EAC800A00B66 /* weChat.png in Resources */,
 				74ADDD191C6E5FFC0061736D /* SinkinSans-500Medium.otf in Resources */,
+				7436EF8D1C716AD200A00B66 /* Launch Screen.xib in Resources */,
 				74ADDD131C6E5FFC0061736D /* SinkinSans-200XLight.otf in Resources */,
 				74ADDD1D1C6E5FFC0061736D /* SinkinSans-700Bold.otf in Resources */,
 				7439B5BC1C6DE0E0004A724D /* Assets.xcassets in Resources */,
@@ -900,6 +915,7 @@
 				7436EF861C70FD6000A00B66 /* LICENSE.txt in Resources */,
 				74ADDD171C6E5FFC0061736D /* SinkinSans-400Italic.otf in Resources */,
 				74ADDD181C6E5FFC0061736D /* SinkinSans-400Regular.otf in Resources */,
+				7436EF911C716D1100A00B66 /* smiley@3x.png in Resources */,
 				74ADDD1C1C6E5FFC0061736D /* SinkinSans-600SemiBoldItali.otf in Resources */,
 				7439B5BA1C6DE0E0004A724D /* Main.storyboard in Resources */,
 				74ADDD201C6E5FFC0061736D /* SinkinSans-800BlackItalic.otf in Resources */,
@@ -1045,7 +1061,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ajay Bhatnagar (HXF2NYBL3W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ajay Bhatnagar (HXF2NYBL3W)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1067,6 +1084,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "e0545fc7-cb02-46d7-8405-bb6957327d89";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1088,7 +1106,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ajay Bhatnagar (HXF2NYBL3W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ajay Bhatnagar (HXF2NYBL3W)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1103,6 +1122,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "e0545fc7-cb02-46d7-8405-bb6957327d89";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1112,10 +1132,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ajay Bhatnagar (HXF2NYBL3W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ajay Bhatnagar (HXF2NYBL3W)";
 				INFOPLIST_FILE = CodersChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zargow.zargowappp;
 				PRODUCT_NAME = ChitChat;
+				PROVISIONING_PROFILE = "e0545fc7-cb02-46d7-8405-bb6957327d89";
 			};
 			name = Debug;
 		};
@@ -1123,10 +1146,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ajay Bhatnagar (HXF2NYBL3W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ajay Bhatnagar (HXF2NYBL3W)";
 				INFOPLIST_FILE = CodersChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zargow.zargowappp;
 				PRODUCT_NAME = ChitChat;
+				PROVISIONING_PROFILE = "e0545fc7-cb02-46d7-8405-bb6957327d89";
 			};
 			name = Release;
 		};

@@ -159,10 +159,12 @@
         if (![self.userNameValue length])
         {
             [self showAlertVieWithTitle:@"Alert" message:@"Please enter user name" cancelButtonTitle:@""];
+            return;
         }
         else if (![self.passwordValue length])
         {
             [self showAlertVieWithTitle:@"Alert" message:@"Please enter password" cancelButtonTitle:@""];
+            return;
         }
         else
             NSLog(@"");
