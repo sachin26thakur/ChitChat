@@ -102,7 +102,7 @@
         //used with new AfNetworking framework
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
         operation.responseSerializer = [AFJSONResponseSerializer serializer];
-        
+
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
              //NSLog(@"response %@",responseObject);
             if([delegate respondsToSelector:@selector(webServiceHandler:recievedResponse:)])

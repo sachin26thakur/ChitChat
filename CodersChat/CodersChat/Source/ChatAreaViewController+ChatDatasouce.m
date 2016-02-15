@@ -39,6 +39,11 @@
     if (!selectedLanguage) {
         selectedLanguage = @"en";
     }
+    
+    
+    if (actualIndex >= [individualChatData count]) {
+        return;
+    }
     [self.translator translateText:((ChatMessageObject *)[individualChatData objectAtIndex:actualIndex]).msgText withSource:nil target:selectedLanguage
                         completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
      {
@@ -80,8 +85,12 @@
     if (!selectedLanguage) {
         selectedLanguage = @"en";
     }
+    if (individualChatData.count == 0) {
+        return;
+    }
     __block NSUInteger indexi = index;
     NSMutableArray *chatArray =[NSMutableArray new];
+    
     [self.translator translateText:((ChatMessageObject *)[individualChatData objectAtIndex:indexi]).msgText withSource:nil target:selectedLanguage
                         completion:^(NSError *error, NSString *translated, NSString *sourceLanguage)
      {
